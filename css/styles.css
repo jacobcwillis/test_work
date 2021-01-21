@@ -1,3 +1,14 @@
-.myClass {
+.myHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: space-around;
+    
+}
+.myListItem {
     color: blue;
+    list-style-type: none;
+    padding: 10px;
+}
+.myImage {
+    width: 10%;
 }
