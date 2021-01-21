@@ -19,9 +19,12 @@
     <div class="img-container">
       <img class="my-image" src="img/img1.png">
     </div>
-    <li class="my-list-item" ng-controller="myController">
-      {{items.label}}
-    </li>
+    <div class="list-container" ng-controller="myController" >
+      <li class="my-list-item" ng-repeat="item in items">
+        {{item.label}}
+      </li>
+    </div>
+   
 
   </div>
 
