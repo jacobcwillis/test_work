@@ -1,0 +1,20 @@
+{
+    "menuItems": [
+        {
+            "label": "Header Link 1",
+            "url": ""
+        },
+        {
+            "label": "Header Link 2",
+            "url": ""
+        },
+        {
+            "label": "Header Link 3",
+            "url": ""
+        },
+        {
+            "label": "Header Link 4",
+            "url": ""
+        }
+    ]
+}

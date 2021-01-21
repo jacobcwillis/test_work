@@ -1,14 +1,18 @@
-.myHeader {
+.my-header {
     display: flex;
     flex-direction: row;
     align-items: space-around;
     
 }
-.myListItem {
+.my-list-item {
     color: blue;
     list-style-type: none;
     padding: 10px;
+    flex-basis: 25%;
 }
-.myImage {
-    width: 10%;
+.img-container {
+    flex-basis: 10%;
+}
+.my-image {
+    width:100%;
 }
