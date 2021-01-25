@@ -1,16 +1,33 @@
-console.log("Hello World");
+var myApp = angular.module('myApp', []);
 
-var app = angular.module('testWork', ['ngRoute']);
-
-app.config(function () {
+myApp.config(function () {
 	// The config function is fired once per page load and is used to define
 	// global app behaviour, it is most often used for managing Network events
 	// and global state / routing tools
 });
 
+myApp.controller('myController', function myController($scope) {
+    $scope.items = [
+        {
+            "label": "Header Item 1",
+            "url": ""
+        },
+        {
+            "label": "Header Item 2",
+            "url": ""
+        },
+        {
+            "label": "Header Item 3",
+            "url": ""
+        },
+        {
+            "label": "Header Item 4",
+            "url": ""
+        }
+    ]
+})
 
-
-app.controller('globalHelloWorldController', globalHelloWorldController);
+myApp.controller('globalHelloWorldController', globalHelloWorldController);
 globalHelloWorldController.$inject = ['$scope', '$rootScope'];
 
 function globalHelloWorldController($scope, $rootScope) {
@@ -19,10 +36,12 @@ function globalHelloWorldController($scope, $rootScope) {
 
 
 
-app.controller('localHelloWorldController', localHelloWorldController);
+myApp.controller('localHelloWorldController', localHelloWorldController);
 localHelloWorldController.$inject = ['$scope', '$rootScope'];
 
 function localHelloWorldController($scope, $rootScope) {
 	//$rootScope.globalHelloName = '';
   $scope.localHelloName = 'Local Hello John Smith';
 }
+
+
