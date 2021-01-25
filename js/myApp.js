@@ -13,28 +13,12 @@ myApp.controller('myController', function myController($scope, $http) {
     }).then(function successCallback(response) {
         // this callback will be called asynchronously
         // when the response is available
+        console.log(response);
+        $scope.items = response.data.menuItems;
     }, function errorCallback(response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
     });
-    $scope.items = [
-        {
-            "label": "Header Item 1",
-            "url": ""
-        },
-        {
-            "label": "Header Item 2",
-            "url": ""
-        },
-        {
-            "label": "Header Item 3",
-            "url": ""
-        },
-        {
-            "label": "Header Item 4",
-            "url": ""
-        }
-    ]
 })
 
 myApp.controller('globalHelloWorldController', globalHelloWorldController);
