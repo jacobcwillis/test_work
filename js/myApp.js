@@ -15,6 +15,11 @@ myApp.controller('myController', function myController($scope, $http) {
         // when the response is available
         console.log(response);
         $scope.items = response.data.menuItems;
+
+        var _normalLocalJavascriptVariable = response.data.menuItems;
+        window.normalLocalJavascriptVariable = _normalLocalJavascriptVariable;
+        console.log("window.normalLocalJavascriptVariable: ", window.normalLocalJavascriptVariable);
+
     }, function errorCallback(response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
