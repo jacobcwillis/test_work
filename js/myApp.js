@@ -31,7 +31,8 @@ myApp.controller('globalHelloWorldController', globalHelloWorldController);
 globalHelloWorldController.$inject = ['$scope', '$rootScope'];
 
 function globalHelloWorldController($scope, $rootScope) {
-	$rootScope.globalHelloName = 'Global Hello John Smith';
+    $rootScope.globalHelloName = 'Global Hello Jeremy Smith';
+    $scope.localHelloName = 'Local Hello Jeremy Smith';
 }
 
 
@@ -40,7 +41,7 @@ myApp.controller('localHelloWorldController', localHelloWorldController);
 localHelloWorldController.$inject = ['$scope', '$rootScope'];
 
 function localHelloWorldController($scope, $rootScope) {
-	//$rootScope.globalHelloName = '';
+  //$rootScope.globalHelloName = 'Global Hello John Smith';
   $scope.localHelloName = 'Local Hello John Smith';
 }
 
