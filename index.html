@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="en" data-ng-app="testWork">
 <head>
   <meta charset="utf-8">
 
@@ -12,11 +12,19 @@
 
 </head>
 
-<body>
-    <div class="myClass">My Class</div>
+<body ng-controller="globalHelloWorldController">
+  <div>{{globalHelloName}}</div>
+  <div>{{localHelloName}}</div>
 
-    <script src="js/myApp.js"></script>
-    <script src="js/angular/angular.min.js"></script>
-    <script src="js/angular/angular-route.min.js"></script>
+	<div ng-controller="localHelloWorldController">
+		<div class="myClass">My Class</div>
+    <div>{{globalHelloName}}</div>
+    <div>{{localHelloName}}</div>
+	</div>
+
+  <script src="js/angular/angular.min.js"></script>
+  <script src="js/angular/angular-route.min.js"></script>
+  <script src="js/myApp.js"></script>
+
 </body>
 </html>
