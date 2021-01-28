@@ -1,47 +1,47 @@
 var myApp = angular.module('myApp', []);
 
 myApp.config(function () {
-	// The config function is fired once per page load and is used to define
-	// global app behaviour, it is most often used for managing Network events
-	// and global state / routing tools
+    // The config function is fired once per page load and is used to define
+    // global app behaviour, it is most often used for managing Network events
+    // and global state / routing tools
+
 });
 
-myApp.controller('myController', function myController($scope, $http) {
-    $http({
-        method: 'GET',
-        url: 'json/data.json'
-    }).then(function successCallback(response) {
-        // this callback will be called asynchronously
-        // when the response is available
-        console.log(response);
-        $scope.items = response.data.menuItems;
 
-        var _normalLocalJavascriptVariable = response.data.menuItems;
-        window.normalLocalJavascriptVariable = _normalLocalJavascriptVariable;
-        console.log("window.normalLocalJavascriptVariable: ", window.normalLocalJavascriptVariable);
+myApp.controller('buttonController', buttonController);
+buttonController.$inject = ['$scope', '$rootScope'];
 
-    }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-    });
-})
+function buttonController($scope, $rootScope) {
+    $scope.itemCount = 0; //functional variable controlling insert location for new item
+    $scope.listNumber = $scope.itemCount; //cosmetic variable controlling the X in "List Object X"; never decrements to avoid repeat objects.
 
-myApp.controller('globalHelloWorldController', globalHelloWorldController);
-globalHelloWorldController.$inject = ['$scope', '$rootScope'];
+    $scope.buttonClicked = function () {
+        $scope.itemCount++;
+        $scope.listNumber++;
+        console.log($scope.itemCount);
+        if ($scope.itemCount) {
+            if ($scope.itemLabel) {
+                $scope.loadItem = $scope.itemLabel;
+            } else {
+                $scope.loadItem = 'List Object ';
+                $scope.loadItem = $scope.loadItem.concat($scope.listNumber);
+            }
+            console.log($scope.loadItem);
 
-function globalHelloWorldController($scope, $rootScope) {
-    $rootScope.globalHelloName = 'Global Hello Jeremy Smith';
-    $scope.localHelloName = 'Local Hello Jeremy Smith';
+            if ($scope.itemCount > 0) { //If an item has been added via click
+                if (!$scope.items) {
+                    $scope.items = new Array();
+                }
+                $scope.items[$scope.itemCount - 1] = $scope.loadItem;
+            }
+        }
+        console.log($scope.itemLabel);
+        document.getElementById("myForm").reset();
+        $scope.itemLabel = undefined;
+    }
+
+    $scope.deleteButtonClicked = function(index) {
+        $scope.items.splice(index, 1);
+        $scope.itemCount--;
+    }
 }
-
-
-
-myApp.controller('localHelloWorldController', localHelloWorldController);
-localHelloWorldController.$inject = ['$scope', '$rootScope'];
-
-function localHelloWorldController($scope, $rootScope) {
-  //$rootScope.globalHelloName = 'Global Hello John Smith';
-  $scope.localHelloName = 'Local Hello John Smith';
-}
-
-
