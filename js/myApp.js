@@ -8,10 +8,15 @@ myApp.config(function () {
 });
 
 
-myApp.controller('buttonController', buttonController);
-buttonController.$inject = ['$scope', '$rootScope'];
+myApp.controller('listController', listController);
+listController.$inject = ['$scope', '$rootScope'];
 
-function buttonController($scope, $rootScope) {
+function ListObject(label, category) {
+    this.label = label;
+    this.category = category;
+}
+
+function listController($scope, $rootScope) {
     $scope.itemCount = 0; //functional variable controlling insert location for new item
     $scope.listNumber = $scope.itemCount; //cosmetic variable controlling the X in "List Object X"; never decrements to avoid repeat objects.
 
@@ -27,12 +32,13 @@ function buttonController($scope, $rootScope) {
                 $scope.loadItem = $scope.loadItem.concat($scope.listNumber);
             }
             console.log($scope.loadItem);
+            //loadItem = {"label":"List Object #"}
 
             if ($scope.itemCount > 0) { //If an item has been added via click
                 if (!$scope.items) {
                     $scope.items = new Array();
                 }
-                $scope.items[$scope.itemCount - 1] = $scope.loadItem;
+                $scope.items[$scope.itemCount - 1] = new ListObject($scope.loadItem, "misc.");
             }
         }
         console.log($scope.itemLabel);
@@ -43,5 +49,11 @@ function buttonController($scope, $rootScope) {
     $scope.deleteButtonClicked = function(index) {
         $scope.items.splice(index, 1);
         $scope.itemCount--;
+    }
+
+    $scope.deleteAllButtonClicked = function() {
+        $scope.items = new Array();
+        $scope.itemCount = 0;
+        $scope.listNumber = 0; //everything is gone, no chance of duplicates, list number reset.
     }
 }

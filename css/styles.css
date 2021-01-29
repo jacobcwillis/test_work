@@ -1,41 +1,49 @@
-.my-header {
+.my-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+.list-ui {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 10px;
 }
 .list-container {
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    flex-wrap: wrap;
+    flex-direction: column;
+    border-bottom: solid 1px black;
 }
 .my-list-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    color: blue;
+    justify-content: flex-start;
     list-style-type: none;
-    padding: 5px;
-    flex-basis:60%;
-    border: solid 1px blue;
-    margin: 15px;
+    
+    flex-basis:30%;
+    border: solid 1px black;
+    border-bottom: 0;
+    
     
 }
-.item-label {
-    justify-content: center;
-    flex-basis: 100%;
-    display: flex;
+#item-label {
+    border: none;
+    padding-left: 20px;
 }
-.list-input {
-    margin-left: 10px;
-    margin-bottom: 10px;
+#myForm {
+    padding:0;
+    margin:0;
+    height:100%;
+    display:flex;
+    justify-content: flex-start;
 }
-#img-button {
-    width: 10%;
+#add-button {
+    
 }
 #delete-button {
-    height: 30px;
-
+  height: 20px;
+  
 }
 .delete-image {
     height:100%;

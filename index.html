@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
+  <title>My Page</title>
   <meta name="description" content="Test Work View">
   <meta name="author" content="me">
 
@@ -12,23 +12,25 @@
 </head>
 
 <body>
-  <div class="my-header" ng-controller="buttonController">
-    <form id="myForm">
-      <button type="submit" id="img-button" ng-click="buttonClicked()">
-        <img class="my-image" src="img/img1.png">
-      </button>
-      <input class="list-input" type="text" ng-model="itemLabel">
-    </form>
-    <div class="list-container">
-      <li class="my-list-item" ng-repeat="item in items track by $index">
+  <div class="my-list" ng-controller="listController">
+
+    <div class="list-ui">
+      <button class="delete-all-button" ng-click="deleteAllButtonClicked()">Clear All</button>
+      <form id="myForm">
+        <input class="list-input" type="text" ng-model="itemLabel">
+        <button type="submit" id="add-button" ng-click="buttonClicked()">Click to Add</button>
+      </form>
+    </div>
+
+    <div class="list-container" ng-show="items[0]">
+      <li contenteditable="true" class="my-list-item" ng-repeat="item in items track by $index">
         <button id="delete-button" ng-click="deleteButtonClicked($index)">
           <img class="delete-image" src="img/img2.png">
         </button>
-        <div class="item-label">
-          {{item}}
-        </div>
+        <input type="text" id="item-label" ng-model="items[$index].label">
       </li>
     </div>
+
   </div>
 
   <script src="js/angular/angular.min.js"></script>
