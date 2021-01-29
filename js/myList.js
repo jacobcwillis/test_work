@@ -1,6 +1,6 @@
-var myApp = angular.module('myApp', []);
+var myList = angular.module('myList', []);
 
-myApp.config(function () {
+myList.config(function () {
     // The config function is fired once per page load and is used to define
     // global app behaviour, it is most often used for managing Network events
     // and global state / routing tools
@@ -8,7 +8,7 @@ myApp.config(function () {
 });
 
 
-myApp.controller('listController', listController);
+myList.controller('listController', listController);
 listController.$inject = ['$scope', '$rootScope'];
 
 function ListObject(label, category) {
@@ -42,7 +42,7 @@ function listController($scope, $rootScope) {
             }
         }
         console.log($scope.itemLabel);
-        document.getElementById("myForm").reset();
+        document.getElementById("list-form").reset();
         $scope.itemLabel = undefined;
     }
 

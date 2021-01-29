@@ -1,4 +1,4 @@
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myList">
 
 <head>
   <meta charset="utf-8">
@@ -12,22 +12,22 @@
 </head>
 
 <body>
-  <div class="my-list" ng-controller="listController">
+  <div class="list" ng-controller="listController">
 
     <div class="list-ui">
-      <button class="delete-all-button" ng-click="deleteAllButtonClicked()">Clear All</button>
-      <form id="myForm">
-        <input class="list-input" type="text" ng-model="itemLabel">
-        <button type="submit" id="add-button" ng-click="buttonClicked()">Click to Add</button>
+      <button class="list-ui-delete-button" ng-click="deleteAllButtonClicked()">Clear All</button>
+      <form id="list-form">
+        <input class="list-ui-input" type="text" ng-model="itemLabel">
+        <button type="submit" class="list-ui-add-button" ng-click="buttonClicked()">Click to Add</button>
       </form>
     </div>
 
     <div class="list-container" ng-show="items[0]">
-      <li contenteditable="true" class="my-list-item" ng-repeat="item in items track by $index">
-        <button id="delete-button" ng-click="deleteButtonClicked($index)">
-          <img class="delete-image" src="img/img2.png">
+      <li contenteditable="true" class="list-container-item" ng-repeat="item in items track by $index">
+        <button class="list-container-item-delete-button" ng-click="deleteButtonClicked($index)">
+          <img class="list-container-item-delete-button-image" src="img/img2.png">
         </button>
-        <input type="text" id="item-label" ng-model="items[$index].label">
+        <input type="text" class="list-container-item-text" ng-model="items[$index].label">
       </li>
     </div>
 
@@ -35,7 +35,7 @@
 
   <script src="js/angular/angular.min.js"></script>
   <script src="js/angular/angular-route.min.js"></script>
-  <script src="js/myApp.js"></script>
+  <script src="js/myList.js"></script>
 
 </body>
 

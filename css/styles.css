@@ -1,4 +1,4 @@
-.my-list {
+.list {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -10,12 +10,29 @@
     justify-content: center;
     padding-bottom: 10px;
 }
+.list-ui-delete-button {
+    
+}
+#list-form {
+    padding:0;
+    margin:0;
+    height:100%;
+    display:flex;
+    justify-content: flex-start;
+}
+.list-ui-input {
+
+}
+.list-ui-add-button {
+    
+}
+
 .list-container {
     display: flex;
     flex-direction: column;
     border-bottom: solid 1px black;
 }
-.my-list-item {
+.list-container-item {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -27,27 +44,14 @@
     
     
 }
-#item-label {
+.list-container-item-text {
     border: none;
     padding-left: 20px;
 }
-#myForm {
-    padding:0;
-    margin:0;
-    height:100%;
-    display:flex;
-    justify-content: flex-start;
-}
-#add-button {
-    
-}
-#delete-button {
+.list-container-item-delete-button {
   height: 20px;
   
 }
-.delete-image {
+.list-container-item-delete-button-image {
     height:100%;
-}
-.my-image {
-    width:100%;
 }
