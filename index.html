@@ -18,6 +18,9 @@
       <button class="list-ui-delete-button" ng-click="deleteAllButtonClicked()">Clear All</button>
       <form id="list-form">
         <input class="list-ui-input" type="text" ng-model="itemLabel">
+        <select class="list-ui-select" ng-model="itemCategory">
+          <option ng-repeat="group in categories">{{group}}</option>
+        </select>
         <button type="submit" class="list-ui-add-button" ng-click="buttonClicked()">Click to Add</button>
       </form>
     </div>
