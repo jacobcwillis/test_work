@@ -19,6 +19,7 @@ function ListObject(label, category) {
 function listController($scope, $rootScope) {
     $scope.itemCount = 0; //functional variable controlling insert location for new item
     $scope.listNumber = $scope.itemCount; //cosmetic variable controlling the X in "List Object X"; never decrements to avoid repeat objects.
+    $scope.categories = ['group1','group2','group3','group4'];
 
     $scope.buttonClicked = function () {
         $scope.itemCount++;
@@ -31,14 +32,13 @@ function listController($scope, $rootScope) {
                 $scope.loadItem = 'List Object ';
                 $scope.loadItem = $scope.loadItem.concat($scope.listNumber);
             }
-            console.log($scope.loadItem);
             //loadItem = {"label":"List Object #"}
 
             if ($scope.itemCount > 0) { //If an item has been added via click
                 if (!$scope.items) {
                     $scope.items = new Array();
                 }
-                $scope.items[$scope.itemCount - 1] = new ListObject($scope.loadItem, "misc.");
+                $scope.items[$scope.itemCount - 1] = new ListObject($scope.loadItem, $scope.categories[0]);
             }
         }
         console.log($scope.itemLabel);

@@ -28,6 +28,9 @@
           <img class="list-container-item-delete-button-image" src="img/img2.png">
         </button>
         <input type="text" class="list-container-item-text" ng-model="items[$index].label">
+        <select name="category" class="list-container-item-category" ng-model="items[$index].category">
+          <option ng-repeat="group in categories">{{group}}</option>
+        </select>
       </li>
     </div>
 
