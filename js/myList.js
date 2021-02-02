@@ -4,12 +4,14 @@ myList.config(function () {
     // The config function is fired once per page load and is used to define
     // global app behaviour, it is most often used for managing Network events
     // and global state / routing tools
-
 });
-
 
 myList.controller('listController', listController);
 listController.$inject = ['$scope', '$rootScope'];
+
+
+const categories = ['work', 'social', 'home', 'misc.'];
+const defaultCategory = 3; //misc.
 
 function ListObject(id, label, category) {
     this.id = id;
@@ -18,9 +20,8 @@ function ListObject(id, label, category) {
 }
 
 function listController($scope, $rootScope) {
-    $scope.categories = ['work', 'social', 'home', 'misc.'];
-    $scope.defaultCategory = 3; //misc
-    $scope.itemCategory = $scope.categories[$scope.defaultCategory];
+    $scope.categories = categories; //without which the select ng-repeat does not function
+    $scope.itemCategory = categories[defaultCategory];
     $scope.items = [];
     $scope.itemCount = $scope.items.length;
 
@@ -34,7 +35,7 @@ function listController($scope, $rootScope) {
         var _listObject = new ListObject($scope.itemCount, _listObjectLabel, $scope.itemCategory);
         $scope.items.push(_listObject);
         $scope.itemLabel = undefined;
-        $scope.itemCategory = $scope.categories[$scope.defaultCategory];
+        $scope.itemCategory = categories[defaultCategory];
     }
     
     $scope.deleteButtonClicked = function (index) {
@@ -45,8 +46,11 @@ function listController($scope, $rootScope) {
         $scope.items = new Array();
         $scope.itemCount = 0;
     }
-    console.log($scope.categoryFilter);
-    console.log($scope.searchFilter);
+
+    $scope.clearButtonClicked = function () {
+        $scope.categoryFilter = undefined;
+        $scope.searchFilter = undefined;
+    }
     
     
 }

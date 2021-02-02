@@ -15,10 +15,10 @@
   <div class="list" ng-controller="listController">
 
     <div class="list-ui">
-      <button class="list-ui-delete-button" ng-click="deleteAllButtonClicked()">Clear All</button>
+      <button class="list-ui-delete-button" ng-click="deleteAllButtonClicked()">Clear List</button>
       <form id="list-form">
-        <input class="list-ui-input" type="text" ng-model="itemLabel">
-        <select class="list-ui-select" ng-model="itemCategory" ng-selected="categories[0]">
+        <input class="list-ui-input" type="text" ng-model="itemLabel" placeholder="New Label">
+        <select class="list-ui-select" ng-model="itemCategory">
           <option ng-repeat="group in categories">{{group}}</option>
         </select>
         <button type="submit" class="list-ui-add-button" ng-click="buttonClicked()">Click to Add</button>
@@ -26,12 +26,11 @@
     </div>
 
     <div class="list-filter">
-      <form id="filter-form">
-        <input class="list-filter-input" type="text" ng-model="searchFilter">
+        <input class="list-filter-input" type="text" ng-model="searchFilter" placeholder="Search...">
         <select class="list-filter-select" ng-model="categoryFilter">
           <option ng-repeat="group in categories">{{group}}</option>
         </select>
-      </form>
+        <button class="list-filter-clear-button" ng-click="clearButtonClicked()">Clear Filter</button>
     </div>
 
     <div class="list-container" ng-show="items[0]">
