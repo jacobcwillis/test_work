@@ -5,13 +5,9 @@ myList.config(function () {
     // global app behaviour, it is most often used for managing Network events
     // and global state / routing tools
 });
-
+myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.']) //initial category is default
 myList.controller('listController', listController);
-listController.$inject = ['$scope', '$rootScope'];
-
-
-const categories = ['work', 'social', 'home', 'misc.'];
-const defaultCategory = 3; //misc.
+listController.$inject = ['$scope', '$rootScope', CATEGORIES];
 
 function ListObject(id, label, category) {
     this.id = id;
@@ -19,9 +15,9 @@ function ListObject(id, label, category) {
     this.category = category;
 }
 
-function listController($scope, $rootScope) {
-    $scope.categories = categories; //without which the select ng-repeat does not function
-    $scope.itemCategory = categories[defaultCategory];
+function listController($scope, $rootScope, CATEGORIES) {
+    $scope.categories = CATEGORIES; //without which the select ng-repeat does not function
+    $scope.itemCategory = $scope.categories[0];
     $scope.items = [];
     $scope.itemCount = $scope.items.length;
 
@@ -35,11 +31,15 @@ function listController($scope, $rootScope) {
         var _listObject = new ListObject($scope.itemCount, _listObjectLabel, $scope.itemCategory);
         $scope.items.push(_listObject);
         $scope.itemLabel = undefined;
-        $scope.itemCategory = categories[defaultCategory];
+        $scope.itemCategory = $scope.categories[0];
     }
     
     $scope.deleteButtonClicked = function (index) {
-        $scope.items.splice(index, 1);
+        $scope.items.splice($scope.items.findIndex(checkId, index),1)
+    }
+
+    function checkId(item) {
+        return item.id == this;
     }
     
     $scope.deleteAllButtonClicked = function () {
