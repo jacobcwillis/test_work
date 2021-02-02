@@ -11,7 +11,8 @@ myList.config(function () {
 myList.controller('listController', listController);
 listController.$inject = ['$scope', '$rootScope'];
 
-function ListObject(label, category) {
+function ListObject(id, label, category) {
+    this.id = id;
     this.label = label;
     this.category = category;
 }
@@ -30,7 +31,7 @@ function listController($scope, $rootScope) {
         } else {
             var _listObjectLabel = 'List Object ' + $scope.itemCount.toString();
         }
-        var _listObject = new ListObject(_listObjectLabel, $scope.itemCategory);
+        var _listObject = new ListObject($scope.itemCount, _listObjectLabel, $scope.itemCategory);
         $scope.items.push(_listObject);
         $scope.itemLabel = undefined;
         $scope.itemCategory = $scope.categories[$scope.defaultCategory];

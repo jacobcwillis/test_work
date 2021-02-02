@@ -35,12 +35,12 @@
     </div>
 
     <div class="list-container" ng-show="items[0]">
-      <li contenteditable="true" class="list-container-item" ng-repeat="item in items | filter:{label:searchFilter}">
-        <button class="list-container-item-delete-button" ng-click="deleteButtonClicked($index)">
+      <li contenteditable="true" class="list-container-item" ng-repeat="item in items | filter:{label:searchFilter, category:categoryFilter}">
+        <button class="list-container-item-delete-button" ng-click="deleteButtonClicked(item.id)">
           <img class="list-container-item-delete-button-image" src="img/img2.png">
         </button>
-        <input type="text" class="list-container-item-text" ng-model="items[$index].label">
-        <select name="category" class="list-container-item-category" ng-model="items[$index].category">
+        <input type="text" class="list-container-item-text" ng-model="item.label">
+        <select name="category" class="list-container-item-category" ng-model="item.category">
           <option ng-repeat="group in categories">{{group}}</option>
         </select>
       </li>
