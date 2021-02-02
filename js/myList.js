@@ -17,44 +17,38 @@ function ListObject(label, category) {
 }
 
 function listController($scope, $rootScope) {
-    $scope.itemCount = 0; //functional variable controlling insert location for new item
-    $scope.listNumber = $scope.itemCount; //cosmetic variable controlling the X in "List Object X"; never decrements to avoid repeat objects.
-    $scope.categories = ['work','social','home','misc.'];
+    $scope.categories = ['work', 'social', 'home', 'misc.'];
     $scope.defaultCategory = 3; //misc
     $scope.itemCategory = $scope.categories[$scope.defaultCategory];
+    $scope.items = [];
+    $scope.itemCount = $scope.items.length;
 
     $scope.buttonClicked = function () {
         $scope.itemCount++;
-        $scope.listNumber++;
-        if ($scope.itemCount) {
-            if ($scope.itemLabel) {
-                $scope.loadItem = $scope.itemLabel;
-            } else {
-                $scope.loadItem = 'List Object ';
-                $scope.loadItem = $scope.loadItem.concat($scope.listNumber);
-            }
-            
-
-            if ($scope.itemCount > 0) { //If an item has been added via click
-                if (!$scope.items) {
-                    $scope.items = new Array();
-                }
-                $scope.items[$scope.itemCount - 1] = new ListObject($scope.loadItem, $scope.itemCategory);
-            }
+        if ($scope.itemLabel) {
+            var _listObjectLabel = $scope.itemLabel;
+        } else {
+            var _listObjectLabel = 'List Object ' + $scope.itemCount.toString();
         }
-        document.getElementById("list-form").reset();
+        var _listObject = new ListObject(_listObjectLabel, $scope.itemCategory);
+        $scope.items.push(_listObject);
         $scope.itemLabel = undefined;
         $scope.itemCategory = $scope.categories[$scope.defaultCategory];
     }
-
-    $scope.deleteButtonClicked = function(index) {
+    
+    $scope.deleteButtonClicked = function (index) {
         $scope.items.splice(index, 1);
-        $scope.itemCount--;
     }
-
-    $scope.deleteAllButtonClicked = function() {
+    
+    $scope.deleteAllButtonClicked = function () {
         $scope.items = new Array();
         $scope.itemCount = 0;
-        $scope.listNumber = 0; //everything is gone, no chance of duplicates, list number reset.
     }
+    console.log($scope.categoryFilter);
+    console.log($scope.searchFilter);
+    
+    
 }
+
+
+

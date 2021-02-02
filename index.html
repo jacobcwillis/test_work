@@ -25,8 +25,17 @@
       </form>
     </div>
 
+    <div class="list-filter">
+      <form id="filter-form">
+        <input class="list-filter-input" type="text" ng-model="searchFilter">
+        <select class="list-filter-select" ng-model="categoryFilter">
+          <option ng-repeat="group in categories">{{group}}</option>
+        </select>
+      </form>
+    </div>
+
     <div class="list-container" ng-show="items[0]">
-      <li contenteditable="true" class="list-container-item" ng-repeat="item in items track by $index">
+      <li contenteditable="true" class="list-container-item" ng-repeat="item in items | filter:{label:searchFilter}">
         <button class="list-container-item-delete-button" ng-click="deleteButtonClicked($index)">
           <img class="list-container-item-delete-button-image" src="img/img2.png">
         </button>
