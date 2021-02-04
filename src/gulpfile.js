@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var htmlreplace = require('gulp-html-replace');
 var minify = require('gulp-minify');
+var concat = require('gulp-concat');
 
 sass.compiler = require('node-sass');
 
@@ -38,7 +39,8 @@ gulp.task('html', function (done) {
 
 gulp.task('js', function (done) {
     gulp.src(['./js/*.js'])
-        .pipe(minify())
+        .pipe(minify({noSource: true}))
+        
         .pipe(gulp.dest('../build/js/'))
     done();
 });
@@ -49,7 +51,7 @@ gulp.task('default',
     gulp.series(
         gulp.series('js', gulp.parallel(['sass', 'html'])), //build
         (done) => {
-            gulp.watch(['./scss/**/*.scss', './index.html'], //watch for updates
+            gulp.watch(['./scss/**/*.scss', './index.html', './js/**/*.js'], //watch for updates
                 gulp.series('js', gulp.parallel(['sass', 'html']))); //build updates
             done();
         }
