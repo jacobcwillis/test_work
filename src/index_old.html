@@ -1,0 +1,64 @@
+<html lang="en" ng-app="myList_old">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>My Page</title>
+  <meta name="description" content="Test Work View">
+  <meta name="author" content="me">
+
+  <!-- build:stylesheetOldLink -->
+  <link rel="stylesheet" href="./css/styles_old.css">
+  <!-- endbuild -->
+
+</head>
+
+<body>
+  <div class="list" ng-controller="listController">
+
+    <div class="list-ui">
+      <button class="list-ui-delete-button" ng-click="deleteAllButtonClicked()">Clear List</button>
+      <form id="list-form">
+        <input class="list-ui-input" type="text" ng-model="itemLabel" placeholder="New Label">
+        <select class="list-ui-select" ng-model="itemCategory">
+          <option ng-repeat="group in categories">{{group}}</option>
+        </select>
+        <button type="submit" class="list-ui-add-button" ng-click="buttonClicked()">
+          <img class="list-ui-add-button-img" src="img/notesAddPlus.png">
+        </button>
+      </form>
+    </div>
+
+    <div class="list-filter">
+      <input class="list-filter-input" type="text" ng-model="searchFilter" placeholder="Search...">
+      <select class="list-filter-select" ng-model="categoryFilter">
+        <option ng-repeat="group in categories">{{group}}</option>
+      </select>
+      <button class="list-filter-clear-button" ng-click="clearButtonClicked()">Clear Filter</button>
+    </div>
+
+    <div class="list-container" ng-show="items[0]">
+      <li contenteditable="true" class="list-container-item"
+        ng-repeat="item in items | filter:{label:searchFilter, category:categoryFilter}">
+        <button class="list-container-item-delete-button" ng-click="deleteButtonClicked(item.id)">
+          <img class="list-container-item-delete-button-image" src="img/img2.png">
+        </button>
+        <input type="text" class="list-container-item-text" ng-model="item.label">
+        <select name="category" class="list-container-item-category" ng-model="item.category">
+          <option ng-repeat="group in categories">{{group}}</option>
+        </select>
+      </li>
+    </div>
+
+  </div>
+
+  <script src="js/angular/angular.min.js"></script>
+  <script src="js/angular/angular-route.min.js"></script>
+  <!-- build:minjsOldLink -->
+  <script src="js/myList_old.js"></script>
+  <!-- endbuild -->
+  
+
+</body>
+
+</html>

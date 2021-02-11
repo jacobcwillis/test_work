@@ -7,55 +7,52 @@ myList.config(function () {
     
 });
 myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.']) //initial category is default
-myList.controller('listController', listController);
-listController.$inject = ['$scope', '$rootScope', 'CATEGORIES'];
+myList.controller('todoController', todoController);
+todoController.$inject = ['$scope', '$rootScope', 'CATEGORIES'];
+myList.controller('navController', navController);
+navController.$inject = ['$scope', '$rootScope'];
 
 
-function ListObject(id, label, category) {
+
+function ListObject(id, label, notes, categories, selected) {
     this.id = id;
     this.label = label;
-    this.category = category;
+    this.notes = notes;
+    this.categories = categories;
 }
 
-function listController($scope, $rootScope, CATEGORIES) {
-    $scope.categories = CATEGORIES; //without which the select ng-repeat does not function
-    $scope.itemCategory = $scope.categories[0];
+function todoController($scope, $rootScope, CATEGORIES) {
+    $scope.categories = CATEGORIES;
+    $scope.calendarView = false;
+    $scope.listView = true;
+    $scope.notesView = false;
+    $scope.editView = false;
     $scope.items = [];
     $scope.itemCount = $scope.items.length;
-
-    $scope.buttonClicked = function () {
-        $scope.itemCount++;
-        if ($scope.itemLabel) {
-            var _listObjectLabel = $scope.itemLabel;
-        } else {
-            var _listObjectLabel = 'List Object ' + $scope.itemCount.toString();
-        }
-        var _listObject = new ListObject($scope.itemCount, _listObjectLabel, $scope.itemCategory);
-        $scope.items.push(_listObject);
-        $scope.itemLabel = undefined;
-        $scope.itemCategory = $scope.categories[0];
-    }
     
-    $scope.deleteButtonClicked = function (index) {
-        $scope.items.splice($scope.items.findIndex(checkId, index),1)
-    }
 
-    function checkId(item) {
-        return item.id == this;
-    }
-    
-    $scope.deleteAllButtonClicked = function () {
-        $scope.items = new Array();
-        $scope.itemCount = 0;
-    }
-
-    $scope.clearButtonClicked = function () {
-        $scope.categoryFilter = undefined;
-        $scope.searchFilter = undefined;
-    }
-    
     
 }
 
+function navController($scope, $rootScope) {
+    $scope.calendarPressed = function () {
+        $scope.notesView = false;
+        $scope.listView = false;
+        $scope.calendarView = true;
+        console.log('calendar');
+    }
+    $scope.listPressed = function () {
+        $scope.calendarView = false;
+        $scope.notesView = false;
+        $scope.listView = true;
+        console.log('list');
+    }
+    $scope.notesPressed = function () {
+        $scope.listView = false;
+        $scope.calendarView = false;
+        $scope.notesView = true;
+        console.log('notes');
+    }
+}
 
 

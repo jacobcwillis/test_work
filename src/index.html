@@ -14,40 +14,54 @@
 </head>
 
 <body>
-  <div class="list" ng-controller="listController">
+  <div class="todo" ng-controller="todoController">
+    <div class="todo-calendar" ng-if="calendarView" ng-hide="editView">
+      calendar
+    </div>
 
-    <div class="list-ui">
-      <button class="list-ui-delete-button" ng-click="deleteAllButtonClicked()">Clear List</button>
-      <form id="list-form">
-        <input class="list-ui-input" type="text" ng-model="itemLabel" placeholder="New Label">
-        <select class="list-ui-select" ng-model="itemCategory">
-          <option ng-repeat="group in categories">{{group}}</option>
-        </select>
-        <button type="submit" class="list-ui-add-button" ng-click="buttonClicked()">Click to Add</button>
+
+    <div class="todo-list" ng-if="listView" ng-hide="editView">
+      <button class="todo-list-add" ng-click="addItem()">add</button>
+    </div>
+
+
+    <div class="todo-notes" ng-if="notesView" ng-hide="editView">
+      <div class="todo-notes-header">
+        <button class="todo-notes-header-edit" ng-if="numSelected = 1" ng-click="editItem()">edit</button>
+      </div>
+      <ul class="todo-notes-list">
+        <li ng-repeat="item in items">
+          <div class="todo-notes-list-label">{{item.label}}</div>
+          <div class="todo-notes-list-preview">{{item.notes}}</div>
+          <input type="checkbox" class="todo-notes-list-select" ng-model="item.selected" ng-change="itemSelected(item.selected)">
+        </li>
+      </div>
+
+    </div>
+
+    <div class="todo-edit" ng-show="editView">
+      <form id="edit-form">
+        <input class="todo-edit-label" ng-model=itemLabel>
+        <input class="todo-edit-notes" ng-model=itemNotes>
       </form>
     </div>
 
-    <div class="list-filter">
-      <input class="list-filter-input" type="text" ng-model="searchFilter" placeholder="Search...">
-      <select class="list-filter-select" ng-model="categoryFilter">
-        <option ng-repeat="group in categories">{{group}}</option>
-      </select>
-      <button class="list-filter-clear-button" ng-click="clearButtonClicked()">Clear Filter</button>
-    </div>
 
-    <div class="list-container" ng-show="items[0]">
-      <li contenteditable="true" class="list-container-item"
-        ng-repeat="item in items | filter:{label:searchFilter, category:categoryFilter}">
-        <button class="list-container-item-delete-button" ng-click="deleteButtonClicked(item.id)">
-          <img class="list-container-item-delete-button-image" src="img/img2.png">
-        </button>
-        <input type="text" class="list-container-item-text" ng-model="item.label">
-        <select name="category" class="list-container-item-category" ng-model="item.category">
-          <option ng-repeat="group in categories">{{group}}</option>
-        </select>
-      </li>
-    </div>
 
+    <div class="todo-nav" ng-controller="navController">
+      <button id="calendarButton" ng-click="calendarPressed()">
+        <img ng-if="calendarView" src="img/calendarIconActive.png">
+        <img ng-if="!calendarView" src="img/calendarIconInactive.png">
+      </button>
+      <button id="listButton" ng-click="listPressed()">
+        <img ng-if="listView" src="img/listIconActive.png">
+        <img ng-if="!listView" src="img/listIconInactive.png">
+      </button>
+      <button id="notesButton" ng-click="notesPressed()">
+        <img ng-if="notesView" src="img/pencilIconActive.png">
+        <img ng-if="!notesView" src="img/pencilIconInactive.png">
+      </button>
+    </div>
   </div>
 
   <script src="js/angular/angular.min.js"></script>

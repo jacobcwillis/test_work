@@ -27,10 +27,13 @@ gulp.task('sass', function (done) {
 });
 
 gulp.task('html', function (done) {
-    gulp.src('index.html')
+    gulp.src('*.html')
         .pipe(htmlreplace({
             'stylesheetLink': './css/styles.css',
-            'minjsLink': './js/myList-min.js'
+            'minjsLink': './js/myList-min.js',
+            'minjsOldLink': './js/myList_old-min.js',
+            'stylesheetOldLink' : './css/styles_old.css'
+
         }))
         .pipe(gulp.dest('../build/'));
     done();
@@ -40,7 +43,6 @@ gulp.task('html', function (done) {
 gulp.task('js', function (done) {
     gulp.src(['./js/*.js'])
         .pipe(minify({noSource: true}))
-        
         .pipe(gulp.dest('../build/js/'))
     done();
 });
