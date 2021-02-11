@@ -31,15 +31,19 @@
         <li ng-repeat="item in items">
           <div class="todo-notes-list-label">{{item.label}}</div>
           <div class="todo-notes-list-preview">{{item.notes}}</div>
-          <input type="checkbox" class="todo-notes-list-select" ng-model="item.selected" ng-change="itemSelected(item.selected)">
+          <input type="checkbox" class="todo-notes-list-select" ng-model="" ng-change="">
         </li>
       </div>
 
     </div>
 
-    <div class="todo-edit" ng-show="editView">
+    <div class="todo-edit" ng-if="editView" ng-controller="editController">
       <form id="edit-form">
         <input class="todo-edit-label" ng-model=itemLabel>
+        <div class="todo-edit-categories" ng-repeat="category in categories">
+          <label><input type="checkbox" ng-model="addItemCategory[$index]">{{category}}</label>
+        </div>
+        <button type="submit" ng-click="submitItem()"></button>
         <input class="todo-edit-notes" ng-model=itemNotes>
       </form>
     </div>

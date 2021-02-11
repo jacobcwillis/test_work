@@ -28,10 +28,18 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $scope.notesView = false;
     $scope.editView = false;
     $scope.items = [];
-    $scope.itemCount = $scope.items.length;
+    
     
 
     
+}
+
+function editController($scope, $rootScope) {
+    $scope.addItemCategory = [];
+
+    $scope.submitItem = function () {
+        var _listObject = new ListObject
+    }
 }
 
 function navController($scope, $rootScope) {
