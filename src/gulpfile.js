@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var htmlreplace = require('gulp-html-replace');
 var minify = require('gulp-minify');
 var concat = require('gulp-concat');
+var image = require('gulp-image');
 
 sass.compiler = require('node-sass');
 
@@ -20,7 +21,6 @@ gulp.task('sass', function (done) {
     return gulp.src([
         './scss/**/*.scss'
     ])
-        //.pipe(concat('app.css'))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('../build/css/'));
     done();
@@ -39,19 +39,32 @@ gulp.task('html', function (done) {
     done();
 })
 
+gulp.task('img', function (done) {
+    gulp.src(['./img/**/*.png'])
+        .pipe(image())
+        .pipe(gulp.dest('../build/img/'));
+    done();
+})
+
 
 gulp.task('js', function (done) {
     gulp.src(['./js/*.js'])
         .pipe(minify({noSource: true}))
-        .pipe(gulp.dest('../build/js/'))
+        .pipe(gulp.dest('../build/js/'));
     done();
 });
+
+gulp.task('angular', function (done) {
+    gulp.src(['./js/angular/*.js'])
+        .pipe(gulp.dest('../build/js/angular/'));
+    done();
+})
 
 
 
 gulp.task('default',
     gulp.series(
-        gulp.series('js', gulp.parallel(['sass', 'html'])), //build
+        gulp.series('js','img', 'angular', gulp.parallel(['sass', 'html'])), //build
         (done) => {
             gulp.watch(['./scss/**/*.scss', './index.html', './js/**/*.js'], //watch for updates
                 gulp.series('js', gulp.parallel(['sass', 'html']))); //build updates

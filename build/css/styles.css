@@ -1,0 +1,14 @@
+.todo {
+  display: flex;
+  flex-direction: column;
+  background-color: #191c35; }
+  .todo-notes {
+    display: flex;
+    flex-direction: column; }
+    .todo-notes-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; }
+    .todo-notes-list {
+      display: flex;
+      flex-direction: column; }

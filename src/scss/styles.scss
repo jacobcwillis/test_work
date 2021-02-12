@@ -1,14 +1,48 @@
 .todo {
+    display:flex;
+    flex-direction: column;
+    background-color: #191c35;
+
     &-calendar {
 
     }
 
     &-list {
+        &-add {
 
+        }
     }
 
     &-notes {
+        display: flex;
+        flex-direction: column;
 
+        &-header {
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            &-search {
+                
+            }
+            &-edit {
+
+            }
+        }
+        &-list {
+            display: flex;
+            flex-direction: column;
+
+
+            &-label {
+
+            }
+            &-preview {
+
+            }
+            &-select {
+
+            }
+        }
     }
 
     &-nav {

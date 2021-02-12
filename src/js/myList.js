@@ -23,10 +23,7 @@ function ListObject(id, label, notes, categories, selected) {
 
 function todoController($scope, $rootScope, CATEGORIES) {
     $scope.categories = CATEGORIES;
-    $scope.calendarView = false;
-    $scope.listView = true;
-    $scope.notesView = false;
-    $scope.editView = false;
+    $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $scope.items = [];
     
     
@@ -34,31 +31,33 @@ function todoController($scope, $rootScope, CATEGORIES) {
     
 }
 
+function notesController($scope, $rootScope) {
+    $scope.header = 0; //default notes header
+    
+    $scope.openSearch = function () {
+        $scope.header = 1; //search bar header
+    }
+}
+
 function editController($scope, $rootScope) {
     $scope.addItemCategory = [];
 
     $scope.submitItem = function () {
-        var _listObject = new ListObject
+        var _listObject = new ListObject();
     }
 }
 
 function navController($scope, $rootScope) {
     $scope.calendarPressed = function () {
-        $scope.notesView = false;
-        $scope.listView = false;
-        $scope.calendarView = true;
+        $rootScope.view = 0;
         console.log('calendar');
     }
     $scope.listPressed = function () {
-        $scope.calendarView = false;
-        $scope.notesView = false;
-        $scope.listView = true;
+        $rootScope.view = 1;
         console.log('list');
     }
     $scope.notesPressed = function () {
-        $scope.listView = false;
-        $scope.calendarView = false;
-        $scope.notesView = true;
+        $rootScope.view = 2;
         console.log('notes');
     }
 }
