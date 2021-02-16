@@ -57,6 +57,8 @@ gulp.task('js', function (done) {
 gulp.task('angular', function (done) {
     gulp.src(['./js/angular/*.js'])
         .pipe(gulp.dest('../build/js/angular/'));
+    gulp.src(['./js/angular/*.map'])
+        .pipe(gulp.dest('../build/js/angular/'));
     done();
 })
 
