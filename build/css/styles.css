@@ -10,8 +10,8 @@
       flex-direction: row;
       justify-content: space-between;
       width: 100%; }
-      .todo-notes-header-search {
-        width: 100%; }
+      .todo-notes-header-search #search-icon {
+        height: 100%; }
     .todo-notes-list {
       display: flex;
       flex-direction: column; }

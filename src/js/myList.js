@@ -17,7 +17,7 @@ myList.controller('editController', editController);
 editController.$inject = ['$scope', '$rootScope'];
 
 
-function ListObject(id, label, notes, categories, selected) {
+function ListObject(id, label, notes, categories) {
     this.id = id;
     this.label = label;
     this.notes = notes;
@@ -26,7 +26,7 @@ function ListObject(id, label, notes, categories, selected) {
 }
 
 function todoController($scope, $rootScope, CATEGORIES) {
-    $scope.categories = CATEGORIES;
+    $scope.categoryLegend = CATEGORIES;
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
@@ -37,10 +37,25 @@ function todoController($scope, $rootScope, CATEGORIES) {
 }
 
 function notesController($scope, $rootScope) {
-    $scope.header = 0; //default notes header
+    $scope.search = false; //default notes header
+    $scope.noteSelected = false;
+    
 
     $scope.openSearch = function () {
-        $scope.header = 1; //search bar header
+        $scope.search = true; //search bar header
+    }
+    
+    $scope.noteSelect = function (id) {
+        $scope.noteSelected = true;
+        $scope.selected = id;
+    }
+
+    $scope.editItem = function (id) {
+        for (var i = 0; i < items.length; i++) {
+            if(item.id = id) {
+                
+            }
+        }
     }
 }
 
@@ -48,23 +63,24 @@ function editController($scope, $rootScope) {
     $scope.addItemCategory = [];
 
     $scope.submitItem = function () {
-
-        
+        $rootScope.itemCount++;
+        _listObject = new ListObject($rootScope.itemCount, itemLabel, itemNotes, addItemCategory);
+        $rootScope.items.push(_listObject);
     }
 }
 
 function navController($scope, $rootScope) {
     $scope.calendarPressed = function () {
         $rootScope.view = 0;
-        console.log('calendar');
+        console.log($rootScope.view);
     }
     $scope.listPressed = function () {
         $rootScope.view = 1;
-        console.log('list');
+        console.log($rootScope.view);
     }
     $scope.notesPressed = function () {
         $rootScope.view = 2;
-        console.log('notes');
+        console.log($rootScope.view);
     }
 }
 
