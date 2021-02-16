@@ -8,7 +8,21 @@
     .todo-notes-header {
       display: flex;
       flex-direction: row;
-      justify-content: space-between; }
+      justify-content: space-between;
+      width: 100%; }
+      .todo-notes-header-search {
+        width: 100%; }
     .todo-notes-list {
       display: flex;
       flex-direction: column; }
+  .todo-edit {
+    display: flex; }
+    .todo-edit #edit-form {
+      display: flex;
+      flex-direction: column; }
+    .todo-edit-categories {
+      display: flex;
+      flex-direction: row;
+      overflow: scroll; }
+  .todo-nav {
+    background-color: #30334a; }

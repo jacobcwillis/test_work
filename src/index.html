@@ -15,17 +15,17 @@
 
 <body>
   <div class="todo" ng-controller="todoController">
-    <div class="todo-calendar" ng-if="calendarView" ng-hide="editView">
+    <div class="todo-calendar" ng-if="view = 0">
       calendar
     </div>
 
 
-    <div class="todo-list" ng-if="listView" ng-hide="editView">
+    <div class="todo-list" ng-if="view = 1">
       <button class="todo-list-add" ng-click="addItem()">add</button>
     </div>
 
 
-    <div class="todo-notes" ng-if="notesView" ng-hide="editView">
+    <div class="todo-notes" ng-if="view = 2">
       <div class="todo-notes-header">
         <button class="todo-notes-header-edit" ng-if="numSelected = 1" ng-click="editItem()">edit</button>
       </div>
@@ -39,14 +39,14 @@
 
     </div>
 
-    <div class="todo-edit" ng-if="editView" ng-controller="editController">
+    <div class="todo-edit" ng-if="view = 3" ng-controller="editController">
       <form id="edit-form">
         <input class="todo-edit-label" ng-model=itemLabel>
         <div class="todo-edit-categories" ng-repeat="category in categories">
           <label><input type="checkbox" ng-model="addItemCategory[$index]">{{category}}</label>
         </div>
-        <button type="submit" ng-click="submitItem()"></button>
         <input class="todo-edit-notes" ng-model=itemNotes>
+        <button type="submit" ng-click="submitItem()">Add to List</button>
       </form>
     </div>
 
@@ -58,8 +58,8 @@
         <img ng-if="!calendarView" src="img/calendarIconInactive.png">
       </button>
       <button id="listButton" ng-click="listPressed()">
-        <img ng-if="listView" src="img/listIconActive.png">
-        <img ng-if="!listView" src="img/listIconInactive.png">
+        <img ng-if="listView" src="img/checkIconActive.png">
+        <img ng-if="!listView" src="img/checkIconInactive.png">
       </button>
       <button id="notesButton" ng-click="notesPressed()">
         <img ng-if="notesView" src="img/pencilIconActive.png">

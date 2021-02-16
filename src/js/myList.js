@@ -11,7 +11,10 @@ myList.controller('todoController', todoController);
 todoController.$inject = ['$scope', '$rootScope', 'CATEGORIES'];
 myList.controller('navController', navController);
 navController.$inject = ['$scope', '$rootScope'];
-
+myList.controller('notesController', notesController);
+navController.$inject = ['$scope', '$rootScope'];
+myList.controller('editController', editController);
+navController.$inject = ['$scope', '$rootScope'];
 
 
 function ListObject(id, label, notes, categories, selected) {
@@ -19,12 +22,14 @@ function ListObject(id, label, notes, categories, selected) {
     this.label = label;
     this.notes = notes;
     this.categories = categories;
+    this.date = date;
 }
 
 function todoController($scope, $rootScope, CATEGORIES) {
     $scope.categories = CATEGORIES;
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
-    $scope.items = [];
+    $rootScope.items = [];
+    $rootScope.itemCount = $scope.items.length();
     
     
 
@@ -33,7 +38,7 @@ function todoController($scope, $rootScope, CATEGORIES) {
 
 function notesController($scope, $rootScope) {
     $scope.header = 0; //default notes header
-    
+
     $scope.openSearch = function () {
         $scope.header = 1; //search bar header
     }
