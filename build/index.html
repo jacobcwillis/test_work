@@ -35,13 +35,15 @@
       <div class="todo-notes-search">
         <input class="todo-notes-search-input" type="text" ng-model="searchFilter" placeholder="Search...">
         <select class="todo-notes-search-select" ng-model="categoryFilter">
-          <option ng-repeat="group in categories">{{group}}</option>
+          <option ng-repeat="group in categoryLegend">{{group}}</option>
         </select>
-        <button class="list-filter-clear-button" ng-click="clearButtonClicked()">Clear Filter</button>
+        <button class="todo-notes-search-cancel-button" ng-click="cancelSearch()">
+          <img src="img/img2.png">
+        </button>
       </div>
 
       <ul class="todo-notes-list">
-        <li ng-repeat="item in items">
+        <li ng-repeat="item in items | filter:{label:searchFilter, category:categoryFilter}">
           <div class="todo-notes-list-label">{{item.label}}</div>
           <div class="todo-notes-list-preview">{{item.notes}}</div>
           <input type="radio" ng-change="noteSelect(item.id)">
@@ -55,8 +57,8 @@
     <div class="todo-edit" ng-if="view = 3" ng-controller="editController">
       <form id="edit-form">
         <input class="todo-edit-label" ng-model=itemLabel>
-        <div class="todo-edit-categories" ng-repeat="category in categories">
-          <label><input type="checkbox" ng-model="addItemCategory[$index]">{{category}}</label>
+        <div class="todo-edit-categories" ng-repeat="category in categoryLegend">
+          <label><input type="radio" ng-model="addItemCategory">{{category}}</label>
         </div>
         <input class="todo-edit-notes" ng-model=itemNotes>
         <button type="submit" ng-click="submitItem()">Add to List</button>

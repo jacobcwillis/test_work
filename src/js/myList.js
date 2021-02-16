@@ -17,11 +17,11 @@ myList.controller('editController', editController);
 editController.$inject = ['$scope', '$rootScope'];
 
 
-function ListObject(id, label, notes, categories) {
+function ListObject(id, label, notes, category) {
     this.id = id;
     this.label = label;
     this.notes = notes;
-    this.categories = categories;
+    this.category = category;
     this.date = date;
 }
 
@@ -44,6 +44,11 @@ function notesController($scope, $rootScope) {
     $scope.openSearch = function () {
         $scope.search = true; //search bar header
     }
+    $scope.cancelSearch = function () {
+        $scope.search = false;
+        $scope.searchFilter = undefined;
+        $scope.categoryFilter = undefined;
+    }
     
     $scope.noteSelect = function (id) {
         $scope.noteSelected = true;
@@ -53,7 +58,7 @@ function notesController($scope, $rootScope) {
     $scope.editItem = function (id) {
         for (var i = 0; i < items.length; i++) {
             if(item.id = id) {
-                
+
             }
         }
     }

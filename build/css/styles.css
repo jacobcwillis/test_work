@@ -1,10 +1,12 @@
 .todo {
   display: flex;
   flex-direction: column;
-  background-color: #191c35; }
+  background-color: #191c35;
+  justify-content: center; }
   .todo-notes {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    justify-content: center; }
     .todo-notes-header {
       display: flex;
       flex-direction: row;
@@ -25,4 +27,5 @@
       flex-direction: row;
       overflow: scroll; }
   .todo-nav {
-    background-color: #30334a; }
+    background-color: #30334a;
+    justify-content: center; }
