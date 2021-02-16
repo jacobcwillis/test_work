@@ -28,11 +28,28 @@
             &-search {
                 
                 #search-icon {
-                    height: 100%;
+                    height: 40px;
                 }
             }
             &-edit {
 
+            }
+        }
+        &-search {
+            display:flex;
+
+            &-input {
+
+
+            }
+            &-select {
+
+            }
+            &-cancel-button {
+                
+                #cancel-icon {
+                    height: 40px;
+                }
             }
         }
         &-list {

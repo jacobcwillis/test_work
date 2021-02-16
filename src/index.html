@@ -15,32 +15,33 @@
 
 <body>
   <div class="todo" ng-controller="todoController">
-    <div class="todo-calendar" ng-if="view = 0">
+    <div class="todo-calendar" ng-if="view == 0">
       calendar
     </div>
 
 
 
-    <div class="todo-list" ng-if="view = 1">
+    <div class="todo-list" ng-if="view == 1" ng-controller="listController">
       <button class="todo-list-add" ng-click="addItem()">add</button>
     </div>
 
 
 
-    <div class="todo-notes" ng-if="view = 2" ng-controller="notesController">
+    <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
       <div class="todo-notes-header" ng-if="!search">
         <button class="todo-notes-header-search" ng-click="openSearch()">
           <img id=search-icon src="img/searchIcon.png">
         </button>
         <button class="todo-notes-header-edit"  ng-if="noteSelected" ng-click="editItem(selected)">edit</button>
       </div>
-      <div class="todo-notes-search">
+
+      <div class="todo-notes-search" ng-if="search">
         <input class="todo-notes-search-input" type="text" ng-model="searchFilter" placeholder="Search...">
         <select class="todo-notes-search-select" ng-model="categoryFilter">
           <option ng-repeat="group in categoryLegend">{{group}}</option>
         </select>
         <button class="todo-notes-search-cancel-button" ng-click="cancelSearch()">
-          <img src="img/img2.png">
+          <img id="cancel-icon" src="img/img2.png">
         </button>
       </div>
 
@@ -56,13 +57,13 @@
 
 
 
-    <div class="todo-edit" ng-if="view = 3" ng-controller="editController">
+    <div class="todo-edit" ng-if="view == 3" ng-controller="editController">
       <form id="edit-form">
-        <input class="todo-edit-label" ng-model=itemLabel>
+        <input class="todo-edit-label" ng-model="itemLabel">
         <div class="todo-edit-categories" ng-repeat="category in categoryLegend">
           <label><input type="radio" ng-model="addItemCategory">{{category}}</label>
         </div>
-        <input class="todo-edit-notes" ng-model=itemNotes>
+        <input class="todo-edit-notes" ng-model="itemNotes">
         <button type="submit" ng-click="submitItem()">Add to List</button>
       </form>
     </div>
@@ -71,15 +72,15 @@
 
     <div class="todo-nav" ng-controller="navController">
       <button id="calendarButton" ng-click="calendarPressed()">
-        <img ng-if="view = 0" src="img/calendarIconActive.png">
+        <img ng-if="view == 0" src="img/calendarIconActive.png">
         <img ng-if="view != 0" src="img/calendarIconInactive.png">
       </button>
       <button id="listButton" ng-click="listPressed()">
-        <img ng-if="view = 1" src="img/checkIconActive.png">
+        <img ng-if="view == 1" src="img/checkIconActive.png">
         <img ng-if="view != 1" src="img/checkIconInactive.png">
       </button>
       <button id="notesButton" ng-click="notesPressed()">
-        <img ng-if="view = 2" src="img/pencilIconActive.png">
+        <img ng-if="view == 2" src="img/pencilIconActive.png">
         <img ng-if="view != 2" src="img/pencilIconInactive.png">
       </button>
     </div>

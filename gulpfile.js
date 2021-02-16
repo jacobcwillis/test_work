@@ -19,15 +19,15 @@ sass.compiler = require('node-sass');
 
 gulp.task('sass', function (done) {
     return gulp.src([
-        './scss/**/*.scss'
+        './src/scss/**/*.scss'
     ])
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('../build/css/'));
+        .pipe(gulp.dest('./build/css/'));
     done();
 });
 
 gulp.task('html', function (done) {
-    gulp.src('*.html')
+    gulp.src('./src/*.html')
         .pipe(htmlreplace({
             'stylesheetLink': './css/styles.css',
             'minjsLink': './js/myList-min.js',
@@ -35,30 +35,30 @@ gulp.task('html', function (done) {
             'stylesheetOldLink' : './css/styles_old.css'
 
         }))
-        .pipe(gulp.dest('../build/'));
+        .pipe(gulp.dest('./build/'));
     done();
 })
 
 gulp.task('img', function (done) {
-    gulp.src(['./img/**/*.png'])
+    gulp.src(['./src/img/**/*.png'])
         .pipe(image())
-        .pipe(gulp.dest('../build/img/'));
+        .pipe(gulp.dest('./build/img/'));
     done();
 })
 
 
 gulp.task('js', function (done) {
-    gulp.src(['./js/*.js'])
+    gulp.src(['./src/js/*.js'])
         .pipe(minify({noSource: true}))
-        .pipe(gulp.dest('../build/js/'));
+        .pipe(gulp.dest('./build/js/'));
     done();
 });
 
 gulp.task('angular', function (done) {
-    gulp.src(['./js/angular/*.js'])
-        .pipe(gulp.dest('../build/js/angular/'));
-    gulp.src(['./js/angular/*.map'])
-        .pipe(gulp.dest('../build/js/angular/'));
+    gulp.src(['./src/js/angular/*.js'])
+        .pipe(gulp.dest('./build/js/angular/'));
+    gulp.src(['./src/js/angular/*.map'])
+        .pipe(gulp.dest('./build/js/angular/'));
     done();
 })
 
@@ -68,7 +68,7 @@ gulp.task('default',
     gulp.series(
         gulp.series('js','img', 'angular', gulp.parallel(['sass', 'html'])), //build
         (done) => {
-            gulp.watch(['./scss/**/*.scss', './index.html', './js/**/*.js'], //watch for updates
+            gulp.watch(['./src/scss/**/*.scss', './src/index.html', './src/js/**/*.js'], //watch for updates
                 gulp.series('js', gulp.parallel(['sass', 'html']))); //build updates
             done();
         }

@@ -7,14 +7,21 @@ myList.config(function () {
     
 });
 myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.']) //initial category is default
+
 myList.controller('todoController', todoController);
 todoController.$inject = ['$scope', '$rootScope', 'CATEGORIES'];
+
 myList.controller('navController', navController);
 navController.$inject = ['$scope', '$rootScope'];
+
 myList.controller('notesController', notesController);
 notesController.$inject = ['$scope', '$rootScope'];
+
 myList.controller('editController', editController);
 editController.$inject = ['$scope', '$rootScope'];
+
+myList.controller('listController', listController);
+listController.$inject = ['$scope', '$rootScope'];
 
 
 function ListObject(id, label, notes, category) {
@@ -30,10 +37,19 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
+    $rootScope.itemLabel = undefined;
+    $rootScope.itemNotes = undefined;
+    $rootScope.addItemCategory = undefined;
     
     
 
     
+}
+
+function listController($scope, $rootScope) {
+    $scope.addItem = function () {
+        $rootScope.view = 3; //edit view
+    }
 }
 
 function notesController($scope, $rootScope) {
@@ -57,20 +73,22 @@ function notesController($scope, $rootScope) {
 
     $scope.editItem = function (id) {
         for (var i = 0; i < items.length; i++) {
-            if(item.id = id) {
-
+            if(item.id == id) {
+                
             }
         }
     }
 }
 
 function editController($scope, $rootScope) {
-    $scope.addItemCategory = [];
 
     $scope.submitItem = function () {
         $rootScope.itemCount++;
-        _listObject = new ListObject($rootScope.itemCount, itemLabel, itemNotes, addItemCategory);
+        _listObject = new ListObject($rootScope.itemCount, $rootScope.itemLabel, $rootScope.itemNotes, $rootScope.addItemCategory);
         $rootScope.items.push(_listObject);
+        $rootScope.itemLabel = undefined;
+        $rootScope.itemNotes = undefined;
+        $rootScope.addItemCategory = undefined;
     }
 }
 
