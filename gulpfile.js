@@ -33,7 +33,6 @@ gulp.task('html', function (done) {
             'minjsLink': './js/myList-min.js',
             'minjsOldLink': './js/myList_old-min.js',
             'stylesheetOldLink' : './css/styles_old.css'
-
         }))
         .pipe(gulp.dest('./build/'));
     done();

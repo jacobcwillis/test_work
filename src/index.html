@@ -32,7 +32,7 @@
         <button class="todo-notes-header-search" ng-click="openSearch()">
           <img id=search-icon src="img/searchIcon.png">
         </button>
-        <button class="todo-notes-header-edit"  ng-if="noteSelected" ng-click="editItem(selected)">edit</button>
+        <button class="todo-notes-header-edit" ng-click="editItem(selected)">edit</button>
       </div>
 
       <div class="todo-notes-search" ng-if="search">
@@ -46,10 +46,11 @@
       </div>
 
       <ul class="todo-notes-list">
-        <li ng-repeat="item in items | filter:{label:searchFilter, category:categoryFilter}">
+        <li ng-repeat="item in items" class="todo-notes-list-item">
+
           <div class="todo-notes-list-label">{{item.label}}</div>
           <div class="todo-notes-list-preview">{{item.notes}}</div>
-          <input type="radio" ng-change="noteSelect(item.id)">
+          <input type="radio" ng-model="$parent.selected">
         </li>
       </div>
 
@@ -60,9 +61,11 @@
     <div class="todo-edit" ng-if="view == 3" ng-controller="editController">
       <form id="edit-form">
         <input class="todo-edit-label" ng-model="itemLabel">
-        <div class="todo-edit-categories" ng-repeat="category in categoryLegend">
-          <label><input type="radio" ng-model="addItemCategory">{{category}}</label>
-        </div>
+        <label class="todo-edit-categories" ng-repeat="group in categoryLegend">
+          <input type="radio" id="add-category" ng-model="$parent.addItemCategory" ng-value="group">
+          {{group}}
+        </label>
+        <input type="date" ng-model="itemDate">
         <input class="todo-edit-notes" ng-model="itemNotes">
         <button type="submit" ng-click="submitItem()">Add to List</button>
       </form>
@@ -72,16 +75,13 @@
 
     <div class="todo-nav" ng-controller="navController">
       <button id="calendarButton" ng-click="calendarPressed()">
-        <img ng-if="view == 0" src="img/calendarIconActive.png">
-        <img ng-if="view != 0" src="img/calendarIconInactive.png">
+        <img ng-src="img/calendarIcon{{view == 0 ? 'Active' : 'Inactive'}}.png">
       </button>
       <button id="listButton" ng-click="listPressed()">
-        <img ng-if="view == 1" src="img/checkIconActive.png">
-        <img ng-if="view != 1" src="img/checkIconInactive.png">
+        <img ng-src="img/checkIcon{{view == 1 ? 'Active' : 'Inactive'}}.png">
       </button>
       <button id="notesButton" ng-click="notesPressed()">
-        <img ng-if="view == 2" src="img/pencilIconActive.png">
-        <img ng-if="view != 2" src="img/pencilIconInactive.png">
+        <img ng-src="img/pencilIcon{{view == 2 ? 'Active' : 'Inactive'}}.png">
       </button>
     </div>
   </div>

@@ -21,6 +21,9 @@
     .todo-notes-list {
       display: flex;
       flex-direction: column; }
+      .todo-notes-list-item {
+        display: flex;
+        flex-direction: row; }
   .todo-edit {
     display: flex; }
     .todo-edit #edit-form {

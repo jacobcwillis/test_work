@@ -4,7 +4,7 @@ myList.config(function () {
     // The config function is fired once per page load and is used to define
     // global app behaviour, it is most often used for managing Network events
     // and global state / routing tools
-    
+
 });
 myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.']) //initial category is default
 
@@ -24,7 +24,7 @@ myList.controller('listController', listController);
 listController.$inject = ['$scope', '$rootScope'];
 
 
-function ListObject(id, label, notes, category) {
+function ListObject(id, label, notes, category, date) {
     this.id = id;
     this.label = label;
     this.notes = notes;
@@ -33,17 +33,18 @@ function ListObject(id, label, notes, category) {
 }
 
 function todoController($scope, $rootScope, CATEGORIES) {
-    $scope.categoryLegend = CATEGORIES;
+    $rootScope.categoryLegend = CATEGORIES;
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
     $rootScope.itemLabel = undefined;
     $rootScope.itemNotes = undefined;
-    $rootScope.addItemCategory = undefined;
-    
-    
+    $rootScope.itemCategory = undefined;
+    $rootScope.itemDate = undefined;
 
-    
+
+
+
 }
 
 function listController($scope, $rootScope) {
@@ -55,7 +56,7 @@ function listController($scope, $rootScope) {
 function notesController($scope, $rootScope) {
     $scope.search = false; //default notes header
     $scope.noteSelected = false;
-    
+
 
     $scope.openSearch = function () {
         $scope.search = true; //search bar header
@@ -65,30 +66,37 @@ function notesController($scope, $rootScope) {
         $scope.searchFilter = undefined;
         $scope.categoryFilter = undefined;
     }
-    
-    $scope.noteSelect = function (id) {
-        $scope.noteSelected = true;
-        $scope.selected = id;
-    }
 
     $scope.editItem = function (id) {
-        for (var i = 0; i < items.length; i++) {
-            if(item.id == id) {
-                
+        if (id) {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].id == id) {
+                    var _item = items[i];
+                    items.splice(i, 1);
+                    i = items.length;
+                }
             }
-        }
+            $rootScope.itemLabel = _item.label;
+            $rootScope.itemNotes = _item.notes;
+            $rootScope.itemCategory = _item.category;
+            $rootScope.itemDate = _item.date;
+            $rootScope.view = 3;
+        } 
     }
+
 }
 
 function editController($scope, $rootScope) {
 
     $scope.submitItem = function () {
         $rootScope.itemCount++;
-        _listObject = new ListObject($rootScope.itemCount, $rootScope.itemLabel, $rootScope.itemNotes, $rootScope.addItemCategory);
+        _listObject = new ListObject($rootScope.itemCount, $rootScope.itemLabel, $rootScope.itemNotes, $rootScope.itemCategory, $rootScope.itemDate);
         $rootScope.items.push(_listObject);
         $rootScope.itemLabel = undefined;
         $rootScope.itemNotes = undefined;
-        $rootScope.addItemCategory = undefined;
+        $rootScope.itemCategory = undefined;
+        $rootScope.itemDate = undefined;
+        $rootScope.view = 2;
     }
 }
 
