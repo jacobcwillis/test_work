@@ -39,6 +39,7 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.itemCount = $scope.items.length;
 
     $rootScope.selectedItem = undefined;
+    
 
 
 
@@ -66,19 +67,22 @@ function notesController($scope, $rootScope) {
     }
 
     $scope.editItem = function () {
-        console.log("selected item: " + JSON.stringify($rootScope.selectedItem));
-        
-        $scope.oldid = $rootScope.selectedItem.id;
-        $rootScope.items.splice($rootScope.items.findIndex(checkId), 1);
+        console.log("selected by user: ", $rootScope.selectedItem);
 
+        var replaceIndex = $rootScope.items.findIndex(checkId);
+        
+
+        $rootScope.items.splice(replaceIndex, 1);
         $rootScope.itemCount++;
+        console.log("after item removed: " + $rootScope.selectedItem);
+
         $rootScope.selectedItem.id = $rootScope.itemCount;
         
         $rootScope.view = 3;
 
     }
     function checkId(item) {
-        return item.id == $scope.oldid;
+        return item.id == $rootScope.selectedItem.id;
     }
 }
 
@@ -87,8 +91,9 @@ function editController($scope, $rootScope) {
     $scope.submitItem = function () {
         
         
-        console.log("submitting item: " + JSON.stringify($rootScope.selectedItem));
-        
+        console.log("submitting item: ", $rootScope.selectedItem);
+        console.log("submitting item: ",  $rootScope.selectedItem);
+
         $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = 2;
     }
