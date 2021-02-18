@@ -56,6 +56,10 @@ function listController($scope, $rootScope) {
 function notesController($scope, $rootScope) {
     $scope.search = false; //default notes header
 
+    $scope.selectedItem = function(itemID){
+        console.log("slected itemID: ", itemID);
+        $rootScope.selectedItemID = itemID;
+    }
 
     $scope.openSearch = function () {
         $scope.search = true; //search bar header
@@ -67,6 +71,7 @@ function notesController($scope, $rootScope) {
     }
 
     $scope.editItem = function () {
+        /*
         console.log("selected by user: ", $rootScope.selectedItem);
 
         var replaceIndex = $rootScope.items.findIndex(checkId);
@@ -79,6 +84,15 @@ function notesController($scope, $rootScope) {
         $rootScope.selectedItem.id = $rootScope.itemCount;
         
         $rootScope.view = 3;
+        */
+
+        $rootScope.view = 3;
+
+        for (var i = 0; i < $rootScope.items.length; i++) {
+            if($rootScope.items[i].id == $rootScope.selectedItemID){
+                $rootScope.selectedItem = $rootScope.items[i];
+            }
+        };
 
     }
     function checkId(item) {

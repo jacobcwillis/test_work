@@ -49,7 +49,7 @@
         <li ng-repeat="item in items" class="todo-notes-list-item">
           <div class="todo-notes-list-label">{{item.label}}</div>
           <div class="todo-notes-list-preview">{{item.notes}}</div>
-          <input type="radio" name="selectedItem" ng-model="$root.selectedItem" value="{{item}}">
+          <input type="radio"  ng-click="selectedItem(item.id)" name="selectedItem" ng-model="$root.selectedItem" value="{{item}}">
         </li>
     </div>
 
