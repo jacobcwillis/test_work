@@ -37,6 +37,7 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
+    $rootScope.selectedItem = undefined;
 
     // $rootScope.itemLabel = undefined;
     // $rootScope.itemNotes = undefined;
@@ -49,13 +50,14 @@ function todoController($scope, $rootScope, CATEGORIES) {
 
 function listController($scope, $rootScope) {
     $scope.addItem = function () {
+        $rootScope.itemCount++;
+        $rootScope.selectedItem = new ListObject($rootScope.itemCount, "", "", undefined, undefined);
         $rootScope.view = 3; //edit view
     }
 }
 
 function notesController($scope, $rootScope) {
     $scope.search = false; //default notes header
-    $scope.selected = undefined;
 
 
     $scope.openSearch = function () {
@@ -68,28 +70,27 @@ function notesController($scope, $rootScope) {
     }
 
     $scope.editItem = function () {
-        var _item = $scope.selected;
-        if (_item) {
-            console.log("item: " + _item);
+        
+       
+            console.log("selected item: " + $rootScope.selectedItem);
             // $rootScope.itemLabel = _item.label; //doesn't work ?
             // $rootScope.itemNotes = _item.notes;
             // $rootScope.itemCategory = _item.category;
             // $rootScope.itemDate = _item.date;
             // console.log($rootScope.itemLabel);
+            
             $rootScope.view = 3;
-        } 
+        
     }
 
 }
 
 function editController($scope, $rootScope) {
 
-    $scope.submitItem = function (_label, _notes, _category, _date) {
-        $rootScope.itemCount++;
-        console.log($rootScope.itemCount);
-        _listObject = new ListObject($rootScope.itemCount, _label, _notes, _category, _date);
-        $rootScope.items.push(_listObject);
-        console.log(_listObject);
+    $scope.submitItem = function () {
+        console.log($rootScope.selectedItem);
+        $rootScope.items.push($rootScope.selectedItem);
+        
         $rootScope.view = 2;
     }
 }
