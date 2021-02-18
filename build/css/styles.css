@@ -24,11 +24,13 @@
       .todo-notes-list-item {
         display: flex;
         flex-direction: row; }
+      .todo-notes-list-label {
+        color: white; }
+      .todo-notes-list-preview {
+        color: white; }
   .todo-edit {
-    display: flex; }
-    .todo-edit #edit-form {
-      display: flex;
-      flex-direction: column; }
+    display: flex;
+    flex-direction: column; }
     .todo-edit-categories {
       display: flex;
       flex-direction: row;

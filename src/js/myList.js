@@ -37,11 +37,11 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
-    $rootScope.itemLabel = undefined;
-    $rootScope.itemNotes = undefined;
-    $rootScope.itemCategory = undefined;
-    $rootScope.itemDate = undefined;
 
+    // $rootScope.itemLabel = undefined;
+    // $rootScope.itemNotes = undefined;
+    // $rootScope.itemCategory = undefined;
+    // $rootScope.itemDate = undefined;
 
 
 
@@ -70,18 +70,14 @@ function notesController($scope, $rootScope) {
     $scope.editItem = function () {
         var _item = $scope.selected;
         if (_item) {
-            
-            $rootScope.itemLabel = _item.label;
-            $rootScope.itemNotes = _item.notes;
-            $rootScope.itemCategory = _item.category;
-            $rootScope.itemDate = _item.date;
+            console.log("item: " + _item);
+            // $rootScope.itemLabel = _item.label; //doesn't work ?
+            // $rootScope.itemNotes = _item.notes;
+            // $rootScope.itemCategory = _item.category;
+            // $rootScope.itemDate = _item.date;
+            // console.log($rootScope.itemLabel);
             $rootScope.view = 3;
         } 
-    }
-
-    $scope.selectItem = function (item) {
-        console.log(item);
-        $scope.selected = item;
     }
 
 }
@@ -94,10 +90,6 @@ function editController($scope, $rootScope) {
         _listObject = new ListObject($rootScope.itemCount, _label, _notes, _category, _date);
         $rootScope.items.push(_listObject);
         console.log(_listObject);
-        $rootScope.itemLabel = undefined;
-        $rootScope.itemNotes = undefined;
-        $rootScope.itemCategory = undefined;
-        $rootScope.itemDate = undefined;
         $rootScope.view = 2;
     }
 }
