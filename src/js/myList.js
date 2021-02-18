@@ -37,12 +37,8 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
-    $rootScope.selectedItem = undefined;
 
-    // $rootScope.itemLabel = undefined;
-    // $rootScope.itemNotes = undefined;
-    // $rootScope.itemCategory = undefined;
-    // $rootScope.itemDate = undefined;
+    $rootScope.selectedItem = undefined;
 
 
 
@@ -70,29 +66,34 @@ function notesController($scope, $rootScope) {
     }
 
     $scope.editItem = function () {
+        console.log("selected item: " + JSON.stringify($rootScope.selectedItem));
         
-       
-            console.log("selected item: " + $rootScope.selectedItem);
-            // $rootScope.itemLabel = _item.label; //doesn't work ?
-            // $rootScope.itemNotes = _item.notes;
-            // $rootScope.itemCategory = _item.category;
-            // $rootScope.itemDate = _item.date;
-            // console.log($rootScope.itemLabel);
-            
-            $rootScope.view = 3;
-        
-    }
+        $scope.oldid = $rootScope.selectedItem.id;
+        $rootScope.items.splice($rootScope.items.findIndex(checkId), 1);
 
+        $rootScope.itemCount++;
+        $rootScope.selectedItem.id = $rootScope.itemCount;
+        
+        $rootScope.view = 3;
+
+    }
+    function checkId(item) {
+        return item.id == $scope.oldid;
+    }
 }
 
 function editController($scope, $rootScope) {
 
     $scope.submitItem = function () {
-        console.log($rootScope.selectedItem);
-        $rootScope.items.push($rootScope.selectedItem);
         
+        
+        console.log("submitting item: " + JSON.stringify($rootScope.selectedItem));
+        
+        $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = 2;
     }
+
+    
 }
 
 function navController($scope, $rootScope) {
