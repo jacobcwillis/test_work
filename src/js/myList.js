@@ -55,7 +55,7 @@ function listController($scope, $rootScope) {
 
 function notesController($scope, $rootScope) {
     $scope.search = false; //default notes header
-    $scope.noteSelected = false;
+    $scope.selected = undefined;
 
 
     $scope.openSearch = function () {
@@ -67,15 +67,10 @@ function notesController($scope, $rootScope) {
         $scope.categoryFilter = undefined;
     }
 
-    $scope.editItem = function (id) {
-        if (id) {
-            for (var i = 0; i < items.length; i++) {
-                if (items[i].id == id) {
-                    var _item = items[i];
-                    items.splice(i, 1);
-                    i = items.length;
-                }
-            }
+    $scope.editItem = function () {
+        var _item = $scope.selected;
+        if (_item) {
+            
             $rootScope.itemLabel = _item.label;
             $rootScope.itemNotes = _item.notes;
             $rootScope.itemCategory = _item.category;
@@ -84,14 +79,21 @@ function notesController($scope, $rootScope) {
         } 
     }
 
+    $scope.selectItem = function (item) {
+        console.log(item);
+        $scope.selected = item;
+    }
+
 }
 
 function editController($scope, $rootScope) {
 
-    $scope.submitItem = function () {
+    $scope.submitItem = function (_label, _notes, _category, _date) {
         $rootScope.itemCount++;
-        _listObject = new ListObject($rootScope.itemCount, $rootScope.itemLabel, $rootScope.itemNotes, $rootScope.itemCategory, $rootScope.itemDate);
+        console.log($rootScope.itemCount);
+        _listObject = new ListObject($rootScope.itemCount, _label, _notes, _category, _date);
         $rootScope.items.push(_listObject);
+        console.log(_listObject);
         $rootScope.itemLabel = undefined;
         $rootScope.itemNotes = undefined;
         $rootScope.itemCategory = undefined;
