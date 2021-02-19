@@ -39,9 +39,6 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
 
-    $rootScope.selectedItem = undefined;
-    
-
 
 
 }
@@ -68,6 +65,8 @@ function notesController($scope, $rootScope) {
 
     $scope.openSearch = function () {
         $scope.search = true; //search bar header
+        $scope.searchFilter = undefined;
+        $scope.categoryFilter = undefined;
     }
 
     $scope.cancelSearch = function () {

@@ -43,12 +43,14 @@
         <button class="todo-notes-search-cancel-button" ng-click="cancelSearch()">
           <img id="cancel-icon" src="img/img2.png">
         </button>
+        <button class="todo-notes-header-edit" ng-click="editItem()">edit</button>
       </div>
 
       <ul class="todo-notes-list">
-        <li ng-repeat="item in items" class="todo-notes-list-item">
-          <div class="todo-notes-list-label">{{item.label}}</div>
-          <div class="todo-notes-list-preview">{{item.notes}}</div>
+        <li ng-repeat="item in items | filter:{label:searchFilter, category:categoryFilter}" class="todo-notes-list-item">
+          <div class="todo-notes-list-item-label">{{item.label}}</div>
+          <div class="todo-notes-list-item-date">{{item.date.getMonth() + 1}}.{{item.date.getDate()}}</div>
+          <div class="todo-notes-list-item-preview">{{item.notes}}</div>
           <input type="radio"  ng-click="selectedItem(item.id)" name="selectedItem" value="{{item}}">
         </li>
     </div>

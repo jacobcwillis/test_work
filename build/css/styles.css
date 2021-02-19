@@ -23,11 +23,25 @@
       flex-direction: column; }
       .todo-notes-list-item {
         display: flex;
-        flex-direction: row; }
-      .todo-notes-list-label {
-        color: white; }
-      .todo-notes-list-preview {
-        color: white; }
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between; }
+        .todo-notes-list-item-label {
+          color: white;
+          flex-basis: 50%;
+          font-style: bold;
+          font-size: 24px; }
+        .todo-notes-list-item-date {
+          color: white;
+          flex-basis: 50%;
+          display: flex;
+          justify-content: flex-end; }
+        .todo-notes-list-item-preview {
+          color: white;
+          flex-basis: 90%;
+          font-size: 18px; }
+        .todo-notes-list-item-select {
+          flex-basis: 10%; }
   .todo-edit {
     display: flex;
     flex-direction: column; }
@@ -35,6 +49,9 @@
       display: flex;
       flex-direction: row;
       overflow: scroll; }
+    .todo-edit-notes {
+      display: flex;
+      flex-wrap: wrap; }
   .todo-nav {
     background-color: #30334a;
     justify-content: center; }
