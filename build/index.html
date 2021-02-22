@@ -20,17 +20,25 @@
 
 
     <div class="todo-list" ng-if="view == 1" ng-controller="listController">
-      <button class="todo-list-add" ng-click="addItem()">add</button>
+      <div class="todo-list-header">
+        <div class="todo-list-header-date">
+          <!-- Today {{dateDisplay}} -->
+        </div>
+      </div>
+      <button class="todo-list-add" ng-click="addItem()">
+        <img src="img/listAddButton.png">
+      </button>
     </div>
 
 
 
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
+
       <div class="todo-notes-header" ng-hide="search">
-        <button class="todo-notes-header-search" ng-click="openSearch()">
+        <button class="todo-notes-header-search-button" ng-click="openSearch()">
           <img id=search-icon src="img/searchIcon.png">
         </button>
-        <button class="todo-notes-header-edit" ng-click="editItem()">edit</button>
+        <button class="todo-notes-header-edit-button" ng-show="items.length" ng-click="editItem()">edit</button>
       </div>
 
       <div class="todo-notes-search" ng-show="search">
@@ -41,7 +49,7 @@
         <button class="todo-notes-search-cancel-button" ng-click="cancelSearch()">
           <img id="cancel-icon" src="img/img2.png">
         </button>
-        <button class="todo-notes-header-edit" ng-click="editItem()">edit</button>
+        <button class="todo-notes-header-edit-button" ng-click="editItem()">edit</button>
       </div>
 
       <ul class="todo-notes-list">

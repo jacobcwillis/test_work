@@ -2,7 +2,14 @@
   display: flex;
   flex-direction: column;
   background-color: #191c35;
-  justify-content: center; }
+  align-items: center; }
+  .todo-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .todo-list-add {
+      background-color: transparent;
+      border: none; }
   .todo-notes {
     display: flex;
     flex-direction: column;
@@ -12,12 +19,17 @@
       flex-direction: row;
       justify-content: space-between;
       width: 100%; }
-      .todo-notes-header-search #search-icon {
-        height: 40px; }
+      .todo-notes-header-search-button {
+        background-color: transparent;
+        border: none; }
     .todo-notes-search {
-      display: flex; }
+      display: flex;
+      justify-content: flex-start; }
       .todo-notes-search-cancel-button #cancel-icon {
         height: 40px; }
+      .todo-notes-search-edit-button {
+        display: flex;
+        justify-self: flex-end; }
     .todo-notes-list {
       display: flex;
       flex-direction: column; }
@@ -53,5 +65,15 @@
       display: flex;
       flex-wrap: wrap; }
   .todo-nav {
+    display: flex;
     background-color: #30334a;
     justify-content: center; }
+    .todo-nav #calendarButton {
+      background-color: transparent;
+      border: none; }
+    .todo-nav #listButton {
+      background-color: transparent;
+      border: none; }
+    .todo-nav #notesButton {
+      background-color: transparent;
+      border: none; }

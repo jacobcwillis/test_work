@@ -2,15 +2,19 @@
     display:flex;
     flex-direction: column;
     background-color: #191c35;
-    justify-content: center;
+    align-items: center;
 
     &-calendar {
 
     }
 
     &-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         &-add {
-
+            background-color: transparent;
+            border: none;
         }
     }
 
@@ -25,18 +29,20 @@
             justify-content: space-between;
             width: 100%;
 
-            &-search {
-                
+            &-search-button {
+                background-color: transparent;
+                border: none;
+
                 #search-icon {
-                    height: 40px;
                 }
             }
-            &-edit {
+            &-edit-button {
 
             }
         }
         &-search {
             display:flex;
+            justify-content: flex-start;
 
             &-input {
 
@@ -50,6 +56,10 @@
                 #cancel-icon {
                     height: 40px;
                 }
+            }
+            &-edit-button {
+                display:flex;
+                justify-self: flex-end;
             }
         }
         &-list {
@@ -110,7 +120,20 @@
     }
 
     &-nav {
+        display: flex;
         background-color: #30334a;
         justify-content: center;
+        #calendarButton {
+            background-color: transparent;
+            border:none;
+        }
+        #listButton {
+            background-color: transparent;
+            border:none;
+        }
+        #notesButton {
+            background-color: transparent;
+            border:none;
+        }
     }
 }
