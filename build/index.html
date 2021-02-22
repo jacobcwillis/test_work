@@ -26,14 +26,14 @@
 
 
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
-      <div class="todo-notes-header" ng-if="!search">
+      <div class="todo-notes-header" ng-hide="search">
         <button class="todo-notes-header-search" ng-click="openSearch()">
           <img id=search-icon src="img/searchIcon.png">
         </button>
         <button class="todo-notes-header-edit" ng-click="editItem()">edit</button>
       </div>
 
-      <div class="todo-notes-search" ng-if="search">
+      <div class="todo-notes-search" ng-show="search">
         <input class="todo-notes-search-input" type="text" ng-model="searchFilter" placeholder="Search...">
         <select class="todo-notes-search-select" ng-model="categoryFilter">
           <option ng-repeat="group in categoryLegend">{{group}}</option>
