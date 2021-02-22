@@ -53,7 +53,7 @@
       </div>
 
       <ul class="todo-notes-list">
-        <li ng-repeat="item in items | filter:{label:searchFilter, category:categoryFilter}" class="todo-notes-list-item">
+        <li ng-repeat="item in items | filter:{label:searchFilter, notes:searchFilter, category:categoryFilter} : false" class="todo-notes-list-item">
           <div class="todo-notes-list-item-label">{{item.label}}</div>
           <div class="todo-notes-list-item-date">{{item.date.getMonth() + 1}}.{{item.date.getDate()}}</div>
           <div class="todo-notes-list-item-preview">{{item.notes}}</div>
