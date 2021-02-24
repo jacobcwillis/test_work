@@ -17,7 +17,24 @@
       calendar
     </div>
 
-
+    <div class="todo-header" ng-controller="headerController">
+      <div class="todo-header-default" ng-hide="search">
+        <button class="todo-header-default-search-button" ng-click="openSearch()">
+          <img id=search-icon src="img/searchIcon.png">
+        </button>
+        <button class="todo-header-default-edit-button" ng-show="selectedItemID" ng-click="editItem()">edit</button>
+      </div>
+      <div class="todo-header-search" ng-show="search">
+        <input class="todo-header-search-input" type="text" ng-model="$root.searchFilter" placeholder="Search...">
+        <select class="todo-header-search-select" ng-model="$root.categoryFilter">
+          <option ng-repeat="group in categoryLegend">{{group}}</option>
+        </select>
+        <button class="todo-header-search-cancel-button" ng-click="cancelSearch()">
+          <img id="cancel-icon" src="img/img2.png">
+        </button>
+        <button class="todo-header-search-edit-button" ng-click="editItem()">edit</button>
+      </div>
+    </div>
 
     <div class="todo-list" ng-if="view == 1" ng-controller="listController">
       <div class="todo-list-header">
@@ -33,31 +50,12 @@
 
 
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
-
-      <div class="todo-notes-header" ng-hide="search">
-        <button class="todo-notes-header-search-button" ng-click="openSearch()">
-          <img id=search-icon src="img/searchIcon.png">
-        </button>
-        <button class="todo-notes-header-edit-button" ng-show="items.length" ng-click="editItem()">edit</button>
-      </div>
-
-      <div class="todo-notes-search" ng-show="search">
-        <input class="todo-notes-search-input" type="text" ng-model="searchFilter" placeholder="Search...">
-        <select class="todo-notes-search-select" ng-model="categoryFilter">
-          <option ng-repeat="group in categoryLegend">{{group}}</option>
-        </select>
-        <button class="todo-notes-search-cancel-button" ng-click="cancelSearch()">
-          <img id="cancel-icon" src="img/img2.png">
-        </button>
-        <button class="todo-notes-header-edit-button" ng-click="editItem()">edit</button>
-      </div>
-
       <ul class="todo-notes-list">
-        <li ng-repeat="item in items | filter:{label:searchFilter, notes:searchFilter, category:categoryFilter} : false" class="todo-notes-list-item">
+        <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter}" class="todo-notes-list-item">
           <div class="todo-notes-list-item-label">{{item.label}}</div>
           <div class="todo-notes-list-item-date">{{item.date.getMonth() + 1}}.{{item.date.getDate()}}</div>
           <div class="todo-notes-list-item-preview">{{item.notes}}</div>
-          <input type="radio"  ng-click="selectedItem(item.id)" name="selectedItem" value="{{item}}">
+          <input type="radio"  ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
         </li>
     </div>
 

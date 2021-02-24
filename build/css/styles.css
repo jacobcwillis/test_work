@@ -10,26 +10,26 @@
     .todo-list-add {
       background-color: transparent;
       border: none; }
+  .todo-header-default {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%; }
+    .todo-header-default-search-button {
+      background-color: transparent;
+      border: none; }
+  .todo-header-search {
+    display: flex;
+    justify-content: flex-start; }
+    .todo-header-search-cancel-button #cancel-icon {
+      height: 40px; }
+    .todo-header-search-edit-button {
+      display: flex;
+      justify-self: flex-end; }
   .todo-notes {
     display: flex;
     flex-direction: column;
     justify-content: center; }
-    .todo-notes-header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%; }
-      .todo-notes-header-search-button {
-        background-color: transparent;
-        border: none; }
-    .todo-notes-search {
-      display: flex;
-      justify-content: flex-start; }
-      .todo-notes-search-cancel-button #cancel-icon {
-        height: 40px; }
-      .todo-notes-search-edit-button {
-        display: flex;
-        justify-self: flex-end; }
     .todo-notes-list {
       display: flex;
       flex-direction: column; }

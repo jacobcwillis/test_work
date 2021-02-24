@@ -23,6 +23,8 @@ editController.$inject = ['$scope', '$rootScope'];
 myList.controller('listController', listController);
 listController.$inject = ['$scope', '$rootScope'];
 
+myList.controller('headerController', headerController);
+headerController.$inject = ['$scope', '$rootScope'];
 
 function ListObject(id, label, notes, category, date) {
     this.id = id;
@@ -38,9 +40,35 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
+    
 
 
+}
 
+function headerController($scope, $rootScope) {
+    $scope.search = false; //default notes header
+
+    $scope.openSearch = function () {
+        $scope.search = true; //search bar header
+        $rootScope.searchFilter = undefined;
+        $rootScope.categoryFilter = undefined;
+    }
+
+    $scope.cancelSearch = function () {
+        $scope.search = false;
+        $rootScope.searchFilter = undefined;
+        $rootScope.categoryFilter = undefined;
+    }
+
+    $scope.editItem = function () {
+        $rootScope.storedView = $rootScope.view;
+        $rootScope.view = 3;
+        for (var i = 0; i < $rootScope.items.length; i++) {
+            if($rootScope.items[i].id == $rootScope.selectedItemID){
+                $rootScope.selectedItem = $rootScope.items[i];
+            }
+        };
+    }
 }
 
 function listController($scope, $rootScope) {
@@ -49,43 +77,18 @@ function listController($scope, $rootScope) {
         $rootScope.selectedItemID = $rootScope.itemCount;
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3; //edit view
-
-        $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, "", "", undefined, undefined);
+        var _label = "Entry #" + $rootScope.selectedItemID;
+        $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, "", undefined, undefined);
         
     }
 }
 
 function notesController($scope, $rootScope) {
-    $scope.search = false; //default notes header
-
-    $scope.selectedItem = function(itemID){
+    $scope.selectItem = function(itemID){
         console.log("slected itemID: ", itemID);
         $rootScope.selectedItemID = itemID;
     }
 
-    $scope.openSearch = function () {
-        $scope.search = true; //search bar header
-        $scope.searchFilter = undefined;
-        $scope.categoryFilter = undefined;
-    }
-
-    $scope.cancelSearch = function () {
-        $scope.search = false;
-        $scope.searchFilter = undefined;
-        $scope.categoryFilter = undefined;
-    }
-
-    $scope.editItem = function () {
-        $rootScope.storedView = $rootScope.view;
-        $rootScope.view = 3;
-
-        for (var i = 0; i < $rootScope.items.length; i++) {
-            if($rootScope.items[i].id == $rootScope.selectedItemID){
-                $rootScope.selectedItem = $rootScope.items[i];
-            }
-        };
-
-    }
 }
 
 function editController($scope, $rootScope) {
