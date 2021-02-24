@@ -6,7 +6,7 @@ myList.config(function () {
     // and global state / routing tools
 
 });
-myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.']) //initial category is default
+myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.'])
 
 myList.controller('todoController', todoController);
 todoController.$inject = ['$scope', '$rootScope', 'CATEGORIES'];
@@ -78,7 +78,10 @@ function listController($scope, $rootScope) {
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3; //edit view
         var _label = "Entry #" + $rootScope.selectedItemID;
-        $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, "", undefined, undefined);
+        var _notes = "Notes #" + $rootScope.selectedItemID;
+        var _date = new Date();
+        var _category = $rootScope.categoryLegend[3];
+        $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _category, _date);
         
     }
 }
