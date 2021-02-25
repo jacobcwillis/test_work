@@ -38,15 +38,15 @@
       </div>
     </div>
 
-    <div class="todo-list" ng-if="view == 1" ng-controller="listController">
-      <ul class="todo-notes-list">
+    <div class="todo-default" ng-if="view == 1" ng-controller="listController">
+      <ul class="todo-default-list">
         <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter}"
-          class="todo-notes-list-item">
-          <div class="todo-notes-list-item-label">{{item.label}}</div>
-          <input type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
+          class="todo-default-list-item">
+          <div class="todo-default-list-item-label">{{item.label}}</div>
+          <input class="todo-default-list-item-select" type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
         </li>
       </ul>
-      <button class="todo-list-add" ng-click="addItem()">
+      <button class="todo-default-add" ng-click="addItem()">
         <img src="img/listAddButton.png">
       </button>
     </div>
@@ -64,7 +64,7 @@
             <div ng-if="item.notes.length < 128 || item.notes.length == 128">{{item.notes}}</div>
             <div ng-if="item.notes.length > 128">{{item.notes.slice(0,124) + "..."}}</div>
           </div>
-          <input type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
+          <input class="todo-notes-list-item-select" type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
         </li>
       </ul>
     </div>
@@ -76,13 +76,16 @@
   <div class="todo-edit" ng-if="view == 3" ng-controller="editController">
 
     <input type="text" class="todo-edit-label" ng-model="selectedItem.label">
-    <label class="todo-edit-categories" ng-repeat="group in categoryLegend">
-      <input type="radio" id="add-category" ng-model="selectedItem.category" ng-value="group">
-      {{group}}
-    </label>
-    <input type="date" ng-model="selectedItem.date">
+
+    <div class="todo-edit-categories">
+      <label ng-class="(selectedItem.category == group)? 'todo-edit-categories-option-selected' : 'todo-edit-categories-option'" ng-repeat="group in categoryLegend">
+        <input type="radio" id="add-category" class="todo-edit-categories-option-check" ng-model="selectedItem.category" ng-value="group">
+        {{group}}
+      </label>
+    </div>
+    <input type="date" class="todo-edit-date" ng-model="selectedItem.date">
     <input type="text" class="todo-edit-notes" ng-model="selectedItem.notes">
-    <button type="submit" ng-click="closeEditor()">Complete</button>
+    <button type="submit" class="todo-edit-complete" ng-click="closeEditor()">Complete</button>
 
   </div>
 
