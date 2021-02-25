@@ -84,7 +84,10 @@
           font-size: 18px;
           opacity: 0.9;
           padding: 10px 0 0 0;
-          flex-basis: 80%; }
+          flex-basis: 80%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; }
         .todo-notes-list-item-select {
           padding: 10px 0 0 0;
           flex-basis: 10%; }
@@ -106,7 +109,8 @@
         border: none;
         color: #f3f3ff;
         opacity: 0.6;
-        padding: 0 10px; }
+        padding: 0 10px;
+        background-image: url("../img/categoryContainer.png"); }
         .todo-edit-categories-option:hover {
           opacity: 0.8; }
         .todo-edit-categories-option-selected {
@@ -114,7 +118,8 @@
           border: none;
           opacity: 1;
           color: #f3f3ff;
-          padding: 0 10px; }
+          padding: 0 10px;
+          background-image: url("../img/categoryContainerActive.png"); }
         .todo-edit-categories-option-check {
           opacity: 0;
           width: 0;

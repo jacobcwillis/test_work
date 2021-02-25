@@ -59,8 +59,7 @@
           <div class="todo-notes-list-item-category">{{item.category}}</div>
           <div class="todo-notes-list-item-date">{{item.date.getMonth() + 1}}.{{item.date.getDate()}}</div>
           <div class="todo-notes-list-item-preview">
-            <div ng-if="item.notes.length < 128 || item.notes.length == 128">{{item.notes}}</div>
-            <div ng-if="item.notes.length > 128">{{item.notes.slice(0,124) + "..."}}</div>
+            {{item.notes}}
           </div>
           <input class="todo-notes-list-item-select" type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
         </li>

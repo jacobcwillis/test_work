@@ -138,6 +138,9 @@
                     opacity: 0.9;
                     padding: 10px 0 0 0;
                     flex-basis: 80%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 &-select {
@@ -158,13 +161,10 @@
         width: 100%;
         background-color: #191c35;
 
-
-
         &-label {
             background-color: #191c35;
             border: 0 0 1px 0;
             color: #f3f3ff;
-
         }
 
         &-categories {
@@ -178,7 +178,7 @@
                 color: #f3f3ff;
                 opacity: 0.6;
                 padding: 0 10px;
-                // background-image: url("../img/categoryContainer.png");
+                background-image: url("../img/categoryContainer.png");
 
                 &:hover {
                     opacity: 0.8;
@@ -190,7 +190,7 @@
                     opacity: 1;
                     color: #f3f3ff;
                     padding: 0 10px;
-                    //background-image: url("../img/categoryContainerActive.png");
+                    background-image: url("../img/categoryContainerActive.png");
                 }
 
                 &-check {
