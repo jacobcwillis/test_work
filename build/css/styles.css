@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   background-color: #191c35;
-  align-items: center; }
+  align-items: center;
+  width: 100%; }
   .todo-list {
     display: flex;
     flex-direction: column;
@@ -10,53 +11,72 @@
     .todo-list-add {
       background-color: transparent;
       border: none; }
-  .todo-header-default {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  .todo-header {
     width: 100%; }
-    .todo-header-default-search-button {
-      background-color: transparent;
-      border: none; }
-  .todo-header-search {
-    display: flex;
-    justify-content: flex-start; }
-    .todo-header-search-cancel-button #cancel-icon {
-      height: 40px; }
-    .todo-header-search-edit-button {
+    .todo-header-default {
       display: flex;
-      justify-self: flex-end; }
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%; }
+      .todo-header-default-search-button {
+        background-color: transparent;
+        border: none; }
+      .todo-header-default-edit-button {
+        background-color: transparent;
+        border: none;
+        color: #f3f3ff;
+        opacity: 0.9; }
+    .todo-header-search {
+      display: flex;
+      justify-content: flex-start; }
+      .todo-header-search-cancel-button #cancel-icon {
+        height: 40px; }
+      .todo-header-search-edit-button {
+        display: flex;
+        justify-self: flex-end; }
   .todo-notes {
     display: flex;
     flex-direction: column;
-    justify-content: center; }
+    justify-content: center;
+    width: 100%; }
     .todo-notes-list {
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      margin: 0;
+      padding: 0 20px; }
       .todo-notes-list-item {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between; }
+        justify-content: space-between;
+        padding: 20px 0; }
         .todo-notes-list-item-label {
-          color: white;
-          flex-basis: 50%;
-          font-style: bold;
-          font-size: 24px; }
+          color: #f3f3ff;
+          opacity: 0.9;
+          font-weight: bold;
+          font-size: 22px; }
+        .todo-notes-list-item-category {
+          color: #f3f3ff;
+          font-size: 18px;
+          opacity: 0.9; }
         .todo-notes-list-item-date {
-          color: white;
-          flex-basis: 50%;
+          color: #f3f3ff;
+          opacity: 0.9;
           display: flex;
           justify-content: flex-end; }
         .todo-notes-list-item-preview {
-          color: white;
+          color: #f3f3ff;
           flex-basis: 90%;
-          font-size: 18px; }
+          font-size: 18px;
+          opacity: 0.9;
+          padding: 10px 0 0 0; }
         .todo-notes-list-item-select {
+          padding: 10px 0 0 0;
           flex-basis: 10%; }
   .todo-edit {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    width: 100%; }
     .todo-edit-categories {
       display: flex;
       flex-direction: row;
@@ -67,7 +87,8 @@
   .todo-nav {
     display: flex;
     background-color: #30334a;
-    justify-content: center; }
+    justify-content: space-around;
+    width: 100%; }
     .todo-nav #calendarButton {
       background-color: transparent;
       border: none; }

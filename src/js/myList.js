@@ -26,10 +26,11 @@ listController.$inject = ['$scope', '$rootScope'];
 myList.controller('headerController', headerController);
 headerController.$inject = ['$scope', '$rootScope'];
 
-function ListObject(id, label, notes, category, date) {
+function ListObject(id, label, notes, abbrevNotes, category, date) {
     this.id = id;
     this.label = label;
     this.notes = notes;
+    this.abbrevNotes = abbrevNotes;
     this.category = category;
     this.date = date;
 }
@@ -79,9 +80,10 @@ function listController($scope, $rootScope) {
         $rootScope.view = 3; //edit view
         var _label = "Entry #" + $rootScope.selectedItemID;
         var _notes = "Notes #" + $rootScope.selectedItemID;
+        var _abbrevNotes = _notes;
         var _date = new Date();
         var _category = $rootScope.categoryLegend[3];
-        $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _category, _date);
+        $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _abbrevNotes, _category, _date);
         
     }
 }
@@ -97,6 +99,10 @@ function notesController($scope, $rootScope) {
 function editController($scope, $rootScope) {
 
     $scope.closeEditor = function () {
+        if ($rootScope.selectedItem.notes.length > 128) {
+            $rootScope.selectedItem.abbrevNotes = $rootScope.selectedItem.notes.slice(0,124) + "...";
+        }
+
         for (var i = 0; i < $rootScope.items.length; i++) {
             if($rootScope.items[i].id == $rootScope.selectedItemID){
                 console.log("editing item: ", $rootScope.selectedItem);
@@ -105,6 +111,7 @@ function editController($scope, $rootScope) {
                 return;
             }
         }
+        
         console.log("adding new item: ", $rootScope.selectedItem);
         $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = $rootScope.storedView;

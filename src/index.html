@@ -39,11 +39,13 @@
     </div>
 
     <div class="todo-list" ng-if="view == 1" ng-controller="listController">
-      <div class="todo-list-header">
-        <div class="todo-list-header-date">
-          <!-- Today {{dateDisplay}} -->
-        </div>
-      </div>
+      <ul class="todo-notes-list">
+        <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter}"
+          class="todo-notes-list-item">
+          <div class="todo-notes-list-item-label">{{item.label}}</div>
+          <input type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
+        </li>
+      </ul>
       <button class="todo-list-add" ng-click="addItem()">
         <img src="img/listAddButton.png">
       </button>
@@ -53,12 +55,18 @@
 
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
       <ul class="todo-notes-list">
-        <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter}" class="todo-notes-list-item">
+        <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter}"
+          class="todo-notes-list-item">
           <div class="todo-notes-list-item-label">{{item.label}}</div>
+          <div class="todo-notes-list-item-category">{{item.category}}</div>
           <div class="todo-notes-list-item-date">{{item.date.getMonth() + 1}}.{{item.date.getDate()}}</div>
-          <div class="todo-notes-list-item-preview">{{item.notes}}</div>
-          <input type="radio"  ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
+          <div class="todo-notes-list-item-preview">
+            <div ng-if="item.notes.length < 128 || item.notes.length == 128">{{item.notes}}</div>
+            <div ng-if="item.notes.length > 128">{{item.abbrevNotes}}</div>
+          </div>
+          <input type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
         </li>
+      </ul>
     </div>
 
   </div>
