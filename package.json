@@ -18,6 +18,7 @@
   "homepage": "https://github.com/jacobcwillis/test_work#readme",
   "dependencies": {},
   "devDependencies": {
+    "flatpickr": "^4.6.9",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-html-replace": "^1.6.2",

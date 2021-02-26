@@ -71,6 +71,11 @@ function headerController($scope, $rootScope) {
     }
 }
 
+function calendarController($scope, $rootScope) {
+    const fp = flatpickr("#calendar", {});
+    
+}
+
 function listController($scope, $rootScope) {
     $scope.addItem = function () {
         $rootScope.itemCount++;

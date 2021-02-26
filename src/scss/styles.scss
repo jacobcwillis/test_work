@@ -4,6 +4,7 @@
     background-color: #191c35;
     align-items: center;
     width: 100%;
+    font-family: ubuntu;
 
 
     &-calendar {}
@@ -29,6 +30,8 @@
                 border: none;
                 color: #f3f3ff;
                 opacity: 0.9;
+                font-family: ubuntu;
+                font-size: 14px;
             }
         }
 
@@ -72,7 +75,7 @@
                     color: #f3f3ff;
                     opacity: 0.9;
                     font-weight: bold;
-                    font-size: 22px;
+                    font-size: 20px;
 
                 }
             }
@@ -110,7 +113,7 @@
                     color: #f3f3ff;
                     opacity: 0.9;
                     font-weight: bold;
-                    font-size: 22px;
+                    font-size: 20px;
                     flex-basis: 60%;
 
                 }
@@ -160,37 +163,44 @@
         flex-direction: column;
         width: 100%;
         background-color: #191c35;
+        font-family: ubuntu;
+        justify-content: center;
 
         &-label {
             background-color: #191c35;
-            border: 0 0 1px 0;
+            border: none;
             color: #f3f3ff;
+            font-family: ubuntu;
+            font-size: 20px;
+            padding: 10px 10px 0;
         }
 
         &-categories {
             display: flex;
             flex-direction: row;
             overflow: scroll;
+            padding: 10px;
+            justify-content: center;
 
             &-option {
-                background-color: #191c35;
-                border: none;
                 color: #f3f3ff;
                 opacity: 0.6;
                 padding: 0 10px;
-                background-image: url("../img/categoryContainer.png");
-
+                border: 1px outset #f3f3ff80; //replicate categoryContainer.png
+                border-radius: 20px;
+ 
                 &:hover {
                     opacity: 0.8;
                 }
 
                 &-selected {
-                    background-color: #191c35;
-                    border: none;
+                    border: none; //replicate categoryContainerActive.png
                     opacity: 1;
                     color: #f3f3ff;
                     padding: 0 10px;
-                    background-image: url("../img/categoryContainerActive.png");
+                    border-radius: 20px;
+                    background: linear-gradient(0deg, rgba(230,85,28,1) 0%, rgba(240,140,46,1) 100%);
+                    
                 }
 
                 &-check {
@@ -205,9 +215,13 @@
         }
 
         &-date {
+            display: flex;
             background-color: #191c35;
             border: none;
             color: #f3f3ff;
+            font-family: ubuntu;
+            font-size: 16px;
+            padding: 10px;
         }
 
         &-notes {
@@ -216,6 +230,9 @@
             color: #f3f3ff;
             display: flex;
             flex-wrap: wrap;
+            font-family: ubuntu;
+            font-size: 18px;
+            padding: 10px;
             
         }
 
@@ -223,6 +240,7 @@
             background-color: #191c35;
             border: none;
             color: #f3f3ff;
+            font-family: ubuntu;
         }
     }
 

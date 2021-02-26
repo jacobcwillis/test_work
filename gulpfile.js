@@ -4,6 +4,7 @@ var htmlreplace = require('gulp-html-replace');
 var minify = require('gulp-minify');
 var concat = require('gulp-concat');
 var image = require('gulp-image');
+var flatpicker = require('flatpickr');
 
 sass.compiler = require('node-sass');
 

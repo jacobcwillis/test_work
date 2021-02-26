@@ -3,7 +3,8 @@
   flex-direction: column;
   background-color: #191c35;
   align-items: center;
-  width: 100%; }
+  width: 100%;
+  font-family: ubuntu; }
   .todo-header {
     width: 100%; }
     .todo-header-default {
@@ -18,7 +19,9 @@
         background-color: transparent;
         border: none;
         color: #f3f3ff;
-        opacity: 0.9; }
+        opacity: 0.9;
+        font-family: ubuntu;
+        font-size: 14px; }
     .todo-header-search {
       display: flex;
       justify-content: flex-start; }
@@ -42,7 +45,7 @@
         color: #f3f3ff;
         opacity: 0.9;
         font-weight: bold;
-        font-size: 22px; }
+        font-size: 20px; }
   .todo-default-add {
     background-color: transparent;
     border: none; }
@@ -66,7 +69,7 @@
           color: #f3f3ff;
           opacity: 0.9;
           font-weight: bold;
-          font-size: 22px;
+          font-size: 20px;
           flex-basis: 60%; }
         .todo-notes-list-item-category {
           color: #f3f3ff;
@@ -95,31 +98,37 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #191c35; }
+    background-color: #191c35;
+    font-family: ubuntu;
+    justify-content: center; }
     .todo-edit-label {
       background-color: #191c35;
-      border: 0 0 1px 0;
-      color: #f3f3ff; }
+      border: none;
+      color: #f3f3ff;
+      font-family: ubuntu;
+      font-size: 20px;
+      padding: 10px 10px 0; }
     .todo-edit-categories {
       display: flex;
       flex-direction: row;
-      overflow: scroll; }
+      overflow: scroll;
+      padding: 10px;
+      justify-content: center; }
       .todo-edit-categories-option {
-        background-color: #191c35;
-        border: none;
         color: #f3f3ff;
         opacity: 0.6;
         padding: 0 10px;
-        background-image: url("../img/categoryContainer.png"); }
+        border: 1px outset #f3f3ff80;
+        border-radius: 20px; }
         .todo-edit-categories-option:hover {
           opacity: 0.8; }
         .todo-edit-categories-option-selected {
-          background-color: #191c35;
           border: none;
           opacity: 1;
           color: #f3f3ff;
           padding: 0 10px;
-          background-image: url("../img/categoryContainerActive.png"); }
+          border-radius: 20px;
+          background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%); }
         .todo-edit-categories-option-check {
           opacity: 0;
           width: 0;
@@ -127,19 +136,27 @@
           margin: 0;
           padding: 0; }
     .todo-edit-date {
+      display: flex;
       background-color: #191c35;
       border: none;
-      color: #f3f3ff; }
+      color: #f3f3ff;
+      font-family: ubuntu;
+      font-size: 16px;
+      padding: 10px; }
     .todo-edit-notes {
       background-color: #191c35;
       border: none;
       color: #f3f3ff;
       display: flex;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+      font-family: ubuntu;
+      font-size: 18px;
+      padding: 10px; }
     .todo-edit-complete {
       background-color: #191c35;
       border: none;
-      color: #f3f3ff; }
+      color: #f3f3ff;
+      font-family: ubuntu; }
   .todo-nav {
     display: flex;
     background-color: #30334a;
