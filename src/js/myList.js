@@ -26,12 +26,16 @@ listController.$inject = ['$scope', '$rootScope'];
 myList.controller('headerController', headerController);
 headerController.$inject = ['$scope', '$rootScope'];
 
+myList.controller('calendarController', calendarController);
+calendarController.$inject = ['$scope', '$rootScope'];
+
 function ListObject(id, label, notes, category, date) {
     this.id = id;
     this.label = label;
     this.notes = notes;
     this.category = category;
     this.date = date;
+    this.text;
 }
 
 function todoController($scope, $rootScope, CATEGORIES) {
@@ -52,12 +56,14 @@ function headerController($scope, $rootScope) {
         $scope.search = true; //search bar header
         $rootScope.searchFilter = undefined;
         $rootScope.categoryFilter = undefined;
+        $rootScope.dateFilter = undefined;
     }
 
     $scope.cancelSearch = function () {
         $scope.search = false;
         $rootScope.searchFilter = undefined;
         $rootScope.categoryFilter = undefined;
+        $rootScope.dateFilter = undefined;
     }
 
     $scope.editItem = function () {
@@ -72,8 +78,13 @@ function headerController($scope, $rootScope) {
 }
 
 function calendarController($scope, $rootScope) {
-    const fp = flatpickr("#calendar", {});
+    const fp = flatpickr(document.getElementById("calendar"), {inline: true});
     
+    $scope.searchDate = function (date) {
+        view = 2;
+        $rootScope.dateFilter = date;
+    }
+
 }
 
 function listController($scope, $rootScope) {
@@ -107,7 +118,9 @@ function notesController($scope, $rootScope) {
 function editController($scope, $rootScope) {
 
     $scope.closeEditor = function () {
+        $rootScope.selectedItem.text = $rootScope.selectedItem.label + $rootScope.selectedItem.notes;
         for (var i = 0; i < $rootScope.items.length; i++) {
+            
             if($rootScope.items[i].id == $rootScope.selectedItemID){
                 console.log("editing item: ", $rootScope.selectedItem);
                 $rootScope.items[i] = $rootScope.selectedItem;

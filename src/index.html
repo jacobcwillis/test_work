@@ -30,6 +30,7 @@
         <select class="todo-header-search-select" ng-model="$root.categoryFilter">
           <option ng-repeat="group in categoryLegend">{{group}}</option>
         </select>
+        <input type="date" class="todo-header-search-date" ng-model="$root.dateFilter">
         <button class="todo-header-search-cancel-button" ng-click="cancelSearch()">
           <img id="cancel-icon" src="img/img2.png">
         </button>
@@ -38,12 +39,14 @@
     </div>
 
     <div class="todo-calendar" ng-controller="calendarController" ng-if="view == 0">
-      <input class="todo-calendar-input" id="calendar">
+      <input class="todo-calendar-input" id="calendar" ng-model="$root.dateFilter" ng-click="searchDate(selectedDate)">
+      
+      
     </div>
 
     <div class="todo-default" ng-if="view == 1" ng-controller="listController">
       <ul class="todo-default-list">
-        <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter}"
+        <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter, date:$root.dateFilter}"
           class="todo-default-list-item">
           <div class="todo-default-list-item-label">{{item.label}}</div>
           <input class="todo-default-list-item-select" type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
@@ -58,7 +61,7 @@
 
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
       <ul class="todo-notes-list">
-        <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter}"
+        <li ng-repeat="item in items | filter:{text:$root.searchFilter, category:$root.categoryFilter}"
           class="todo-notes-list-item">
           <div class="todo-notes-list-item-label">{{item.label}}</div>
           <div class="todo-notes-list-item-category">{{item.category}}</div>
