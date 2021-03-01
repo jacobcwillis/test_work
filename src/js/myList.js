@@ -78,11 +78,11 @@ function headerController($scope, $rootScope) {
 }
 
 function calendarController($scope, $rootScope) {
-    const fp = flatpickr(document.getElementById("calendar"), {inline: true});
+    const fp = flatpickr(document.getElementById("calendar"), {inline: true, dateFormat: "Y-m-d"});
     
-    $scope.searchDate = function (date) {
+    $scope.searchDate = function () {
         view = 2;
-        $rootScope.dateFilter = date;
+        
     }
 
 }
@@ -125,6 +125,7 @@ function editController($scope, $rootScope) {
                 console.log("editing item: ", $rootScope.selectedItem);
                 $rootScope.items[i] = $rootScope.selectedItem;
                 $rootScope.view = $rootScope.storedView;
+                $rootScope.selectedItem = undefined;
                 return;
             }
         }
@@ -132,6 +133,8 @@ function editController($scope, $rootScope) {
         console.log("adding new item: ", $rootScope.selectedItem);
         $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = $rootScope.storedView;
+        $rootScope.selectedItem = undefined;
+
         
     }
 
