@@ -54,9 +54,7 @@ function headerController($scope, $rootScope) {
 
     $scope.openSearch = function () {
         $scope.search = true; //search bar header
-        $rootScope.searchFilter = undefined;
-        $rootScope.categoryFilter = undefined;
-        $rootScope.dateFilter = undefined;
+        
     }
 
     $scope.cancelSearch = function () {

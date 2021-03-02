@@ -37,7 +37,7 @@
     </div>
 
     <div class="todo-calendar" ng-controller="calendarController" ng-if="view == 0">
-      <input class="todo-calendar-input" id="calendar" type="date" ng-model="$root.dateFilter">
+      <input class="todo-calendar-input" id="calendar" type="date" ng-model="$root.dateFilter" ng-change="searchDate()">
       
       
     </div>

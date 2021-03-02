@@ -5,6 +5,24 @@
   align-items: center;
   width: 100%;
   font-family: ubuntu; }
+  .todo .flatpickr-calendar {
+    background-color: transparent;
+    margin: 20px 0; }
+  .todo .flatpickr-prev-month {
+    fill: #f3f3ff !important; }
+  .todo .flatpickr-current-month {
+    color: #f3f3ff;
+    fill: #f3f3ff; }
+  .todo .flatpickr-next-month {
+    fill: #f3f3ff !important; }
+  .todo .flatpickr-weekday {
+    color: #f3f3ff; }
+  .todo .flatpickr-day {
+    color: #f3f3ff !important; }
+  .todo .flatpickr-day {
+    color: #f3f3ff !important; }
+  .todo-calendar #calendar {
+    display: none; }
   .todo-header {
     width: 100%; }
     .todo-header-default {

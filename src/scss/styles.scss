@@ -6,8 +6,37 @@
     width: 100%;
     font-family: ubuntu;
 
+    .flatpickr-calendar {
+        background-color: transparent;
+        margin: 20px 0;
+    }
+    
+    .flatpickr-prev-month {
+        fill: #f3f3ff !important;
+    }
+    .flatpickr-current-month {
+        color: #f3f3ff;
+        fill: #f3f3ff;
+    }
+    .flatpickr-next-month{
+        fill: #f3f3ff !important;
+    }
+    .flatpickr-weekday {
+        color: #f3f3ff;
+    }
+    .flatpickr-day {
+        color: #f3f3ff !important;
+    }
+    .flatpickr-day {
+        color: #f3f3ff !important;
+    }
+    
+    &-calendar {
+        #calendar {
+            display: none;
+        }
 
-    &-calendar {}
+    }
 
     &-header {
         width: 100%;
