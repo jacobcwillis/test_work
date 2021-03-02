@@ -9,6 +9,7 @@
     .flatpickr-calendar {
         background-color: transparent;
         margin: 20px 0;
+        border-color: transparent;
     }
     
     .flatpickr-prev-month {
@@ -18,20 +19,37 @@
         color: #f3f3ff;
         fill: #f3f3ff;
     }
+    .numInputWrapper {
+        opacity: 0.6;
+    }
     .flatpickr-next-month{
         fill: #f3f3ff !important;
     }
     .flatpickr-weekday {
-        color: #f3f3ff;
+        color: #eb7025;
     }
     .flatpickr-day {
         color: #f3f3ff !important;
+        
+        &:hover {
+            background: #f3f3ff80;
+            border-color: #f3f3ff80;
+        }
     }
-    .flatpickr-day {
-        color: #f3f3ff !important;
+    .flatpickr-day.selected {
+        background: linear-gradient(0deg, rgba(230,85,28,1) 0%, rgba(240,140,46,1) 100%);
+        border-color: #eb7025;
+
+        &:hover {
+            background: linear-gradient(0deg, rgba(230,85,28,1) 0%, rgba(240,140,46,1) 100%);
+            border-color: #eb7025;
+        }
     }
     
     &-calendar {
+        display: flex;
+        justify-content: center;
+        
         #calendar {
             display: none;
         }

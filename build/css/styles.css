@@ -7,22 +7,35 @@
   font-family: ubuntu; }
   .todo .flatpickr-calendar {
     background-color: transparent;
-    margin: 20px 0; }
+    margin: 20px 0;
+    border-color: transparent; }
   .todo .flatpickr-prev-month {
     fill: #f3f3ff !important; }
   .todo .flatpickr-current-month {
     color: #f3f3ff;
     fill: #f3f3ff; }
+  .todo .numInputWrapper {
+    opacity: 0.6; }
   .todo .flatpickr-next-month {
     fill: #f3f3ff !important; }
   .todo .flatpickr-weekday {
-    color: #f3f3ff; }
+    color: #eb7025; }
   .todo .flatpickr-day {
     color: #f3f3ff !important; }
-  .todo .flatpickr-day {
-    color: #f3f3ff !important; }
-  .todo-calendar #calendar {
-    display: none; }
+    .todo .flatpickr-day:hover {
+      background: #f3f3ff80;
+      border-color: #f3f3ff80; }
+  .todo .flatpickr-day.selected {
+    background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
+    border-color: #eb7025; }
+    .todo .flatpickr-day.selected:hover {
+      background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
+      border-color: #eb7025; }
+  .todo-calendar {
+    display: flex;
+    justify-content: center; }
+    .todo-calendar #calendar {
+      display: none; }
   .todo-header {
     width: 100%; }
     .todo-header-default {

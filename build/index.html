@@ -32,7 +32,7 @@
         <button class="todo-header-search-cancel-button" ng-click="cancelSearch()">
           <img id="cancel-icon" src="img/img2.png">
         </button>
-        <button class="todo-header-search-edit-button" ng-click="editItem()">edit</button>
+        <button class="todo-header-search-edit-button" ng-show="selectedItemID" ng-click="editItem()">edit</button>
       </div>
     </div>
 
