@@ -49,7 +49,8 @@
     &-calendar {
         display: flex;
         justify-content: center;
-        
+        width: 100%;
+
         #calendar {
             display: none;
         }
@@ -91,6 +92,8 @@
             &-select {}
 
             &-cancel-button {
+                margin: 10px;
+                
 
                 #cancel-icon {
                     height: 40px;
@@ -99,12 +102,17 @@
 
             &-edit-button {
                 display: flex;
-                justify-self: flex-end;
+                margin: 10px;
+                padding: 10px;
+                background-color: transparent;
+                border: none;
+                color: #f3f3ff;
             }
         }
     }
 
     &-default {
+
         &-list {
             display: flex;
             flex-direction: column;

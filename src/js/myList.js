@@ -35,6 +35,7 @@ function ListObject(id, label, notes, category, date) {
     this.notes = notes;
     this.category = category;
     this.date = date;
+    this.dateContr;
     this.text;
 }
 
@@ -44,7 +45,9 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
-    
+    $rootScope.searchFilter = undefined;
+    $rootScope.categoryFilter = undefined;
+    $rootScope.dateFilter = undefined;
 
 
 }
@@ -54,7 +57,7 @@ function headerController($scope, $rootScope) {
 
     $scope.openSearch = function () {
         $scope.search = true; //search bar header
-        
+
     }
 
     $scope.cancelSearch = function () {
@@ -68,7 +71,7 @@ function headerController($scope, $rootScope) {
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3;
         for (var i = 0; i < $rootScope.items.length; i++) {
-            if($rootScope.items[i].id == $rootScope.selectedItemID){
+            if ($rootScope.items[i].id == $rootScope.selectedItemID) {
                 $rootScope.selectedItem = $rootScope.items[i];
             }
         };
@@ -76,11 +79,11 @@ function headerController($scope, $rootScope) {
 }
 
 function calendarController($scope, $rootScope) {
-    const fp = flatpickr(document.getElementById("calendar"), {inline: true, dateFormat: "Y-m-d"});
-    
+    const fp = flatpickr(document.getElementById("calendar"), { inline: true, dateFormat: "m.d" });
+
     $scope.searchDate = function () {
-        view = 2;
-        
+        $rootScope.view = 2;
+
     }
 
 }
@@ -96,17 +99,17 @@ function listController($scope, $rootScope) {
         var _date = new Date();
         var _category = $rootScope.categoryLegend[3];
         $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _category, _date);
-        
+
     }
 
-    $scope.selectItem = function(itemID){
+    $scope.selectItem = function (itemID) {
         console.log("slected itemID: ", itemID);
         $rootScope.selectedItemID = itemID;
     }
 }
 
 function notesController($scope, $rootScope) {
-    $scope.selectItem = function(itemID){
+    $scope.selectItem = function (itemID) {
         console.log("slected itemID: ", itemID);
         $rootScope.selectedItemID = itemID;
     }
@@ -117,9 +120,14 @@ function editController($scope, $rootScope) {
 
     $scope.closeEditor = function () {
         $rootScope.selectedItem.text = $rootScope.selectedItem.label + $rootScope.selectedItem.notes;
+        $rootScope.selectedItem.dateContr = (
+            ($rootScope.selectedItem.date.getMonth() + 1) < 10 ?
+                "0" + ($rootScope.selectedItem.date.getMonth() + 1) : ($rootScope.selectedItem.date.getMonth() + 1))
+            + "." + ($rootScope.selectedItem.date.getDate() < 10 ?
+                "0" + $rootScope.selectedItem.date.getDate() : $rootScope.selectedItem.date.getDate());
+
         for (var i = 0; i < $rootScope.items.length; i++) {
-            
-            if($rootScope.items[i].id == $rootScope.selectedItemID){
+            if ($rootScope.items[i].id == $rootScope.selectedItemID) {
                 console.log("editing item: ", $rootScope.selectedItem);
                 $rootScope.items[i] = $rootScope.selectedItem;
                 $rootScope.view = $rootScope.storedView;
@@ -127,16 +135,16 @@ function editController($scope, $rootScope) {
                 return;
             }
         }
-        
+
         console.log("adding new item: ", $rootScope.selectedItem);
         $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = $rootScope.storedView;
         $rootScope.selectedItem = undefined;
 
-        
+
     }
 
-    
+
 }
 
 function navController($scope, $rootScope) {
