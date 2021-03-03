@@ -43,6 +43,7 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.categoryLegend = CATEGORIES;
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
+    $rootScope.search = false; //header control variable
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
     $rootScope.searchFilter = undefined;
@@ -53,15 +54,14 @@ function todoController($scope, $rootScope, CATEGORIES) {
 }
 
 function headerController($scope, $rootScope) {
-    $scope.search = false; //default notes header
 
     $scope.openSearch = function () {
-        $scope.search = true; //search bar header
+        $rootScope.search = true; //search bar header
 
     }
 
     $scope.cancelSearch = function () {
-        $scope.search = false;
+        $rootScope.search = false;
         $rootScope.searchFilter = undefined;
         $rootScope.categoryFilter = undefined;
         $rootScope.dateFilter = undefined;
@@ -83,7 +83,7 @@ function calendarController($scope, $rootScope) {
 
     $scope.searchDate = function () {
         $rootScope.view = 2;
-
+        $rootScope.search = true;
     }
 
 }

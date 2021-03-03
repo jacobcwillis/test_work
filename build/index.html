@@ -28,7 +28,7 @@
         <select class="todo-header-search-select" ng-model="$root.categoryFilter">
           <option ng-repeat="group in categoryLegend">{{group}}</option>
         </select>
-        <input class="todo-header-search-date" type="text" ng-model="$root.dateFilter">
+        <input class="todo-header-search-date" type="text" placeholder="mm.dd" ng-model="$root.dateFilter">
         <button class="todo-header-search-cancel-button" ng-click="cancelSearch()">
           <img id="cancel-icon" src="img/img2.png">
         </button>
