@@ -70,26 +70,26 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            
+
             padding: 10px 20px;
 
             &-search-button {
-                display:flex;
+                display: flex;
                 background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
                 border: none;
                 border-radius: 20px;
                 margin: 10px;
 
                 #search-icon {
-                    display:flex;
-                    padding:10px;
+                    display: flex;
+                    padding: 10px;
                 }
             }
 
             &-edit-button {
                 background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
                 padding: 10px;
-                margin:10px;
+                margin: 10px;
                 border: none;
                 border-radius: 20px;
                 color: #f3f3ff;
@@ -114,6 +114,7 @@
                 border: none;
                 color: #f3f3ff;
             }
+
             &-date {
                 background: transparent;
                 border: none;
@@ -254,7 +255,7 @@
         width: 100%;
         background-color: #191c35;
         font-family: ubuntu;
-        justify-content: center;
+        align-items: center;
 
         &-label {
             background-color: #191c35;
@@ -275,7 +276,8 @@
             &-option {
                 color: #f3f3ff;
                 opacity: 0.6;
-                padding: 0 10px;
+                margin: 10px;
+                padding: 10px;
                 border: 1px outset #f3f3ff80; //replicate categoryContainer.png
                 border-radius: 20px;
 
@@ -287,7 +289,8 @@
                     border: none; //replicate categoryContainerActive.png
                     opacity: 1;
                     color: #f3f3ff;
-                    padding: 0 10px;
+                    margin: 10px;
+                    padding: 10px;
                     border-radius: 20px;
                     background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
 
@@ -328,10 +331,12 @@
 
         &-complete {
             display: flex;
+            width: 30%;
             margin: 10px;
             padding: 10px;
             background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
             border: none;
+            border-radius: 20px;
             color: #f3f3ff;
             font-family: ubuntu;
             justify-content: center;
