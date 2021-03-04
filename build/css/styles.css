@@ -68,19 +68,25 @@
         font-size: 14px; }
     .todo-header-search {
       display: flex;
-      justify-content: space-around; }
+      justify-content: center; }
       .todo-header-search-input {
         background: transparent;
-        border: none;
-        color: #f3f3ff; }
+        border-radius: 20px;
+        color: #f3f3ff;
+        padding: 10px;
+        margin: 10px; }
       .todo-header-search-select {
         background: transparent;
-        border: none;
-        color: #f3f3ff; }
+        border-radius: 20px;
+        color: #f3f3ff;
+        padding: 10px;
+        margin: 10px; }
       .todo-header-search-date {
         background: transparent;
-        border: none;
-        color: #f3f3ff; }
+        border-radius: 20px;
+        color: #f3f3ff;
+        padding: 10px;
+        margin: 10px; }
       .todo-header-search-cancel-button {
         margin: 10px;
         background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
@@ -171,17 +177,20 @@
     align-items: center; }
     .todo-edit-label {
       background-color: #191c35;
-      border: none;
+      border-radius: 20px;
       color: #f3f3ff;
       font-family: ubuntu;
       font-size: 20px;
-      padding: 10px 10px 0; }
+      padding: 10px;
+      margin: 10px;
+      width: 50%; }
     .todo-edit-categories {
       display: flex;
       flex-direction: row;
       overflow: scroll;
       padding: 10px;
-      justify-content: center; }
+      justify-content: space-around;
+      width: 50%; }
       .todo-edit-categories-option {
         color: #f3f3ff;
         opacity: 0.6;
@@ -208,22 +217,26 @@
     .todo-edit-date {
       display: flex;
       background-color: #191c35;
-      border: none;
+      border-radius: 20px;
       color: #f3f3ff;
       font-family: ubuntu;
       font-size: 16px;
-      padding: 10px; }
+      padding: 10px;
+      margin: 10px;
+      width: 50%; }
     .todo-edit ::-webkit-calendar-picker-indicator {
       filter: invert(1); }
     .todo-edit-notes {
       background-color: #191c35;
-      border: none;
+      border-radius: 20px;
       color: #f3f3ff;
       display: flex;
       flex-wrap: wrap;
       font-family: ubuntu;
       font-size: 18px;
-      padding: 10px; }
+      padding: 10px;
+      margin: 10px;
+      width: 50%; }
     .todo-edit-complete {
       display: flex;
       width: 30%;

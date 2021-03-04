@@ -104,24 +104,30 @@
 
         &-search {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
 
             &-input {
                 background: transparent;
-                border: none;
+                border-radius: 20px;
                 color: #f3f3ff;
+                padding: 10px;
+                margin: 10px;
             }
 
             &-select {
                 background: transparent;
-                border: none;
+                border-radius: 20px;
                 color: #f3f3ff;
+                padding: 10px;
+                margin: 10px;
             }
 
             &-date {
                 background: transparent;
-                border: none;
+                border-radius: 20px;
                 color: #f3f3ff;
+                padding: 10px;
+                margin: 10px;
             }
 
             &-cancel-button {
@@ -262,11 +268,13 @@
 
         &-label {
             background-color: #191c35;
-            border: none;
+            border-radius: 20px;
             color: #f3f3ff;
             font-family: ubuntu;
             font-size: 20px;
-            padding: 10px 10px 0;
+            padding: 10px;
+            margin: 10px;
+            width: 50%;
         }
 
         &-categories {
@@ -274,7 +282,8 @@
             flex-direction: row;
             overflow: scroll;
             padding: 10px;
-            justify-content: center;
+            justify-content: space-around;
+            width: 50%;
 
             &-option {
                 color: #f3f3ff;
@@ -313,11 +322,13 @@
         &-date {
             display: flex;
             background-color: #191c35;
-            border: none;
+            border-radius: 20px;
             color: #f3f3ff;
             font-family: ubuntu;
             font-size: 16px;
             padding: 10px;
+            margin: 10px;
+            width: 50%;
         }
 
         ::-webkit-calendar-picker-indicator {
@@ -326,14 +337,15 @@
 
         &-notes {
             background-color: #191c35;
-            border: none;
+            border-radius: 20px;
             color: #f3f3ff;
             display: flex;
             flex-wrap: wrap;
             font-family: ubuntu;
             font-size: 18px;
             padding: 10px;
-
+            margin: 10px;
+            width: 50%;
         }
 
         &-complete {
