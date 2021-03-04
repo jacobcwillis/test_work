@@ -83,6 +83,9 @@
                 #search-icon {
                     display: flex;
                     padding: 10px;
+                    filter: invert(1);
+                    background-color: transparent;
+                    height: 20px;
                 }
             }
 
@@ -316,7 +319,7 @@
             font-size: 16px;
             padding: 10px;
         }
-        
+
         ::-webkit-calendar-picker-indicator {
             filter: invert(1);
         }

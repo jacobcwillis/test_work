@@ -52,7 +52,10 @@
         margin: 10px; }
         .todo-header-default-search-button #search-icon {
           display: flex;
-          padding: 10px; }
+          padding: 10px;
+          filter: invert(1);
+          background-color: transparent;
+          height: 20px; }
       .todo-header-default-edit-button {
         background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
         padding: 10px;
