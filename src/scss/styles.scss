@@ -316,6 +316,10 @@
             font-size: 16px;
             padding: 10px;
         }
+        
+        ::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
 
         &-notes {
             background-color: #191c35;

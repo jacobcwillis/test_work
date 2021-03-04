@@ -210,6 +210,8 @@
       font-family: ubuntu;
       font-size: 16px;
       padding: 10px; }
+    .todo-edit ::-webkit-calendar-picker-indicator {
+      filter: invert(1); }
     .todo-edit-notes {
       background-color: #191c35;
       border: none;
