@@ -65,13 +65,15 @@
 
     &-header {
         width: 100%;
-
+        display:flex;
+        justify-content: space-between;
+        
         &-default {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-
+            flex-basis:50%;
             padding: 10px 20px;
+            justify-content: flex-start;
 
             &-search-button {
                 display: flex;
@@ -79,6 +81,8 @@
                 border: none;
                 border-radius: 20px;
                 margin: 10px;
+                padding: 0;
+                outline: none;
 
                 #search-icon {
                     display: flex;
@@ -89,70 +93,67 @@
                 }
             }
 
-            &-edit-button {
-                background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
-                padding: 10px;
-                margin: 10px;
-                border: none;
-                border-radius: 20px;
-                color: #f3f3ff;
-                opacity: 0.9;
-                font-family: ubuntu;
-                font-size: 14px;
-            }
+            
         }
 
         &-search {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
+            flex-basis: 80%;
 
             &-input {
                 background: transparent;
                 border-radius: 20px;
                 color: #f3f3ff;
                 padding: 10px;
-                margin: 10px;
+                margin: 20 30px;
+                outline: none;
             }
 
             &-select {
                 background: transparent;
                 border-radius: 20px;
-                color: #f3f3ff;
+                color: #f3f3ff80;
                 padding: 10px;
-                margin: 10px;
-            }
-
-            &-date {
-                background: transparent;
-                border-radius: 20px;
-                color: #f3f3ff;
-                padding: 10px;
-                margin: 10px;
+                margin: 20 30px;
+                outline: none;
             }
 
             &-cancel-button {
-                margin: 10px;
+                margin: 20 30px;
                 background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
                 border: none;
                 border-radius: 20px;
                 padding: 10px;
+                height: 40px;
+                width: 40px;
+                overflow: hidden;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                outline: none;
 
                 #cancel-icon {
-                    height: 40px;
+                    height: 50px;
+                    margin: 0;
+                    filter: invert(1);
+                    opacity: 0.8;
                 }
             }
 
-            &-edit-button {
-                display: flex;
-                align-items: center;
-                margin: 10px;
-                padding: 10px;
-                border: none;
-                border-radius: 20px;
-                color: #f3f3ff;
-                background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
+        }
 
-            }
+        &-edit-button {
+            justify-content: flex-end;
+            background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
+            padding: 10px;
+            margin: 20 30px;
+            border: none;
+            border-radius: 20px;
+            color: #f3f3ff;
+            outline:none;
+            font-family: ubuntu;
+            font-size: 14px;
         }
     }
 
@@ -163,6 +164,7 @@
             flex-direction: column;
             margin: 0;
             padding: 0 20px;
+            overflow-y: scroll;
 
             &-item {
                 display: flex;
@@ -184,6 +186,7 @@
         &-add {
             background-color: transparent;
             border: none;
+            outline: none;
         }
     }
 
@@ -201,6 +204,7 @@
             flex-direction: column;
             margin: 0;
             padding: 0 20px;
+            overflow-y: scroll;
 
             &-item {
                 display: flex;
@@ -273,25 +277,26 @@
             font-family: ubuntu;
             font-size: 20px;
             padding: 10px;
-            margin: 10px;
+            margin: 20 30px;
             width: 50%;
+            outline:none;
         }
 
         &-categories {
             display: flex;
             flex-direction: row;
             overflow: scroll;
-            padding: 10px;
             justify-content: space-around;
             width: 50%;
 
             &-option {
                 color: #f3f3ff;
                 opacity: 0.6;
-                margin: 10px;
+                margin: 20px;
                 padding: 10px;
                 border: 1px outset #f3f3ff80; //replicate categoryContainer.png
                 border-radius: 20px;
+                outline: none;
 
                 &:hover {
                     opacity: 0.8;
@@ -301,11 +306,11 @@
                     border: none; //replicate categoryContainerActive.png
                     opacity: 1;
                     color: #f3f3ff;
-                    margin: 10px;
+                    margin: 20 30px;
                     padding: 10px;
                     border-radius: 20px;
                     background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
-
+                    outline: none;
                 }
 
                 &-check {
@@ -327,8 +332,9 @@
             font-family: ubuntu;
             font-size: 16px;
             padding: 10px;
-            margin: 10px;
+            margin: 20 30px;
             width: 50%;
+            outline: none;
         }
 
         ::-webkit-calendar-picker-indicator {
@@ -344,8 +350,9 @@
             font-family: ubuntu;
             font-size: 18px;
             padding: 10px;
-            margin: 10px;
+            margin: 20 30px;
             width: 50%;
+            outline: none;
         }
 
         &-complete {
@@ -359,6 +366,7 @@
             color: #f3f3ff;
             font-family: ubuntu;
             justify-content: center;
+            outline: none;
         }
     }
 
@@ -372,16 +380,19 @@
         #calendarButton {
             background-color: transparent;
             border: none;
+            outline: none;
         }
 
         #listButton {
             background-color: transparent;
             border: none;
+            outline: none;
         }
 
         #notesButton {
             background-color: transparent;
             border: none;
+            outline: none;
         }
     }
 }

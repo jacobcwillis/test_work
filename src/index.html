@@ -19,23 +19,25 @@
     
 
     <div class="todo-header" ng-controller="headerController">
+
       <div class="todo-header-default" ng-hide="search">
         <button class="todo-header-default-search-button" ng-click="openSearch()">
           <img id=search-icon src="img/searchIcon.png">
         </button>
-        <button class="todo-header-default-edit-button" ng-show="selectedItemID" ng-click="editItem()">edit</button>
       </div>
+
       <div class="todo-header-search" ng-show="search">
         <input class="todo-header-search-input" type="text" ng-model="$root.searchFilter" placeholder="Search...">
-        <select class="todo-header-search-select" ng-model="$root.categoryFilter">
+        <select class="todo-header-search-select" ng-model="$root.categoryFilter" >
+          <option value="" disabled selected>Category...</option>
           <option ng-repeat="group in categoryLegend">{{group}}</option>
         </select>
-        <input class="todo-header-search-date" type="text" placeholder="mm.dd" ng-model="$root.dateFilter">
         <button class="todo-header-search-cancel-button" ng-click="cancelSearch()">
           <img id="cancel-icon" src="img/img2.png">
         </button>
-        <button class="todo-header-search-edit-button" ng-show="selectedItemID" ng-click="editItem()">edit</button>
       </div>
+
+      <button class="todo-header-edit-button" ng-show="selectedItemID" ng-click="editItem()">edit</button>
     </div>
 
     <div class="todo-calendar" ng-controller="calendarController" ng-if="view == 0">
@@ -85,7 +87,7 @@
         <input type="radio" id="add-category" class="todo-edit-categories-option-check" ng-model="selectedItem.category" ng-value="group">{{group}}</label>
     </div>
     <input type="date" class="todo-edit-date" ng-model="selectedItem.date">
-    <input type="text" class="todo-edit-notes" ng-model="selectedItem.notes">
+    <textarea class="todo-edit-notes" ng-model="selectedItem.notes"></textarea>
     <button type="submit" class="todo-edit-complete" ng-click="closeEditor()">Complete</button>
 
   </div>

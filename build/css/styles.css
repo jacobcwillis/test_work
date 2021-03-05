@@ -38,77 +38,82 @@
     .todo-calendar #calendar {
       display: none; }
   .todo-header {
-    width: 100%; }
+    width: 100%;
+    display: flex;
+    justify-content: space-between; }
     .todo-header-default {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      padding: 10px 20px; }
+      flex-basis: 50%;
+      padding: 10px 20px;
+      justify-content: flex-start; }
       .todo-header-default-search-button {
         display: flex;
         background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
         border: none;
         border-radius: 20px;
-        margin: 10px; }
+        margin: 10px;
+        padding: 0;
+        outline: none; }
         .todo-header-default-search-button #search-icon {
           display: flex;
           padding: 10px;
           filter: invert(1);
           background-color: transparent;
           height: 20px; }
-      .todo-header-default-edit-button {
-        background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
-        padding: 10px;
-        margin: 10px;
-        border: none;
-        border-radius: 20px;
-        color: #f3f3ff;
-        opacity: 0.9;
-        font-family: ubuntu;
-        font-size: 14px; }
     .todo-header-search {
       display: flex;
-      justify-content: center; }
+      justify-content: flex-start;
+      flex-basis: 80%; }
       .todo-header-search-input {
         background: transparent;
         border-radius: 20px;
         color: #f3f3ff;
         padding: 10px;
-        margin: 10px; }
+        margin: 20 30px;
+        outline: none; }
       .todo-header-search-select {
         background: transparent;
         border-radius: 20px;
-        color: #f3f3ff;
+        color: #f3f3ff80;
         padding: 10px;
-        margin: 10px; }
-      .todo-header-search-date {
-        background: transparent;
-        border-radius: 20px;
-        color: #f3f3ff;
-        padding: 10px;
-        margin: 10px; }
+        margin: 20 30px;
+        outline: none; }
       .todo-header-search-cancel-button {
-        margin: 10px;
+        margin: 20 30px;
         background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
         border: none;
         border-radius: 20px;
-        padding: 10px; }
-        .todo-header-search-cancel-button #cancel-icon {
-          height: 40px; }
-      .todo-header-search-edit-button {
-        display: flex;
-        align-items: center;
-        margin: 10px;
         padding: 10px;
-        border: none;
-        border-radius: 20px;
-        color: #f3f3ff;
-        background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%); }
+        height: 40px;
+        width: 40px;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        outline: none; }
+        .todo-header-search-cancel-button #cancel-icon {
+          height: 50px;
+          margin: 0;
+          filter: invert(1);
+          opacity: 0.8; }
+    .todo-header-edit-button {
+      justify-content: flex-end;
+      background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
+      padding: 10px;
+      margin: 20 30px;
+      border: none;
+      border-radius: 20px;
+      color: #f3f3ff;
+      outline: none;
+      font-family: ubuntu;
+      font-size: 14px; }
   .todo-default-list {
     display: flex;
     flex-direction: column;
     margin: 0;
-    padding: 0 20px; }
+    padding: 0 20px;
+    overflow-y: scroll; }
     .todo-default-list-item {
       display: flex;
       flex-direction: row;
@@ -122,7 +127,8 @@
         font-size: 20px; }
   .todo-default-add {
     background-color: transparent;
-    border: none; }
+    border: none;
+    outline: none; }
   .todo-notes {
     display: flex;
     flex-direction: column;
@@ -132,7 +138,8 @@
       display: flex;
       flex-direction: column;
       margin: 0;
-      padding: 0 20px; }
+      padding: 0 20px;
+      overflow-y: scroll; }
       .todo-notes-list-item {
         display: flex;
         flex-direction: row;
@@ -182,32 +189,34 @@
       font-family: ubuntu;
       font-size: 20px;
       padding: 10px;
-      margin: 10px;
-      width: 50%; }
+      margin: 20 30px;
+      width: 50%;
+      outline: none; }
     .todo-edit-categories {
       display: flex;
       flex-direction: row;
       overflow: scroll;
-      padding: 10px;
       justify-content: space-around;
       width: 50%; }
       .todo-edit-categories-option {
         color: #f3f3ff;
         opacity: 0.6;
-        margin: 10px;
+        margin: 20px;
         padding: 10px;
         border: 1px outset #f3f3ff80;
-        border-radius: 20px; }
+        border-radius: 20px;
+        outline: none; }
         .todo-edit-categories-option:hover {
           opacity: 0.8; }
         .todo-edit-categories-option-selected {
           border: none;
           opacity: 1;
           color: #f3f3ff;
-          margin: 10px;
+          margin: 20 30px;
           padding: 10px;
           border-radius: 20px;
-          background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%); }
+          background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
+          outline: none; }
         .todo-edit-categories-option-check {
           opacity: 0;
           width: 0;
@@ -222,8 +231,9 @@
       font-family: ubuntu;
       font-size: 16px;
       padding: 10px;
-      margin: 10px;
-      width: 50%; }
+      margin: 20 30px;
+      width: 50%;
+      outline: none; }
     .todo-edit ::-webkit-calendar-picker-indicator {
       filter: invert(1); }
     .todo-edit-notes {
@@ -235,8 +245,9 @@
       font-family: ubuntu;
       font-size: 18px;
       padding: 10px;
-      margin: 10px;
-      width: 50%; }
+      margin: 20 30px;
+      width: 50%;
+      outline: none; }
     .todo-edit-complete {
       display: flex;
       width: 30%;
@@ -247,7 +258,8 @@
       border-radius: 20px;
       color: #f3f3ff;
       font-family: ubuntu;
-      justify-content: center; }
+      justify-content: center;
+      outline: none; }
   .todo-nav {
     display: flex;
     background-color: #30334a;
@@ -255,10 +267,13 @@
     width: 100%; }
     .todo-nav #calendarButton {
       background-color: transparent;
-      border: none; }
+      border: none;
+      outline: none; }
     .todo-nav #listButton {
       background-color: transparent;
-      border: none; }
+      border: none;
+      outline: none; }
     .todo-nav #notesButton {
       background-color: transparent;
-      border: none; }
+      border: none;
+      outline: none; }

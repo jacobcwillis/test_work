@@ -49,8 +49,8 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.searchFilter = undefined;
     $rootScope.categoryFilter = undefined;
     $rootScope.dateFilter = undefined;
-
-
+    $rootScope.selectedItem = undefined;
+    $rootScope.selectedItemID = undefined;
 }
 
 function headerController($scope, $rootScope) {
@@ -79,7 +79,7 @@ function headerController($scope, $rootScope) {
 }
 
 function calendarController($scope, $rootScope) {
-    const fp = flatpickr(document.getElementById("calendar"), { inline: true, dateFormat: "m.d" });
+    const fp = flatpickr(document.getElementById("calendar"), { inline: true, dateFormat: "m/d" });
 
     $scope.searchDate = function () {
         $rootScope.view = 2;
@@ -123,7 +123,7 @@ function editController($scope, $rootScope) {
         $rootScope.selectedItem.dateContr = (
             ($rootScope.selectedItem.date.getMonth() + 1) < 10 ?
                 "0" + ($rootScope.selectedItem.date.getMonth() + 1) : ($rootScope.selectedItem.date.getMonth() + 1))
-            + "." + ($rootScope.selectedItem.date.getDate() < 10 ?
+            + "/" + ($rootScope.selectedItem.date.getDate() < 10 ?
                 "0" + $rootScope.selectedItem.date.getDate() : $rootScope.selectedItem.date.getDate());
 
         for (var i = 0; i < $rootScope.items.length; i++) {
@@ -132,6 +132,7 @@ function editController($scope, $rootScope) {
                 $rootScope.items[i] = $rootScope.selectedItem;
                 $rootScope.view = $rootScope.storedView;
                 $rootScope.selectedItem = undefined;
+                $rootScope.selectedItemID = undefined;
                 return;
             }
         }
@@ -140,6 +141,7 @@ function editController($scope, $rootScope) {
         $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = $rootScope.storedView;
         $rootScope.selectedItem = undefined;
+        $rootScope.selectedItemID = undefined;
 
 
     }
