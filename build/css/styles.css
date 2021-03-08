@@ -116,13 +116,15 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-    overflow-y: scroll; }
+    overflow-y: scroll;
+    padding: 20px; }
     .todo-default-list-item {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
-      padding: 20px 0; }
+      padding: 20px 0;
+      cursor: pointer; }
       .todo-default-list-item-label {
         color: #f3f3ff;
         opacity: 0.9;
@@ -158,14 +160,16 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 20px 0; }
+        padding: 20px 0;
+        cursor: pointer; }
         .todo-notes-list-item-label {
           color: #f3f3ff;
           opacity: 0.9;
           font-weight: bold;
           font-size: 20px;
           flex-basis: 60%;
-          padding: 10 20px; }
+          padding: 10 20px;
+          cursor: pointer; }
         .todo-notes-list-item-category {
           color: #f3f3ff;
           font-size: 18px;
@@ -197,6 +201,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 20px 0;
+        cursor: pointer;
         background-color: #363953; }
   .todo-edit {
     display: flex;
