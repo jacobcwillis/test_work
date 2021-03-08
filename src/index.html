@@ -48,10 +48,9 @@
 
     <div class="todo-default" ng-if="view == 1" ng-controller="listController">
       <ul class="todo-default-list">
-        <li ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter, dateContr:$root.dateFilter}"
-          class="todo-default-list-item">
+        <li ng-class="(item.id == selectedItemID)?'default-list-item-selected':'todo-default-list-item'" ng-click="selectItem(item.id)" ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter, dateContr:$root.dateFilter}">
           <div class="todo-default-list-item-label">{{item.label}}</div>
-          <input class="todo-default-list-item-select" type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
+          <input class="todo-default-list-item-select" type="radio" name="selectedItem" value="{{item}}">
         </li>
       </ul>
       <button class="todo-default-add" ng-click="addItem()">
@@ -63,13 +62,13 @@
 
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
       <ul class="todo-notes-list">
-        <li ng-repeat="item in items | filter:{text:$root.searchFilter, category:$root.categoryFilter, dateContr:$root.dateFilter}"
-          class="todo-notes-list-item">
+        <li ng-click="selectItem(item.id)" ng-repeat="item in items | filter:{text:$root.searchFilter, category:$root.categoryFilter, dateContr:$root.dateFilter}"
+        ng-class="(item.id == selectedItemID)?'notes-list-item-selected':'todo-notes-list-item'">
           <div class="todo-notes-list-item-label">{{item.label}}</div>
           <div class="todo-notes-list-item-category">{{item.category}}</div>
           <div class="todo-notes-list-item-date">{{item.dateContr}}</div>
           <div class="todo-notes-list-item-preview">{{item.notes}}</div>
-          <input class="todo-notes-list-item-select" type="radio" ng-click="selectItem(item.id)" name="selectedItem" value="{{item}}">
+          <input class="todo-notes-list-item-select" type="radio" name="selectedItem" value="{{item}}">
         </li>
       </ul>
     </div>

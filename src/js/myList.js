@@ -43,14 +43,16 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.categoryLegend = CATEGORIES;
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
-    $rootScope.search = false; //header control variable
+
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
+
+    $rootScope.selectedItem = undefined;
+    $rootScope.selectedItemID = undefined;
+    $rootScope.search = false;
     $rootScope.searchFilter = undefined;
     $rootScope.categoryFilter = undefined;
     $rootScope.dateFilter = undefined;
-    $rootScope.selectedItem = undefined;
-    $rootScope.selectedItemID = undefined;
 }
 
 function headerController($scope, $rootScope) {
@@ -119,8 +121,12 @@ function notesController($scope, $rootScope) {
 function editController($scope, $rootScope) {
 
     $scope.closeEditor = function () {
+        $rootScope.search = false;
+        $rootScope.searchFilter = undefined;
+        $rootScope.categoryFilter = undefined;
+        $rootScope.dateFilter = undefined;
         $rootScope.selectedItem.text = $rootScope.selectedItem.label + $rootScope.selectedItem.notes;
-        $rootScope.selectedItem.dateContr = (
+        $rootScope.selectedItem.dateContr = ( //formats mm/dd string
             ($rootScope.selectedItem.date.getMonth() + 1) < 10 ?
                 "0" + ($rootScope.selectedItem.date.getMonth() + 1) : ($rootScope.selectedItem.date.getMonth() + 1))
             + "/" + ($rootScope.selectedItem.date.getDate() < 10 ?
@@ -133,6 +139,7 @@ function editController($scope, $rootScope) {
                 $rootScope.view = $rootScope.storedView;
                 $rootScope.selectedItem = undefined;
                 $rootScope.selectedItemID = undefined;
+
                 return;
             }
         }

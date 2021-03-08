@@ -54,7 +54,8 @@
         border-radius: 20px;
         margin: 10px;
         padding: 0;
-        outline: none; }
+        outline: none;
+        cursor: pointer; }
         .todo-header-default-search-button #search-icon {
           display: flex;
           padding: 10px;
@@ -91,7 +92,8 @@
         justify-content: center;
         align-items: center;
         display: flex;
-        outline: none; }
+        outline: none;
+        cursor: pointer; }
         .todo-header-search-cancel-button #cancel-icon {
           height: 50px;
           margin: 0;
@@ -107,12 +109,13 @@
       color: #f3f3ff;
       outline: none;
       font-family: ubuntu;
-      font-size: 14px; }
+      font-size: 14px;
+      cursor: pointer; }
   .todo-default-list {
     display: flex;
     flex-direction: column;
     margin: 0;
-    padding: 0 20px;
+    padding: 0;
     overflow-y: scroll; }
     .todo-default-list-item {
       display: flex;
@@ -125,10 +128,20 @@
         opacity: 0.9;
         font-weight: bold;
         font-size: 20px; }
+      .todo-default-list-item-select {
+        display: none; }
+    .todo-default-list .default-list-item-selected {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px 0;
+      background-color: #363953; }
   .todo-default-add {
     background-color: transparent;
     border: none;
-    outline: none; }
+    outline: none;
+    cursor: pointer; }
   .todo-notes {
     display: flex;
     flex-direction: column;
@@ -138,7 +151,7 @@
       display: flex;
       flex-direction: column;
       margin: 0;
-      padding: 0 20px;
+      padding: 0;
       overflow-y: scroll; }
       .todo-notes-list-item {
         display: flex;
@@ -151,18 +164,21 @@
           opacity: 0.9;
           font-weight: bold;
           font-size: 20px;
-          flex-basis: 60%; }
+          flex-basis: 60%;
+          padding: 10 20px; }
         .todo-notes-list-item-category {
           color: #f3f3ff;
           font-size: 18px;
           opacity: 0.9;
-          flex-basis: 10%; }
+          flex-basis: 10%;
+          padding: 10 20px; }
         .todo-notes-list-item-date {
           color: #f3f3ff;
           opacity: 0.9;
           display: flex;
           justify-content: flex-end;
-          flex-basis: 10%; }
+          flex-basis: 10%;
+          padding: 10 20px; }
         .todo-notes-list-item-preview {
           color: #f3f3ff;
           font-size: 18px;
@@ -171,10 +187,17 @@
           flex-basis: 80%;
           white-space: nowrap;
           overflow: hidden;
-          text-overflow: ellipsis; }
+          text-overflow: ellipsis;
+          padding: 10 20px; }
         .todo-notes-list-item-select {
-          padding: 10px 0 0 0;
-          flex-basis: 10%; }
+          display: none; }
+      .todo-notes-list .notes-list-item-selected {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px 0;
+        background-color: #363953; }
   .todo-edit {
     display: flex;
     flex-direction: column;
@@ -205,7 +228,8 @@
         padding: 10px;
         border: 1px outset #f3f3ff80;
         border-radius: 20px;
-        outline: none; }
+        outline: none;
+        cursor: pointer; }
         .todo-edit-categories-option:hover {
           opacity: 0.8; }
         .todo-edit-categories-option-selected {
@@ -259,7 +283,8 @@
       color: #f3f3ff;
       font-family: ubuntu;
       justify-content: center;
-      outline: none; }
+      outline: none;
+      cursor: pointer; }
   .todo-nav {
     display: flex;
     background-color: #30334a;
@@ -268,12 +293,15 @@
     .todo-nav #calendarButton {
       background-color: transparent;
       border: none;
-      outline: none; }
+      outline: none;
+      cursor: pointer; }
     .todo-nav #listButton {
       background-color: transparent;
       border: none;
-      outline: none; }
+      outline: none;
+      cursor: pointer; }
     .todo-nav #notesButton {
       background-color: transparent;
       border: none;
-      outline: none; }
+      outline: none;
+      cursor: pointer; }

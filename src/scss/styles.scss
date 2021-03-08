@@ -83,6 +83,7 @@
                 margin: 10px;
                 padding: 0;
                 outline: none;
+                cursor: pointer;
 
                 #search-icon {
                     display: flex;
@@ -132,6 +133,7 @@
                 align-items: center;
                 display: flex;
                 outline: none;
+                cursor: pointer;
 
                 #cancel-icon {
                     height: 50px;
@@ -154,6 +156,7 @@
             outline:none;
             font-family: ubuntu;
             font-size: 14px;
+            cursor: pointer;
         }
     }
 
@@ -163,7 +166,7 @@
             display: flex;
             flex-direction: column;
             margin: 0;
-            padding: 0 20px;
+            padding: 0;
             overflow-y: scroll;
 
             &-item {
@@ -172,6 +175,7 @@
                 flex-wrap: wrap;
                 justify-content: space-between;
                 padding: 20px 0;
+                
 
                 &-label {
                     color: #f3f3ff;
@@ -180,6 +184,18 @@
                     font-size: 20px;
 
                 }
+                &-select {
+                    display: none;
+                }
+            }
+            .default-list-item-selected {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 20px 0;
+                background-color: #363953;
+                
             }
         }
 
@@ -187,6 +203,7 @@
             background-color: transparent;
             border: none;
             outline: none;
+            cursor: pointer;
         }
     }
 
@@ -203,7 +220,7 @@
             display: flex;
             flex-direction: column;
             margin: 0;
-            padding: 0 20px;
+            padding: 0;
             overflow-y: scroll;
 
             &-item {
@@ -212,6 +229,7 @@
                 flex-wrap: wrap;
                 justify-content: space-between;
                 padding: 20px 0;
+                
 
                 &-label {
                     color: #f3f3ff;
@@ -219,6 +237,7 @@
                     font-weight: bold;
                     font-size: 20px;
                     flex-basis: 60%;
+                    padding: 10 20px;
 
                 }
 
@@ -227,6 +246,7 @@
                     font-size: 18px;
                     opacity: 0.9;
                     flex-basis: 10%;
+                    padding: 10 20px;
                 }
 
                 &-date {
@@ -235,6 +255,7 @@
                     display: flex;
                     justify-content: flex-end;
                     flex-basis: 10%;
+                    padding: 10 20px;
 
                 }
 
@@ -248,14 +269,23 @@
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    padding: 10 20px;
                 }
 
                 &-select {
-                    padding: 10px 0 0 0;
-                    flex-basis: 10%;
+                    display: none;
 
 
                 }
+            }
+            .notes-list-item-selected {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 20px 0;
+                
+                background-color: #363953;
             }
 
 
@@ -297,6 +327,7 @@
                 border: 1px outset #f3f3ff80; //replicate categoryContainer.png
                 border-radius: 20px;
                 outline: none;
+                cursor: pointer;
 
                 &:hover {
                     opacity: 0.8;
@@ -367,6 +398,7 @@
             font-family: ubuntu;
             justify-content: center;
             outline: none;
+            cursor: pointer;
         }
     }
 
@@ -381,18 +413,21 @@
             background-color: transparent;
             border: none;
             outline: none;
+            cursor: pointer;
         }
 
         #listButton {
             background-color: transparent;
             border: none;
             outline: none;
+            cursor: pointer;
         }
 
         #notesButton {
             background-color: transparent;
             border: none;
             outline: none;
+            cursor: pointer;
         }
     }
 }
