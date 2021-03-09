@@ -53,6 +53,8 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.searchFilter = undefined;
     $rootScope.categoryFilter = undefined;
     $rootScope.dateFilter = undefined;
+
+    $rootScope.activeDays = [];
 }
 
 function headerController($scope, $rootScope) {
@@ -84,7 +86,7 @@ function calendarController($scope, $rootScope) {
     const fp = flatpickr(document.getElementById("calendar"), { inline: true, dateFormat: "m/d" });
 
     $scope.searchDate = function () {
-        $rootScope.view = 2;
+        $rootScope.view = 1;
         $rootScope.search = true;
     }
 
@@ -121,18 +123,37 @@ function notesController($scope, $rootScope) {
 function editController($scope, $rootScope) {
 
     $scope.closeEditor = function () {
+        //filters cleared
         $rootScope.search = false;
         $rootScope.searchFilter = undefined;
         $rootScope.categoryFilter = undefined;
         $rootScope.dateFilter = undefined;
+
+        //functional fields populated
         $rootScope.selectedItem.text = $rootScope.selectedItem.label + $rootScope.selectedItem.notes;
         $rootScope.selectedItem.dateContr = ( //formats mm/dd string
             ($rootScope.selectedItem.date.getMonth() + 1) < 10 ?
                 "0" + ($rootScope.selectedItem.date.getMonth() + 1) : ($rootScope.selectedItem.date.getMonth() + 1))
             + "/" + ($rootScope.selectedItem.date.getDate() < 10 ?
                 "0" + $rootScope.selectedItem.date.getDate() : $rootScope.selectedItem.date.getDate());
+        
+        //adds dateContr if not already in activeDates
+        if (!$rootScope.activeDays.length) {
+            $rootScope.activeDays.push($rootScope.selectedItem.dateContr);
+        } else {
+            var n = 0;
+            for (var i = 0; i < $rootScope.activeDays.length; i++) {
+                if ($rootScope.activeDays[i] == $rootScope.selectedItem.dateContr) {
+                    n++;
+                }
+            }
+            if (n == 0) {
+                $rootScope.activeDays.push($rootScope.selectedItem.dateContr);
+            }
+        }
 
-        for (var i = 0; i < $rootScope.items.length; i++) {
+        //this block handles edited entries
+        for (var i = 0; i < $rootScope.items.length; i++) { 
             if ($rootScope.items[i].id == $rootScope.selectedItemID) {
                 console.log("editing item: ", $rootScope.selectedItem);
                 $rootScope.items[i] = $rootScope.selectedItem;
@@ -143,7 +164,7 @@ function editController($scope, $rootScope) {
                 return;
             }
         }
-
+        //this block handles new entries
         console.log("adding new item: ", $rootScope.selectedItem);
         $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = $rootScope.storedView;

@@ -161,7 +161,8 @@
     }
 
     &-default {
-
+        display:flex;
+        flex-direction: column;
         &-list {
             display: flex;
             flex-direction: column;
@@ -199,6 +200,13 @@
                 background-color: #363953;
                 
             }
+        }
+
+        &-hidden {
+            display:flex;
+            width: 100%;
+            border: 1px solid #f3f3ff;
+            height: 20px;
         }
 
         &-add {
