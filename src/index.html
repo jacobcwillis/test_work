@@ -47,13 +47,22 @@
     </div>
 
     <div class="todo-default" ng-if="view == 1" ng-controller="listController">
-      <ul ng-repeat="day in activeDays" ng-show="dateFilter == day" class="todo-default-list">
-        <li ng-class="(item.id == selectedItemID)?'default-list-item-selected':'todo-default-list-item'" ng-click="selectItem(item.id)" ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter, dateContr:day}">
+      <div 
+        class="todo-default-hidden" 
+        ng-repeat="day in activeDays" 
+        ng-hide="dateFilter == day"></div>
+      <ul 
+        ng-repeat="day in activeDays"  
+        class="todo-default-list"
+        ng-show="dateFilter == day">
+        <li 
+          ng-class="(item.id == selectedItemID)?'default-list-item-selected':'todo-default-list-item'" 
+          ng-click="selectItem(item.id)" 
+          ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter, dateContr:day}">
           <div class="todo-default-list-item-label">{{item.label}}</div>
           <input class="todo-default-list-item-select" type="radio" name="selectedItem" value="{{item}}">
         </li>
       </ul>
-      <div class="todo-default-hidden" ng-repeat="day in activeDays" ng-hide="dateFilter == day"></div>
       <button class="todo-default-add" ng-click="addItem()">
         <img src="img/listAddButton.png">
       </button>
