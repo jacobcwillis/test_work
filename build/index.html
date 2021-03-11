@@ -9,12 +9,12 @@
 
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  
+
 </head>
 
 <body>
   <div class="todo" ng-controller="todoController">
-    
+
 
     <div class="todo-header" ng-controller="headerController">
 
@@ -26,7 +26,7 @@
 
       <div class="todo-header-search" ng-show="search">
         <input class="todo-header-search-input" type="text" ng-model="$root.searchFilter" placeholder="Search...">
-        <select class="todo-header-search-select" ng-model="$root.categoryFilter" >
+        <select class="todo-header-search-select" ng-model="$root.categoryFilter">
           <option value="" disabled selected>Category...</option>
           <option ng-repeat="group in categoryLegend">{{group}}</option>
         </select>
@@ -40,22 +40,19 @@
 
     <div class="todo-calendar" ng-controller="calendarController" ng-if="view == 0">
       <input class="todo-calendar-input" type="text" id="calendar" ng-model="$root.dateFilter" ng-change="searchDate()">
-      
-      
+
+
     </div>
 
     <div class="todo-default" ng-if="view == 1" ng-controller="listController">
-      <div 
-        class="todo-default-hidden" 
-        ng-repeat="day in activeDays" 
-        ng-hide="dateFilter == day"></div>
-      <ul 
-        ng-repeat="day in activeDays"  
-        class="todo-default-list"
-        ng-show="dateFilter == day">
-        <li 
-          ng-class="(item.id == selectedItemID)?'default-list-item-selected':'todo-default-list-item'" 
-          ng-click="selectItem(item.id)" 
+      <ul class="todo-default-hidden" ng-repeat="day in activeDays" ng-hide="dateFilter == day">
+        <!-- instead of ng-repeat, a recursive option which makes e.g. <hidden><hidden><hidden><card></card></hidden><card></card></hidden><card></card></hidden> for 3 hidden cards-->
+        <div class="todo-default-hidden-card">
+        </div>
+      </ul>
+      <ul ng-repeat="day in activeDays" class="todo-default-list" ng-show="dateFilter == day">
+        <li ng-class="(item.id == selectedItemID)?'default-list-item-selected':'todo-default-list-item'"
+          ng-click="selectItem(item.id)"
           ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter, dateContr:day}">
           <div class="todo-default-list-item-label">{{item.label}}</div>
           <input class="todo-default-list-item-select" type="radio" name="selectedItem" value="{{item}}">
@@ -70,8 +67,9 @@
 
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
       <ul class="todo-notes-list">
-        <li ng-click="selectItem(item.id)" ng-repeat="item in items | filter:{text:$root.searchFilter, category:$root.categoryFilter, dateContr:$root.dateFilter}"
-        ng-class="(item.id == selectedItemID)?'notes-list-item-selected':'todo-notes-list-item'">
+        <li ng-click="selectItem(item.id)"
+          ng-repeat="item in items | filter:{text:$root.searchFilter, category:$root.categoryFilter, dateContr:$root.dateFilter}"
+          ng-class="(item.id == selectedItemID)?'notes-list-item-selected':'todo-notes-list-item'">
           <div class="todo-notes-list-item-label">{{item.label}}</div>
           <div class="todo-notes-list-item-category">{{item.category}}</div>
           <div class="todo-notes-list-item-date">{{item.dateContr}}</div>
@@ -90,8 +88,11 @@
     <input type="text" class="todo-edit-label" ng-model="selectedItem.label">
 
     <div class="todo-edit-categories">
-      <label ng-class="(selectedItem.category == group)? 'todo-edit-categories-option-selected' : 'todo-edit-categories-option'" ng-repeat="group in categoryLegend">
-        <input type="radio" id="add-category" class="todo-edit-categories-option-check" ng-model="selectedItem.category" ng-value="group">{{group}}</label>
+      <label
+        ng-class="(selectedItem.category == group)? 'todo-edit-categories-option-selected' : 'todo-edit-categories-option'"
+        ng-repeat="group in categoryLegend">
+        <input type="radio" id="add-category" class="todo-edit-categories-option-check" ng-model="selectedItem.category"
+          ng-value="group">{{group}}</label>
     </div>
     <input type="date" class="todo-edit-date" ng-model="selectedItem.date">
     <textarea class="todo-edit-notes" ng-model="selectedItem.notes"></textarea>

@@ -119,24 +119,29 @@
         background: linear-gradient(0deg, #f5652b 0%, #ff9b3d 100%); }
   .todo-default {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    width: 100%;
+    align-items: center; }
     .todo-default-list {
       display: flex;
       flex-direction: column;
       margin: 0;
       padding: 0;
       overflow-y: scroll;
-      padding: 20px; }
+      z-index: 1;
+      background-color: #343852;
+      width: 90%;
+      border-radius: 20px; }
       .todo-default-list-item {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 20px 0;
-        cursor: pointer; }
+        padding: 20px;
+        cursor: pointer;
+        width: 100%; }
         .todo-default-list-item:hover {
-          filter: brightness(110%);
-          background-color: #272a44; }
+          background-color: #24263a; }
         .todo-default-list-item-label {
           color: #f3f3ff;
           opacity: 0.9;
@@ -153,10 +158,21 @@
         background-color: #363953; }
     .todo-default-hidden {
       display: flex;
-      width: 100%;
-      border: 1px solid #f3f3ff;
+      padding: 0;
+      margin: 0;
       height: 20px;
-      visibility: hidden; }
+      width: 90%;
+      overflow: hidden;
+      justify-content: center; }
+      .todo-default-hidden-card {
+        border-radius: 20px;
+        background-color: #343852;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        justify-content: flex-start;
+        height: 200%; }
     .todo-default-add {
       background-color: transparent;
       border: none;
