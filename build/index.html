@@ -35,7 +35,11 @@
         </button>
       </div>
 
-      <button class="todo-header-edit-button" ng-show="selectedItemID" ng-click="editItem()">edit</button>
+      <div class="todo-header-title">
+        {{viewTitles[view]}}
+      </div>
+      
+      <button ng-class="(selectedItemID)?'todo-header-edit-button':'invisible-item'" ng-click="editItem()">edit</button>
     </div>
 
     <div class="todo-calendar" ng-controller="calendarController" ng-if="view == 0">

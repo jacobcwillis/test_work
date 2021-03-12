@@ -37,6 +37,8 @@
     width: 100%; }
     .todo-calendar #calendar {
       display: none; }
+  .todo .invisible-item {
+    visibility: hidden; }
   .todo-header {
     width: 100%;
     display: flex;
@@ -44,7 +46,6 @@
     .todo-header-default {
       display: flex;
       flex-direction: row;
-      flex-basis: 50%;
       padding: 10px 20px;
       justify-content: flex-start; }
       .todo-header-default-search-button {
@@ -103,6 +104,12 @@
           margin: 0;
           filter: invert(1);
           opacity: 0.8; }
+    .todo-header-title {
+      display: flex;
+      flex-basis: 50%;
+      align-items: center;
+      justify-content: center;
+      color: #f3f3ff; }
     .todo-header-edit-button {
       justify-content: flex-end;
       background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);

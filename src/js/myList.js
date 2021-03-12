@@ -43,7 +43,7 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.categoryLegend = CATEGORIES;
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
-
+    $rootScope.viewTitles = ["Calendar", "Daily Entries", "Notes", "Edit"]
     $rootScope.items = [];
     $rootScope.itemCount = $scope.items.length;
 
