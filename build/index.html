@@ -45,9 +45,7 @@
     </div>
 
     <div class="todo-default" ng-if="view == 1" ng-controller="listController">
-      <!-- enclose hidden in a flexbox and set that to put first at bottom and last at top -->
-      <!-- use :first-child etc to make styles for the first 3 hidden, display:none on the rest -->
-      <div class="todo-default-layer">
+ <div class="todo-default-layer">
         <ul class="todo-default-layer-hidden" ng-repeat="day in activeDays" ng-hide="dateFilter == activeDays.last">
           <div class="todo-default-layer-hidden-card">
           </div>
