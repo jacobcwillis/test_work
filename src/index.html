@@ -47,11 +47,14 @@
     </div>
 
     <div class="todo-default" ng-if="view == 1" ng-controller="listController">
-      <ul class="todo-default-hidden" ng-repeat="day in activeDays" ng-hide="dateFilter == day">
-        <!-- instead of ng-repeat, a recursive option which makes e.g. <hidden><hidden><hidden><card></card></hidden><card></card></hidden><card></card></hidden> for 3 hidden cards-->
-        <div class="todo-default-hidden-card">
-        </div>
-      </ul>
+      <!-- enclose hidden in a flexbox and set that to put first at bottom and last at top -->
+      <!-- use :first-child etc to make styles for the first 3 hidden, display:none on the rest -->
+      <div class="todo-default-layer">
+        <ul class="todo-default-layer-hidden" ng-repeat="day in activeDays" ng-hide="dateFilter == activeDays.last">
+          <div class="todo-default-layer-hidden-card">
+          </div>
+        </ul>
+      </div>
       <ul ng-repeat="day in activeDays" class="todo-default-list" ng-show="dateFilter == day">
         <li ng-class="(item.id == selectedItemID)?'default-list-item-selected':'todo-default-list-item'"
           ng-click="selectItem(item.id)"

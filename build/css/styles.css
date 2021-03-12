@@ -154,25 +154,39 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 20px 0;
-        background-color: #363953; }
-    .todo-default-hidden {
+        padding: 20px;
+        background-color: #24263a; }
+    .todo-default-layer {
       display: flex;
-      padding: 0;
-      margin: 0;
-      height: 20px;
-      width: 90%;
-      overflow: hidden;
-      justify-content: center; }
-      .todo-default-hidden-card {
-        border-radius: 20px;
-        background: linear-gradient(0deg, #191c35 0%, #343852 100%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 90%;
-        justify-content: flex-start;
-        height: 200%; }
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+      width: 100%;
+      align-items: center; }
+      .todo-default-layer-hidden {
+        display: none;
+        padding: 0;
+        margin: 0;
+        height: 20px;
+        overflow: hidden;
+        justify-content: center; }
+        .todo-default-layer-hidden:first-child {
+          display: flex;
+          width: 90%; }
+        .todo-default-layer-hidden:nth-child(2) {
+          display: flex;
+          width: 80%; }
+        .todo-default-layer-hidden:nth-child(3) {
+          display: flex;
+          width: 70%; }
+        .todo-default-layer-hidden-card {
+          border-radius: 20px;
+          background: linear-gradient(0deg, #191c35 0%, #343852 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 90%;
+          justify-content: flex-start;
+          height: 200%; }
     .todo-default-add {
       background-color: transparent;
       border: none;
