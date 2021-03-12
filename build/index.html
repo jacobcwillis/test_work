@@ -46,7 +46,7 @@
 
     <div class="todo-default" ng-if="view == 1" ng-controller="listController">
       <div class="todo-default-layer">
-        <ul class="todo-default-layer-hidden" ng-repeat="day in activeDays" ng-hide="dateFilter == activeDays.last">
+        <ul class="todo-default-layer-hidden" ng-repeat="day in activeDays" ng-hide="$last">
           <div class="todo-default-layer-hidden-card">
           </div>
         </ul>
