@@ -71,7 +71,7 @@
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
       <ul class="todo-notes-list">
         <li ng-click="selectItem(item.id)"
-          ng-repeat="item in items | filter:{text:$root.searchFilter, category:$root.categoryFilter, dateContr:$root.dateFilter}"
+          ng-repeat="item in items | filter:{text:$root.searchFilter, category:$root.categoryFilter}"
           ng-class="(item.id == selectedItemID)?'notes-list-item-selected':'todo-notes-list-item'">
           <div class="todo-notes-list-item-label">{{item.label}}</div>
           <div class="todo-notes-list-item-category">{{item.category}}</div>

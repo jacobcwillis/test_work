@@ -68,7 +68,6 @@ function headerController($scope, $rootScope) {
         $rootScope.search = false;
         $rootScope.searchFilter = undefined;
         $rootScope.categoryFilter = undefined;
-        $rootScope.dateFilter = undefined;
     }
 
     $scope.editItem = function () {
@@ -127,7 +126,6 @@ function editController($scope, $rootScope) {
         $rootScope.search = false;
         $rootScope.searchFilter = undefined;
         $rootScope.categoryFilter = undefined;
-        $rootScope.dateFilter = undefined;
 
         //functional fields populated
         $rootScope.selectedItem.text = $rootScope.selectedItem.label + $rootScope.selectedItem.notes;
@@ -151,6 +149,9 @@ function editController($scope, $rootScope) {
                 $rootScope.activeDays.push($rootScope.selectedItem.dateContr);
             }
         }
+
+        //date selected for default view
+        $rootScope.dateFilter = $rootScope.selectedItem.dateContr;
 
         //this block handles edited entries
         for (var i = 0; i < $rootScope.items.length; i++) { 
