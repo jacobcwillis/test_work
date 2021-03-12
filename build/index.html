@@ -45,7 +45,7 @@
     </div>
 
     <div class="todo-default" ng-if="view == 1" ng-controller="listController">
- <div class="todo-default-layer">
+      <div class="todo-default-layer">
         <ul class="todo-default-layer-hidden" ng-repeat="day in activeDays" ng-hide="dateFilter == activeDays.last">
           <div class="todo-default-layer-hidden-card">
           </div>
@@ -64,8 +64,6 @@
       </button>
     </div>
 
-
-
     <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
       <ul class="todo-notes-list">
         <li ng-click="selectItem(item.id)"
@@ -80,40 +78,39 @@
       </ul>
     </div>
 
-  </div>
 
 
 
-  <div class="todo-edit" ng-if="view == 3" ng-controller="editController">
+    <div class="todo-edit" ng-if="view == 3" ng-controller="editController">
 
-    <input type="text" class="todo-edit-label" ng-model="selectedItem.label">
+      <input type="text" class="todo-edit-label" ng-model="selectedItem.label">
 
-    <div class="todo-edit-categories">
-      <label
-        ng-class="(selectedItem.category == group)? 'todo-edit-categories-option-selected' : 'todo-edit-categories-option'"
-        ng-repeat="group in categoryLegend">
-        <input type="radio" id="add-category" class="todo-edit-categories-option-check" ng-model="selectedItem.category"
-          ng-value="group">{{group}}</label>
+      <div class="todo-edit-categories">
+        <label
+          ng-class="(selectedItem.category == group)? 'todo-edit-categories-option-selected' : 'todo-edit-categories-option'"
+          ng-repeat="group in categoryLegend">
+          <input type="radio" id="add-category" class="todo-edit-categories-option-check"
+            ng-model="selectedItem.category" ng-value="group">{{group}}</label>
+      </div>
+      <input type="date" class="todo-edit-date" ng-model="selectedItem.date">
+      <textarea class="todo-edit-notes" ng-model="selectedItem.notes"></textarea>
+      <button type="submit" class="todo-edit-complete" ng-click="closeEditor()">Complete</button>
+
     </div>
-    <input type="date" class="todo-edit-date" ng-model="selectedItem.date">
-    <textarea class="todo-edit-notes" ng-model="selectedItem.notes"></textarea>
-    <button type="submit" class="todo-edit-complete" ng-click="closeEditor()">Complete</button>
-
-  </div>
 
 
 
-  <div class="todo-nav" ng-controller="navController">
-    <button id="calendarButton" ng-click="calendarPressed()">
-      <img ng-src="img/calendarIcon{{view == 0 ? 'Active' : 'Inactive'}}.png">
-    </button>
-    <button id="listButton" ng-click="listPressed()">
-      <img ng-src="img/checkIcon{{view == 1 ? 'Active' : 'Inactive'}}.png">
-    </button>
-    <button id="notesButton" ng-click="notesPressed()">
-      <img ng-src="img/pencilIcon{{view == 2 ? 'Active' : 'Inactive'}}.png">
-    </button>
-  </div>
+    <div class="todo-nav" ng-controller="navController">
+      <button id="calendarButton" ng-click="calendarPressed()">
+        <img ng-src="img/calendarIcon{{view == 0 ? 'Active' : 'Inactive'}}.png">
+      </button>
+      <button id="listButton" ng-click="listPressed()">
+        <img ng-src="img/checkIcon{{view == 1 ? 'Active' : 'Inactive'}}.png">
+      </button>
+      <button id="notesButton" ng-click="notesPressed()">
+        <img ng-src="img/pencilIcon{{view == 2 ? 'Active' : 'Inactive'}}.png">
+      </button>
+    </div>
   </div>
 
   <script src="js/angular/angular.min.js"></script>
