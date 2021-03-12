@@ -5,6 +5,7 @@ var minify = require('gulp-minify');
 var concat = require('gulp-concat');
 var image = require('gulp-image');
 var flatpicker = require('flatpickr');
+//const express = require('./express');
 
 sass.compiler = require('node-sass');
 
@@ -68,6 +69,7 @@ gulp.task('default',
     gulp.series(
         gulp.series('js','img', 'angular', gulp.parallel(['sass', 'html'])), //build
         (done) => {
+            //express.server();
             gulp.watch(['./src/scss/**/*.scss', './src/index.html', './src/js/**/*.js'], //watch for updates
                 gulp.series('js', gulp.parallel(['sass', 'html']))); //build updates
             done();
