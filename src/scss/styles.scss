@@ -63,6 +63,10 @@
 
     }
 
+    .invisible-item {
+        visibility:hidden;
+    }
+
     &-header {
         width: 100%;
         display: flex;
@@ -71,7 +75,7 @@
         &-default {
             display: flex;
             flex-direction: row;
-            flex-basis: 50%;
+            
             padding: 10px 20px;
             justify-content: flex-start;
 
@@ -151,6 +155,14 @@
                 }
             }
 
+        }
+
+        &-title {
+            display:flex;
+            flex-basis: 50%;
+            align-items: center;
+            justify-content: center;
+            color: #f3f3ff;
         }
 
         &-edit-button {
