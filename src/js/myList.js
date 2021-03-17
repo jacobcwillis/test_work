@@ -9,7 +9,7 @@ myList.config(function () {
 myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.'])
 
 myList.controller('todoController', todoController);
-todoController.$inject = ['$scope', '$rootScope', 'CATEGORIES'];
+todoController.$inject = ['$scope', '$rootScope', '$http', 'CATEGORIES'];
 
 myList.controller('navController', navController);
 navController.$inject = ['$scope', '$rootScope'];
@@ -18,7 +18,7 @@ myList.controller('notesController', notesController);
 notesController.$inject = ['$scope', '$rootScope'];
 
 myList.controller('editController', editController);
-editController.$inject = ['$scope', '$rootScope'];
+editController.$inject = ['$scope', '$rootScope', '$http'];
 
 myList.controller('listController', listController);
 listController.$inject = ['$scope', '$rootScope'];
@@ -39,7 +39,7 @@ function ListObject(id, label, notes, category, date) {
     this.text;
 }
 
-function todoController($scope, $rootScope, CATEGORIES) {
+function todoController($scope, $rootScope, $http, CATEGORIES) {
     $rootScope.categoryLegend = CATEGORIES;
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
@@ -55,6 +55,12 @@ function todoController($scope, $rootScope, CATEGORIES) {
     $rootScope.dateFilter = undefined;
 
     $rootScope.activeDays = [];
+
+    $rootScope.api = "http://localhost:3000";
+    // $http.get($rootScope.api + "/readdata").then(function (response) {
+    //     console.log(response.data);
+    //     $rootScope.items = response.data;
+    // });
 }
 
 function headerController($scope, $rootScope) {
@@ -119,7 +125,7 @@ function notesController($scope, $rootScope) {
 
 }
 
-function editController($scope, $rootScope) {
+function editController($scope, $rootScope, $http) {
 
     $scope.closeEditor = function () {
         //filters cleared
@@ -134,7 +140,7 @@ function editController($scope, $rootScope) {
                 "0" + ($rootScope.selectedItem.date.getMonth() + 1) : ($rootScope.selectedItem.date.getMonth() + 1))
             + "/" + ($rootScope.selectedItem.date.getDate() < 10 ?
                 "0" + $rootScope.selectedItem.date.getDate() : $rootScope.selectedItem.date.getDate());
-        
+
         //adds dateContr if not already in activeDates
         if (!$rootScope.activeDays.length) {
             $rootScope.activeDays.push($rootScope.selectedItem.dateContr);
@@ -154,13 +160,14 @@ function editController($scope, $rootScope) {
         $rootScope.dateFilter = $rootScope.selectedItem.dateContr;
 
         //this block handles edited entries
-        for (var i = 0; i < $rootScope.items.length; i++) { 
+        for (var i = 0; i < $rootScope.items.length; i++) {
             if ($rootScope.items[i].id == $rootScope.selectedItemID) {
                 console.log("editing item: ", $rootScope.selectedItem);
                 $rootScope.items[i] = $rootScope.selectedItem;
                 $rootScope.view = $rootScope.storedView;
                 $rootScope.selectedItem = undefined;
                 $rootScope.selectedItemID = undefined;
+                $http.post($rootScope.api + "/writedata", $rootScope.items);  //writes $rootScope.items as "undefined"
 
                 return;
             }
@@ -171,6 +178,8 @@ function editController($scope, $rootScope) {
         $rootScope.view = $rootScope.storedView;
         $rootScope.selectedItem = undefined;
         $rootScope.selectedItemID = undefined;
+        $http.post($rootScope.api + "/writedata", $rootScope.items);
+        
 
 
     }

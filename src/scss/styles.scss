@@ -70,7 +70,8 @@
     &-header {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        height: 60px;
 
         &-default {
             display: flex;
@@ -80,7 +81,9 @@
             justify-content: flex-start;
 
             &-search-button {
-                display: flex;
+                display: block;
+                position:absolute;
+                left: 20px;
                 background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
                 border: none;
                 border-radius: 20px;
@@ -158,15 +161,18 @@
         }
 
         &-title {
-            display:flex;
-            flex-basis: 50%;
+            position: absolute;
+            top: 40px;
             align-items: center;
             justify-content: center;
             color: #f3f3ff;
+            font-weight: bold;
+            font-size: 20px;
         }
 
         &-edit-button {
-            justify-content: flex-end;
+            position: absolute;
+            right: 20px;
             background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
             padding: 10px;
             margin: 20 30px;

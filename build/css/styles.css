@@ -42,14 +42,17 @@
   .todo-header {
     width: 100%;
     display: flex;
-    justify-content: space-between; }
+    justify-content: center;
+    height: 60px; }
     .todo-header-default {
       display: flex;
       flex-direction: row;
       padding: 10px 20px;
       justify-content: flex-start; }
       .todo-header-default-search-button {
-        display: flex;
+        display: block;
+        position: absolute;
+        left: 20px;
         background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
         border: none;
         border-radius: 20px;
@@ -105,13 +108,16 @@
           filter: invert(1);
           opacity: 0.8; }
     .todo-header-title {
-      display: flex;
-      flex-basis: 50%;
+      position: absolute;
+      top: 40px;
       align-items: center;
       justify-content: center;
-      color: #f3f3ff; }
+      color: #f3f3ff;
+      font-weight: bold;
+      font-size: 20px; }
     .todo-header-edit-button {
-      justify-content: flex-end;
+      position: absolute;
+      right: 20px;
       background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
       padding: 10px;
       margin: 20 30px;
