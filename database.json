@@ -1,1 +1,20 @@
-[{"id":1,"label":"Entry #1","notes":"Notes #1","category":"misc.","date":"2021-03-23T16:45:52.568Z","text":"Entry #1Notes #1","dateContr":"03/23"},{"id":2,"label":"Entry #2","notes":"Notes #2","category":"misc.","date":"2021-03-23T16:45:53.917Z","text":"Entry #2Notes #2","dateContr":"03/23"}]
+[
+    {
+        "id": 1,
+        "label": "Entry #1",
+        "notes": "Notes #1",
+        "category": "misc.",
+        "date": "2021-03-23T16:51:20.241Z",
+        "text": "Entry #1Notes #1",
+        "dateContr": "03/23"
+    },
+    {
+        "id": 2,
+        "label": "Entry #2",
+        "notes": "Notes #2",
+        "category": "misc.",
+        "date": "2021-03-23T16:51:47.647Z",
+        "text": "Entry #2Notes #2",
+        "dateContr": "03/23"
+    }
+]

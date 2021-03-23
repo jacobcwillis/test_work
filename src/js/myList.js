@@ -58,8 +58,8 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
 
     $rootScope.api = "http://localhost:3000";
     $http.get($rootScope.api + "/readdata").then(function (response) {
-        console.log(response.data);
-        $rootScope.items.push(JSON.parse(response.data));
+        
+        $rootScope.items.concat(response.data);
     });
 }
 
