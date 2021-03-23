@@ -59,7 +59,7 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
     $rootScope.api = "http://localhost:3000";
     $http.get($rootScope.api + "/readdata").then(function (response) {
         
-        $rootScope.items.concat(response.data);
+        $rootScope.items = response.data; //doesn't work?
     });
 }
 
