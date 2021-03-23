@@ -67,7 +67,7 @@ gulp.task('angular', function (done) {
 
 gulp.task('default',
     gulp.series(
-        gulp.series('js','img', 'angular', gulp.parallel(['sass', 'html'])), //build
+        gulp.series('js', 'angular', gulp.parallel(['sass', 'html'])), //build
         (done) => {
             express.server();
             gulp.watch(['./src/scss/**/*.scss', './src/index.html', './src/**/*.js'], //watch for updates

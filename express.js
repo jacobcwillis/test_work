@@ -4,7 +4,7 @@ const app = express();
 const PORT = 3000;
 const bodyParser = require('body-parser');
 
-const superSimpleDatabaseFileLocation = "database.txt";
+const superSimpleDatabaseFileLocation = "database.json";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -53,7 +53,7 @@ app.post('/writedata', (request, response) => {
 
 	// Handle the request post data to insert into file
 	// console.log("api called");
-	let data = request.body; //myList $rootScope.items = request
+	let data = JSON.stringify(request.body); //myList $rootScope.items = request
 	// console.log(data);
 	try {
 		fs.writeFile(superSimpleDatabaseFileLocation, data, (err) => {

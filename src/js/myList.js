@@ -167,7 +167,7 @@ function editController($scope, $rootScope, $http) {
                 $rootScope.view = $rootScope.storedView;
                 $rootScope.selectedItem = undefined;
                 $rootScope.selectedItemID = undefined;
-                $http.post($rootScope.api + "/writedata", JSON.stringify($rootScope.items));  //writes ", [Object object]" * length
+                $http.post($rootScope.api + "/writedata", $rootScope.items);  //writes ", [Object object]" * length
                 return;
             }
         }
@@ -177,7 +177,7 @@ function editController($scope, $rootScope, $http) {
         $rootScope.view = $rootScope.storedView;
         $rootScope.selectedItem = undefined;
         $rootScope.selectedItemID = undefined;
-        $http.post($rootScope.api + "/writedata", JSON.stringify($rootScope.items));
+        $http.post($rootScope.api + "/writedata", $rootScope.items);
         
 
 
