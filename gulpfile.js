@@ -70,7 +70,7 @@ gulp.task('default',
         gulp.series('js','img', 'angular', gulp.parallel(['sass', 'html'])), //build
         (done) => {
             express.server();
-            gulp.watch(['./src/scss/**/*.scss', './src/index.html', './src/js/**/*.js'], //watch for updates
+            gulp.watch(['./src/scss/**/*.scss', './src/index.html', './src/**/*.js'], //watch for updates
                 gulp.series('js', gulp.parallel(['sass', 'html']))); //build updates
             done();
         }

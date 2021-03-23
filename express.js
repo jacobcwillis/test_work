@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const superSimpleDatabaseFileLocation = "database.txt";
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get('/', (request, response) => {
 	response.send('Hello World');
@@ -19,7 +20,7 @@ app.get('/readdata', (request, response) => {
 				response.send(err);
 
 			} else {
-				response.json(data);
+				response.send(data);
 
 			}
 		})
@@ -52,23 +53,22 @@ app.post('/writedata', (request, response) => {
 
 	// Handle the request post data to insert into file
 	// console.log("api called");
-	response.send(request.body);
 	let data = request.body; //myList $rootScope.items = request
 	// console.log(data);
-	// try {
-	// 	fs.writeFile(superSimpleDatabaseFileLocation, data, (err) => {
-	// 		if (err) {
-	// 			response.send(err);
-	// 		} else {
-	// 			response.json(data);
-	// 		}
+	try {
+		fs.writeFile(superSimpleDatabaseFileLocation, data, (err) => {
+			if (err) {
+				response.send(err);
+			} else {
+				response.json(data);
+			}
 
-	// 	});
+		});
 
-	// } catch (e) {
-	// 	response.send(e);
+	} catch (e) {
+		response.send(e);
 
-	// }
+	}
 });
 
 

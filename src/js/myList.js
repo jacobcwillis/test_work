@@ -57,10 +57,10 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
     $rootScope.activeDays = [];
 
     $rootScope.api = "http://localhost:3000";
-    // $http.get($rootScope.api + "/readdata").then(function (response) {
-    //     console.log(response.data);
-    //     $rootScope.items = response.data;
-    // });
+    $http.get($rootScope.api + "/readdata").then(function (response) {
+        console.log(response.data);
+        $rootScope.items.push(JSON.parse(response.data));
+    });
 }
 
 function headerController($scope, $rootScope) {
@@ -167,8 +167,7 @@ function editController($scope, $rootScope, $http) {
                 $rootScope.view = $rootScope.storedView;
                 $rootScope.selectedItem = undefined;
                 $rootScope.selectedItemID = undefined;
-                $http.post($rootScope.api + "/writedata", $rootScope.items);  //writes $rootScope.items as "undefined"
-
+                $http.post($rootScope.api + "/writedata", JSON.stringify($rootScope.items));  //writes ", [Object object]" * length
                 return;
             }
         }
@@ -178,7 +177,7 @@ function editController($scope, $rootScope, $http) {
         $rootScope.view = $rootScope.storedView;
         $rootScope.selectedItem = undefined;
         $rootScope.selectedItemID = undefined;
-        $http.post($rootScope.api + "/writedata", $rootScope.items);
+        $http.post($rootScope.api + "/writedata", JSON.stringify($rootScope.items));
         
 
 
