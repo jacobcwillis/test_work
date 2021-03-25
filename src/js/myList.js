@@ -29,14 +29,15 @@ headerController.$inject = ['$scope', '$rootScope'];
 myList.controller('calendarController', calendarController);
 calendarController.$inject = ['$scope', '$rootScope'];
 
-function ListObject(id, label, notes, category, date) {
+function ListObject(id, label, notes, category, date, text, dateContr) {
     this.id = id;
     this.label = label;
     this.notes = notes;
     this.category = category;
     this.date = date;
-    this.dateContr;
-    this.text;
+    this.text = text;
+    this.dateContr = dateContr;
+
 }
 
 function todoController($scope, $rootScope, $http, CATEGORIES) {
@@ -44,8 +45,29 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
     $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
     $rootScope.viewTitles = ["Calendar", "Daily Entries", "Notes", "Edit"]
+    // $rootScope.items = [
+    //     {
+    //         "id": 1,
+    //         "label": "Entry #1",
+    //         "notes": "Notes #1",
+    //         "category": "misc.",
+    //         "date": "2021-03-23T18:42:12.292Z",
+    //         "text": "Entry #1Notes #1",
+    //         "dateContr": "03/23"
+    //     },
+    //     {
+    //         "id": 2,
+    //         "label": "Entry #2",
+    //         "notes": "Notes #2",
+    //         "category": "misc.",
+    //         "date": "2021-03-23T18:42:14.126Z",
+    //         "text": "Entry #2Notes #2",
+    //         "dateContr": "03/23"
+    //     }
+    // ];
     $rootScope.items = [];
-    $rootScope.itemCount = $scope.items.length;
+
+
 
     $rootScope.selectedItem = undefined;
     $rootScope.selectedItemID = undefined;
@@ -59,8 +81,18 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
     $rootScope.api = "http://localhost:3000";
     $http.get($rootScope.api + "/readdata").then(function (response) {
         
-        $rootScope.items = response.data; //doesn't work?
+        if (response.data) {
+            var _data = response.data;
+            for (var i = 0; i < _data.length; i++) {
+                _data[i].date = new Date(_data[i].date); //thank you, javascript/JSON dates
+                $rootScope.items.push(new ListObject(_data[i].id, _data[i].label, _data[i].notes, _data[i].category, _data[i].date, _data[i].text, _data[i].dateContr));
+            }
+        }
     });
+    
+    console.log($rootScope.items); // (length: 4)
+    console.log("Length = " + $rootScope.items.length); // 0 ???
+    $rootScope.itemCount = $rootScope.items.length; //breaks the whole app because the above line derps.
 }
 
 function headerController($scope, $rootScope) {
@@ -107,7 +139,7 @@ function listController($scope, $rootScope) {
         var _notes = "Notes #" + $rootScope.selectedItemID;
         var _date = new Date();
         var _category = $rootScope.categoryLegend[3];
-        $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _category, _date);
+        $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _category, _date, undefined, undefined);
 
     }
 
@@ -178,7 +210,7 @@ function editController($scope, $rootScope, $http) {
         $rootScope.selectedItem = undefined;
         $rootScope.selectedItemID = undefined;
         $http.post($rootScope.api + "/writedata", $rootScope.items);
-        
+
 
 
     }
@@ -195,6 +227,7 @@ function navController($scope, $rootScope) {
     }
     $scope.notesPressed = function () {
         $rootScope.view = 2;
+        console.log($rootScope.items);
     }
 }
 
