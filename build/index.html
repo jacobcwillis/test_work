@@ -16,105 +16,30 @@
   <div class="todo" ng-controller="todoController">
 
 
-    <div class="todo-header" ng-controller="headerController">
-
-      <div class="todo-header-default" ng-hide="search">
-        <button class="todo-header-default-search-button" ng-click="openSearch()">
-          <img id=search-icon src="img/searchIcon.png">
-        </button>
-      </div>
-
-      <div class="todo-header-search" ng-show="search">
-        <input class="todo-header-search-input" type="text" ng-model="$root.searchFilter" placeholder="Search...">
-        <select class="todo-header-search-select" ng-model="$root.categoryFilter">
-          <option value="" disabled selected>Category...</option>
-          <option ng-repeat="group in categoryLegend">{{group}}</option>
-        </select>
-        <button class="todo-header-search-cancel-button" ng-click="cancelSearch()">
-          <img id="cancel-icon" src="img/img2.png">
-        </button>
-      </div>
-
-      <div class="todo-header-title">
-        {{viewTitles[view]}}
-      </div>
-      
-      <button ng-class="(selectedItemID) && view != 3 ?'todo-header-edit-button':'invisible-item'" ng-click="editItem()">edit</button>
+    <div class="todo-header" ng-controller="headerController" ng-include="'../src/html/header.html'">
     </div>
 
     <div class="todo-calendar" ng-controller="calendarController" ng-if="view == 0">
       <input class="todo-calendar-input" type="text" id="calendar" ng-model="$root.dateFilter" ng-change="searchDate()">
-
-
     </div>
 
-    <div class="todo-default" ng-if="view == 1" ng-controller="listController">
-      {{serviceTest}}
-      <div class="todo-default-layer">
-        <ul class="todo-default-layer-hidden" ng-repeat="day in activeDays" ng-hide="$last">
-          <div class="todo-default-layer-hidden-card">
-          </div>
-        </ul>
-      </div>
-      <ul ng-repeat="day in activeDays" class="todo-default-list" ng-show="dateFilter == day">
-        <li ng-class="(item.id == selectedItemID)?'default-list-item-selected':'todo-default-list-item'"
-          ng-click="selectItem(item.id)"
-          ng-repeat="item in items | filter:{label:$root.searchFilter, category:$root.categoryFilter, dateContr:day}">
-          <div class="todo-default-list-item-label">{{item.label}}</div>
-          <input class="todo-default-list-item-select" type="radio" name="selectedItem" value="{{item}}">
-        </li>
-      </ul>
-      <button class="todo-default-add" ng-click="addItem()">
-        <img src="img/listAddButton.png">
-      </button>
+    <div class="todo-default" ng-if="view == 1" ng-controller="listController" ng-include="'../src/html/daily.html'">
+      
     </div>
 
-    <div class="todo-notes" ng-if="view == 2" ng-controller="notesController">
-      <ul class="todo-notes-list">
-        <li ng-click="selectItem(item.id)"
-          ng-repeat="item in items"
-          ng-class="(item.id == selectedItemID)?'notes-list-item-selected':'todo-notes-list-item'">
-          <div class="todo-notes-list-item-label">{{item.label}}</div>
-          <div class="todo-notes-list-item-category">{{item.category}}</div>
-          <div class="todo-notes-list-item-date">{{item.dateContr}}</div>
-          <div class="todo-notes-list-item-preview">{{item.notes}}</div>
-          <input class="todo-notes-list-item-select" type="radio" name="selectedItem" value="{{item}}">
-        </li>
-      </ul>
+    <div class="todo-notes" ng-if="view == 2" ng-controller="notesController" ng-include="'../src/html/notes.html'">
     </div>
 
 
 
 
-    <div class="todo-edit" ng-if="view == 3" ng-controller="editController">
-
-      <input type="text" class="todo-edit-label" ng-model="selectedItem.label">
-
-      <div class="todo-edit-categories">
-        <label
-          ng-class="(selectedItem.category == group)? 'todo-edit-categories-option-selected' : 'todo-edit-categories-option'"
-          ng-repeat="group in categoryLegend">
-          <input type="radio" id="add-category" class="todo-edit-categories-option-check"
-            ng-model="selectedItem.category" ng-value="group">{{group}}</label>
-      </div>
-      <input type="date" class="todo-edit-date" ng-model="selectedItem.date">
-      <textarea class="todo-edit-notes" ng-model="selectedItem.notes"></textarea>
-      <button type="submit" class="todo-edit-complete" ng-click="closeEditor()">Complete</button>
-
+    <div class="todo-edit" ng-if="view == 3" ng-controller="editController" ng-include="'../src/html/edit.html'">
     </div>
 
 
 
-    <div class="todo-nav" ng-controller="navController">
-      <button id="calendarButton" ng-click="calendarPressed()">
-        <img ng-src="img/calendarIcon{{view == 0 ? 'Active' : 'Inactive'}}.png">
-      </button>
-      <button id="listButton" ng-click="listPressed()">
-        <img ng-src="img/checkIcon{{view == 1 ? 'Active' : 'Inactive'}}.png">
-      </button>
-      <button id="notesButton" ng-click="notesPressed()">
-        <img ng-src="img/pencilIcon{{view == 2 ? 'Active' : 'Inactive'}}.png">
-      </button>
+    <div class="todo-nav" ng-controller="navController" ng-include="'../src/html/nav.html'">
+      
     </div>
   </div>
 

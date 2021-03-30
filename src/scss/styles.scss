@@ -41,6 +41,20 @@
             border-color: #f3f3ff80;
         }
     }
+    .flatpickr-day.nextMonthDay {
+        &:hover {
+            background: #f3f3ff80;
+            border-color: #f3f3ff80;
+        }
+    }
+    .flatpickr-day.prevMonthDay {
+        color: #f3f3ff !important;
+
+        &:hover {
+            background: #f3f3ff80;
+            border-color: #f3f3ff80;
+        }
+    }
 
     .flatpickr-day.selected {
         background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
@@ -70,8 +84,21 @@
     &-header {
         width: 100%;
         display: flex;
-        justify-content: center;
-        height: 60px;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        &-title {
+            display:flex;
+            flex-basis: 100%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #f3f3ff;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 20px;
+        }
 
         &-default {
             display: flex;
@@ -81,9 +108,8 @@
             justify-content: flex-start;
 
             &-search-button {
-                display: block;
-                position:absolute;
-                left: 20px;
+                display: flex;
+                flex-basis: 20%;
                 background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
                 border: none;
                 border-radius: 20px;
@@ -111,14 +137,14 @@
         &-search {
             display: flex;
             justify-content: flex-start;
-            flex-basis: 80%;
+            flex-basis: 70%;
 
             &-input {
                 background: transparent;
                 border-radius: 20px;
                 color: #f3f3ff;
                 padding: 10px;
-                margin: 20 30px;
+                margin: 20px;
                 outline: none;
             }
 
@@ -127,12 +153,12 @@
                 border-radius: 20px;
                 color: #f3f3ff80;
                 padding: 10px;
-                margin: 20 30px;
+                margin: 20px;
                 outline: none;
             }
 
             &-cancel-button {
-                margin: 20 30px;
+                margin: 20px;
                 background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
                 border: none;
                 border-radius: 20px;
@@ -160,22 +186,13 @@
 
         }
 
-        &-title {
-            position: absolute;
-            top: 40px;
-            align-items: center;
-            justify-content: center;
-            color: #f3f3ff;
-            font-weight: bold;
-            font-size: 20px;
-        }
+        
 
         &-edit-button {
-            position: absolute;
-            right: 20px;
+            
             background: linear-gradient(0deg, rgba(230, 85, 28, 1) 0%, rgba(240, 140, 46, 1) 100%);
             padding: 10px;
-            margin: 20 30px;
+            margin: 20px;
             border: none;
             border-radius: 20px;
             color: #f3f3ff;
@@ -409,7 +426,7 @@
             font-size: 20px;
             padding: 10px;
             margin: 20 30px;
-            width: 50%;
+            width: 60%;
             outline: none;
         }
 
@@ -418,7 +435,7 @@
             flex-direction: row;
             overflow: scroll;
             justify-content: space-around;
-            width: 50%;
+            
 
             &-option {
                 color: #f3f3ff;
@@ -464,8 +481,8 @@
             font-family: ubuntu;
             font-size: 16px;
             padding: 10px;
-            margin: 20 30px;
-            width: 50%;
+            margin: 20px;
+            width: 60%;
             outline: none;
         }
 
@@ -483,7 +500,7 @@
             font-size: 18px;
             padding: 10px;
             margin: 20 30px;
-            width: 50%;
+            width: 60%;
             outline: none;
         }
 

@@ -1,0 +1,25 @@
+<div class="todo-header-title">
+    {{viewTitles[view]}}
+</div>
+
+<div class="todo-header-default" ng-hide="search">
+    <button class="todo-header-default-search-button" ng-click="openSearch()">
+        <img id=search-icon src="img/searchIcon.png">
+    </button>
+</div>
+
+<div class="todo-header-search" ng-show="search">
+    <input class="todo-header-search-input" type="text" ng-model="$root.searchFilter" placeholder="Search...">
+    <select class="todo-header-search-select" ng-model="$root.categoryFilter">
+        <option value="" disabled selected>Category...</option>
+        <option ng-repeat="group in categoryLegend">{{group}}</option>
+    </select>
+    <button class="todo-header-search-cancel-button" ng-click="cancelSearch()">
+        <img id="cancel-icon" src="img/img2.png">
+    </button>
+</div>
+
+
+
+<button ng-class="(selectedItemID) && view != 3 ?'todo-header-edit-button':'invisible-item'"
+    ng-click="editItem()">edit</button>

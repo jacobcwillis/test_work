@@ -142,6 +142,7 @@ function listController($scope, $rootScope) {
         $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _category, _date, undefined, undefined);
 
     }
+    
 
     $scope.selectItem = function (itemID) {
         console.log("slected itemID: ", itemID);

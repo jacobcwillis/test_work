@@ -25,6 +25,14 @@
     .todo .flatpickr-day:hover {
       background: #f3f3ff80;
       border-color: #f3f3ff80; }
+  .todo .flatpickr-day.nextMonthDay:hover {
+    background: #f3f3ff80;
+    border-color: #f3f3ff80; }
+  .todo .flatpickr-day.prevMonthDay {
+    color: #f3f3ff !important; }
+    .todo .flatpickr-day.prevMonthDay:hover {
+      background: #f3f3ff80;
+      border-color: #f3f3ff80; }
   .todo .flatpickr-day.selected {
     background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
     border-color: #eb7025; }
@@ -42,17 +50,27 @@
   .todo-header {
     width: 100%;
     display: flex;
-    justify-content: center;
-    height: 60px; }
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    .todo-header-title {
+      display: flex;
+      flex-basis: 100%;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #f3f3ff;
+      font-weight: bold;
+      font-size: 20px;
+      padding: 20px; }
     .todo-header-default {
       display: flex;
       flex-direction: row;
       padding: 10px 20px;
       justify-content: flex-start; }
       .todo-header-default-search-button {
-        display: block;
-        position: absolute;
-        left: 20px;
+        display: flex;
+        flex-basis: 20%;
         background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
         border: none;
         border-radius: 20px;
@@ -71,23 +89,23 @@
     .todo-header-search {
       display: flex;
       justify-content: flex-start;
-      flex-basis: 80%; }
+      flex-basis: 70%; }
       .todo-header-search-input {
         background: transparent;
         border-radius: 20px;
         color: #f3f3ff;
         padding: 10px;
-        margin: 20 30px;
+        margin: 20px;
         outline: none; }
       .todo-header-search-select {
         background: transparent;
         border-radius: 20px;
         color: #f3f3ff80;
         padding: 10px;
-        margin: 20 30px;
+        margin: 20px;
         outline: none; }
       .todo-header-search-cancel-button {
-        margin: 20 30px;
+        margin: 20px;
         background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
         border: none;
         border-radius: 20px;
@@ -107,20 +125,10 @@
           margin: 0;
           filter: invert(1);
           opacity: 0.8; }
-    .todo-header-title {
-      position: absolute;
-      top: 40px;
-      align-items: center;
-      justify-content: center;
-      color: #f3f3ff;
-      font-weight: bold;
-      font-size: 20px; }
     .todo-header-edit-button {
-      position: absolute;
-      right: 20px;
       background: linear-gradient(0deg, #e6551c 0%, #f08c2e 100%);
       padding: 10px;
-      margin: 20 30px;
+      margin: 20px;
       border: none;
       border-radius: 20px;
       color: #f3f3ff;
@@ -284,14 +292,13 @@
       font-size: 20px;
       padding: 10px;
       margin: 20 30px;
-      width: 50%;
+      width: 60%;
       outline: none; }
     .todo-edit-categories {
       display: flex;
       flex-direction: row;
       overflow: scroll;
-      justify-content: space-around;
-      width: 50%; }
+      justify-content: space-around; }
       .todo-edit-categories-option {
         color: #f3f3ff;
         opacity: 0.6;
@@ -326,8 +333,8 @@
       font-family: ubuntu;
       font-size: 16px;
       padding: 10px;
-      margin: 20 30px;
-      width: 50%;
+      margin: 20px;
+      width: 60%;
       outline: none; }
     .todo-edit ::-webkit-calendar-picker-indicator {
       filter: invert(1); }
@@ -341,7 +348,7 @@
       font-size: 18px;
       padding: 10px;
       margin: 20 30px;
-      width: 50%;
+      width: 60%;
       outline: none; }
     .todo-edit-complete {
       display: flex;
