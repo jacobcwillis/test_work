@@ -91,12 +91,11 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
                     $rootScope.activeDays.push(_data[i].dateContr);
                 }
             }
+            $rootScope.itemCount = $rootScope.items.length; 
         }
     });
 
-    console.log($rootScope.items); // (length: 4)
-    console.log("Length = " + $rootScope.items.length); // 0 ???
-    $rootScope.itemCount = $rootScope.items.length; //breaks the whole app because the above line derps.
+    
 }
 
 function headerController($scope, $rootScope) {
