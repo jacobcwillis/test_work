@@ -224,6 +224,15 @@
             width: 90%;
             border-radius: 20px;
 
+            &-date {
+                flex-basis: 100%;
+                text-align: center;
+                padding: 10px;
+                color: #f3f3ff;
+                font-family: ubuntu;
+                font-size: 14px;
+            }
+
 
             &-item {
                 display: flex;
@@ -232,13 +241,15 @@
                 justify-content: space-between;
                 padding: 20px;
                 cursor: pointer;
-                width: 100%;
+                
 
                 &:hover {
 
                     background-color: #24263a;
 
                 }
+
+                
 
                 &-label {
                     color: #f3f3ff;
@@ -275,7 +286,7 @@
                 display: none;
                 padding: 0;
                 margin: 0;
-                height: 20px;
+                height: 40px;
                 overflow: hidden;
                 justify-content: center;
 
@@ -301,6 +312,15 @@
                     width: 90%;
                     justify-content: flex-start;
                     height: 200%;
+
+                    &-date {
+                        flex-basis: 100%;
+                        text-align: center;
+                        padding: 10px;
+                        color: #f3f3ff;
+                        font-family: ubuntu;
+                        font-size: 14px;
+                    }
                 }
             }
         }

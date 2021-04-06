@@ -80,16 +80,20 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
 
     $rootScope.api = "http://localhost:3000";
     $http.get($rootScope.api + "/readdata").then(function (response) {
-        
+
         if (response.data) {
             var _data = response.data;
             for (var i = 0; i < _data.length; i++) {
                 _data[i].date = new Date(_data[i].date); //thank you, javascript/JSON dates
                 $rootScope.items.push(new ListObject(_data[i].id, _data[i].label, _data[i].notes, _data[i].category, _data[i].date, _data[i].text, _data[i].dateContr));
+                
+                if (!$rootScope.activeDays.includes(_data[i].dateContr)) { //fill out activeDays
+                    $rootScope.activeDays.push(_data[i].dateContr);
+                }
             }
         }
     });
-    
+
     console.log($rootScope.items); // (length: 4)
     console.log("Length = " + $rootScope.items.length); // 0 ???
     $rootScope.itemCount = $rootScope.items.length; //breaks the whole app because the above line derps.
@@ -142,7 +146,11 @@ function listController($scope, $rootScope) {
         $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _category, _date, undefined, undefined);
 
     }
-    
+
+    $scope.cycleDate = function (day) {
+        var index = $rootScope.activeDays.indexOf(day);
+        $rootScope.dateFilter = $rootScope.activeDays[index];
+    }
 
     $scope.selectItem = function (itemID) {
         console.log("slected itemID: ", itemID);

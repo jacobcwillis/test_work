@@ -153,14 +153,20 @@
       background-color: #343852;
       width: 90%;
       border-radius: 20px; }
+      .todo-default-list-date {
+        flex-basis: 100%;
+        text-align: center;
+        padding: 10px;
+        color: #f3f3ff;
+        font-family: ubuntu;
+        font-size: 14px; }
       .todo-default-list-item {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 20px;
-        cursor: pointer;
-        width: 100%; }
+        cursor: pointer; }
         .todo-default-list-item:hover {
           background-color: #24263a; }
         .todo-default-list-item-label {
@@ -187,7 +193,7 @@
         display: none;
         padding: 0;
         margin: 0;
-        height: 20px;
+        height: 40px;
         overflow: hidden;
         justify-content: center; }
         .todo-default-layer-hidden:first-child {
@@ -208,6 +214,13 @@
           width: 90%;
           justify-content: flex-start;
           height: 200%; }
+          .todo-default-layer-hidden-card-date {
+            flex-basis: 100%;
+            text-align: center;
+            padding: 10px;
+            color: #f3f3ff;
+            font-family: ubuntu;
+            font-size: 14px; }
     .todo-default-add {
       background-color: transparent;
       border: none;
