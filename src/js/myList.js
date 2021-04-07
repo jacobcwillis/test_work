@@ -9,10 +9,10 @@ myList.config(function () {
 myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.'])
 
 myList.controller('todoController', todoController);
-todoController.$inject = ['$scope', '$rootScope', '$http', 'CATEGORIES'];
+todoController.$inject = ['$scope', '$rootScope', '$http', '$location', 'CATEGORIES'];
 
 myList.controller('navController', navController);
-navController.$inject = ['$scope', '$rootScope'];
+navController.$inject = ['$scope', '$rootScope', '$location'];
 
 myList.controller('notesController', notesController);
 notesController.$inject = ['$scope', '$rootScope'];
@@ -24,7 +24,7 @@ myList.controller('listController', listController);
 listController.$inject = ['$scope', '$rootScope'];
 
 myList.controller('headerController', headerController);
-headerController.$inject = ['$scope', '$rootScope'];
+headerController.$inject = ['$scope', '$rootScope', '$location'];
 
 myList.controller('calendarController', calendarController);
 calendarController.$inject = ['$scope', '$rootScope'];
@@ -40,11 +40,11 @@ function ListObject(id, label, notes, category, date, text, dateContr) {
 
 }
 
-function todoController($scope, $rootScope, $http, CATEGORIES) {
+function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
     $rootScope.categoryLegend = CATEGORIES;
-    $rootScope.view = 1; //view at 0,1,2,3 respectively displays calendar, list, notes, edit
+    $rootScope.view = 0; //view at 0,1,2,3 respectively displays new item, list, notes, edit
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
-    $rootScope.viewTitles = ["Calendar", "Daily Entries", "Notes", "Edit"]
+    $rootScope.viewTitles = ["New Item", "Daily Entries", "Notes", "Edit"]
     // $rootScope.items = [
     //     {
     //         "id": 1,
@@ -67,6 +67,15 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
     // ];
     $rootScope.items = [];
 
+    $rootScope.location = $location;
+    $rootScope.$watch('location.search()', function() {
+        $rootScope.target = ($location.search()).target;
+    }, true);
+
+    $rootScope.changeTarget = function(name) {
+        $location.search('target', name);
+    }
+
 
 
     $rootScope.selectedItem = undefined;
@@ -75,7 +84,7 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
     $rootScope.searchFilter = undefined;
     $rootScope.categoryFilter = undefined;
     $rootScope.dateFilter = undefined;
-
+    $rootScope.dataLoaded = false;
     $rootScope.activeDays = [];
 
     $rootScope.api = "http://localhost:3000";
@@ -92,13 +101,15 @@ function todoController($scope, $rootScope, $http, CATEGORIES) {
                 }
             }
             $rootScope.itemCount = $rootScope.items.length; 
+            
         }
+        
     });
 
     
 }
 
-function headerController($scope, $rootScope) {
+function headerController($scope, $rootScope, $location) {
 
     $scope.openSearch = function () {
         $rootScope.search = true; //search bar header
@@ -114,6 +125,7 @@ function headerController($scope, $rootScope) {
     $scope.editItem = function () {
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3;
+        $location.search('target', "edit");
         for (var i = 0; i < $rootScope.items.length; i++) {
             if ($rootScope.items[i].id == $rootScope.selectedItemID) {
                 $rootScope.selectedItem = $rootScope.items[i];
@@ -123,16 +135,13 @@ function headerController($scope, $rootScope) {
 }
 
 function calendarController($scope, $rootScope) {
-    const fp = flatpickr(document.getElementById("calendar"), { inline: true, dateFormat: "m/d" });
+    // const fp = flatpickr(document.getElementById("calendar"), { inline: true, dateFormat: "m/d" });
 
     $scope.searchDate = function () {
         $rootScope.view = 1;
         $rootScope.search = true;
     }
 
-}
-
-function listController($scope, $rootScope) {
     $scope.addItem = function () {
         $rootScope.itemCount++;
         $rootScope.selectedItemID = $rootScope.itemCount;
@@ -145,6 +154,11 @@ function listController($scope, $rootScope) {
         $rootScope.selectedItem = new ListObject($rootScope.selectedItemID, _label, _notes, _category, _date, undefined, undefined);
 
     }
+
+}
+
+function listController($scope, $rootScope) {
+    
 
     $scope.cycleDate = function (day) {
         var index = $rootScope.activeDays.indexOf(day);
@@ -226,16 +240,18 @@ function editController($scope, $rootScope, $http) {
 
 }
 
-function navController($scope, $rootScope) {
+function navController($scope, $rootScope, $location) {
     $scope.calendarPressed = function () {
+        $location.search('target', "add");
         $rootScope.view = 0;
     }
     $scope.listPressed = function () {
+        $location.search('target', "daily");
         $rootScope.view = 1;
     }
     $scope.notesPressed = function () {
+        $location.search('target', "notes");
         $rootScope.view = 2;
-        console.log($rootScope.items);
     }
 }
 

@@ -19,21 +19,25 @@
     <div class="todo-header" ng-controller="headerController" ng-include="'../src/html/header.html'">
     </div>
 
-    <div class="todo-calendar" ng-controller="calendarController" ng-if="view == 0">
-      <input class="todo-calendar-input" type="text" id="calendar" ng-model="$root.dateFilter" ng-change="searchDate()">
+    <div class="todo-calendar" ng-controller="calendarController" ng-if="target == 'add'">
+      <!-- <input class="todo-calendar-input" type="text" id="calendar" ng-model="$root.dateFilter" ng-change="searchDate()"> -->
+      
+      <button class="todo-default-add" ng-click="addItem()">
+        <img src="img/listAddButton.png">
+      </button>
     </div>
 
-    <div class="todo-default" ng-if="view == 1" ng-controller="listController" ng-include="'../src/html/daily.html'">
+    <div class="todo-default" ng-if="target == 'daily'" ng-controller="listController" ng-include="'../src/html/daily.html'">
       
     </div>
 
-    <div class="todo-notes" ng-if="view == 2" ng-controller="notesController" ng-include="'../src/html/notes.html'">
+    <div class="todo-notes" ng-if="target == 'notes'" ng-controller="notesController" ng-include="'../src/html/notes.html'">
     </div>
 
 
 
 
-    <div class="todo-edit" ng-if="view == 3" ng-controller="editController" ng-include="'../src/html/edit.html'">
+    <div class="todo-edit" ng-if="target == 'edit'" ng-controller="editController" ng-include="'../src/html/edit.html'">
     </div>
 
 
