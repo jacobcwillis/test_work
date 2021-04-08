@@ -69,7 +69,7 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
 
     $rootScope.location = $location;
     $rootScope.$watch('location.search()', function() {
-        $rootScope.target = ($location.search()).target;
+        $rootScope.target = $location.search().target;
     }, true);
 
     $rootScope.changeTarget = function(name) {
@@ -110,7 +110,7 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
 }
 
 function headerController($scope, $rootScope, $location) {
-
+    
     $scope.openSearch = function () {
         $rootScope.search = true; //search bar header
 
