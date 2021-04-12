@@ -12,7 +12,7 @@ myList.controller('todoController', todoController);
 todoController.$inject = ['$scope', '$rootScope', '$http', '$location', 'CATEGORIES'];
 
 myList.controller('navController', navController);
-navController.$inject = ['$scope', '$rootScope', '$location'];
+navController.$inject = ['$scope', '$rootScope'];
 
 myList.controller('notesController', notesController);
 notesController.$inject = ['$scope', '$rootScope'];
@@ -24,7 +24,7 @@ myList.controller('listController', listController);
 listController.$inject = ['$scope', '$rootScope'];
 
 myList.controller('headerController', headerController);
-headerController.$inject = ['$scope', '$rootScope', '$location'];
+headerController.$inject = ['$scope', '$rootScope'];
 
 myList.controller('calendarController', calendarController);
 calendarController.$inject = ['$scope', '$rootScope'];
@@ -69,12 +69,19 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
 
     $rootScope.location = $location;
     $rootScope.$watch('location.search()', function() {
-        $rootScope.target = $location.search().target;
+        $rootScope.page = $location.search().page;
+        if ($rootScope.page == 'daily') {
+            $rootScope.card = $location.search().card;
+        }
     }, true);
 
-    $rootScope.changeTarget = function(name) {
-        $location.search('target', name);
+    $rootScope.changeCard = function(day) {
+        $location.search('card', day);
     }
+
+    $rootScope.changePage = function(name) {
+        $location.search('page', name);
+    } 
 
 
 
@@ -87,6 +94,40 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
     $rootScope.dataLoaded = false;
     $rootScope.activeDays = [];
 
+    $rootScope.addDate = function (day) { //safe function to add any date to the activeDays, repeat dates are accepted but not re-added, additions are sorted.
+        $rootScope.addDateHelper(day, $rootScope.activeDays.length - 1); //index of last item
+    }
+
+    $rootScope.addDateHelper = function (day, index) {
+        if (index < 0) {
+            $rootScope.activeDays.splice(0, 0, day); //insert at beginning of array
+            return;
+        }
+        if ($rootScope.dayCompare(day, $rootScope.activeDays[index]) > 0){ // day comes after aD[index]
+            $rootScope.activeDays.splice(index + 1, 0, day);
+            return;
+        }
+        if ($rootScope.dayCompare(day, $rootScope.activeDays[index]) < 0){ // day comes before aD[index]
+            $rootScope.addDateHelper(day, index-1);
+        }
+    }
+
+    $rootScope.dayCompare = function (a, b) { //a>b 1, a=b 0, a<b -1
+        if (parseInt(a.substring(0,2)) > parseInt(b.substring(0,2))) {
+            return 1;
+        }
+        if (parseInt(a.substring(0,2)) < parseInt(b.substring(0,2))) {
+            return -1;
+        }
+        if (parseInt(a.substring(3,5)) > parseInt(b.substring(3,5))) {
+            return 1;
+        }
+        if (parseInt(a.substring(3,5)) < parseInt(b.substring(3,5))) {
+            return -1;
+        }
+        return 0;
+    }
+
     $rootScope.api = "http://localhost:3000";
     $http.get($rootScope.api + "/readdata").then(function (response) {
 
@@ -95,10 +136,8 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
             for (var i = 0; i < _data.length; i++) {
                 _data[i].date = new Date(_data[i].date); //thank you, javascript/JSON dates
                 $rootScope.items.push(new ListObject(_data[i].id, _data[i].label, _data[i].notes, _data[i].category, _data[i].date, _data[i].text, _data[i].dateContr));
+                $rootScope.addDate(_data[i].dateContr);
                 
-                if (!$rootScope.activeDays.includes(_data[i].dateContr)) { //fill out activeDays
-                    $rootScope.activeDays.push(_data[i].dateContr);
-                }
             }
             $rootScope.itemCount = $rootScope.items.length; 
             
@@ -106,10 +145,16 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
         
     });
 
+    $rootScope.$watch('items', function(newItems, oldItems) {
+        $rootScope.searchFilter = undefined;
+        $rootScope.categoryFilter = undefined;
+        
+    });
+
     
 }
 
-function headerController($scope, $rootScope, $location) {
+function headerController($scope, $rootScope) {
     
     $scope.openSearch = function () {
         $rootScope.search = true; //search bar header
@@ -125,7 +170,7 @@ function headerController($scope, $rootScope, $location) {
     $scope.editItem = function () {
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3;
-        $location.search('target', "edit");
+        $rootScope.changePage('edit');
         for (var i = 0; i < $rootScope.items.length; i++) {
             if ($rootScope.items[i].id == $rootScope.selectedItemID) {
                 $rootScope.selectedItem = $rootScope.items[i];
@@ -147,6 +192,7 @@ function calendarController($scope, $rootScope) {
         $rootScope.selectedItemID = $rootScope.itemCount;
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3; //edit view
+        $rootScope.changePage('edit');
         var _label = "Entry #" + $rootScope.selectedItemID;
         var _notes = "Notes #" + $rootScope.selectedItemID;
         var _date = new Date();
@@ -163,6 +209,7 @@ function listController($scope, $rootScope) {
     $scope.cycleDate = function (day) {
         var index = $rootScope.activeDays.indexOf(day);
         $rootScope.dateFilter = $rootScope.activeDays[index];
+        $rootScope.changeCard($rootScope.dateFilter);
     }
 
     $scope.selectItem = function (itemID) {
@@ -172,6 +219,7 @@ function listController($scope, $rootScope) {
 }
 
 function notesController($scope, $rootScope) {
+    console.log($rootScope.items);
     $scope.selectItem = function (itemID) {
         console.log("slected itemID: ", itemID);
         $rootScope.selectedItemID = itemID;
@@ -196,19 +244,8 @@ function editController($scope, $rootScope, $http) {
                 "0" + $rootScope.selectedItem.date.getDate() : $rootScope.selectedItem.date.getDate());
 
         //adds dateContr if not already in activeDates
-        if (!$rootScope.activeDays.length) {
-            $rootScope.activeDays.push($rootScope.selectedItem.dateContr);
-        } else {
-            var n = 0;
-            for (var i = 0; i < $rootScope.activeDays.length; i++) {
-                if ($rootScope.activeDays[i] == $rootScope.selectedItem.dateContr) {
-                    n++;
-                }
-            }
-            if (n == 0) {
-                $rootScope.activeDays.push($rootScope.selectedItem.dateContr);
-            }
-        }
+        $rootScope.addDate($rootScope.selectedItem.dateContr);
+        
 
         //date selected for default view
         $rootScope.dateFilter = $rootScope.selectedItem.dateContr;
@@ -240,17 +277,18 @@ function editController($scope, $rootScope, $http) {
 
 }
 
-function navController($scope, $rootScope, $location) {
+function navController($scope, $rootScope) {
     $scope.calendarPressed = function () {
-        $location.search('target', "add");
+        $rootScope.changePage('add');
         $rootScope.view = 0;
     }
     $scope.listPressed = function () {
-        $location.search('target', "daily");
+        $rootScope.changePage('daily');
         $rootScope.view = 1;
+        console.log($rootScope.activeDays);
     }
     $scope.notesPressed = function () {
-        $location.search('target', "notes");
+        $rootScope.changePage('notes');
         $rootScope.view = 2;
     }
 }

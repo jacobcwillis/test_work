@@ -185,7 +185,7 @@
         background-color: #24263a; }
     .todo-default-layer {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: column;
       justify-content: flex-end;
       width: 100%;
       align-items: center; }
@@ -194,7 +194,6 @@
         padding: 0;
         margin: 0;
         height: 40px;
-        overflow: hidden;
         justify-content: center;
         width: 90%; }
         .todo-default-layer-hidden-card {

@@ -14,12 +14,10 @@
 
 <body>
   <div class="todo" ng-controller="todoController">
-
-
     <div class="todo-header" ng-controller="headerController" ng-include="'../src/html/header.html'">
     </div>
 
-    <div class="todo-calendar" ng-controller="calendarController" ng-if="target == 'add'">
+    <div class="todo-calendar" ng-controller="calendarController" ng-if="page == 'add'">
       <!-- <input class="todo-calendar-input" type="text" id="calendar" ng-model="$root.dateFilter" ng-change="searchDate()"> -->
       
       <button class="todo-default-add" ng-click="addItem()">
@@ -27,22 +25,16 @@
       </button>
     </div>
 
-    <div class="todo-default" ng-if="target == 'daily'" ng-controller="listController" ng-include="'../src/html/daily.html'">
+    <div class="todo-default" ng-if="page == 'daily'" ng-controller="listController" ng-include="'../src/html/daily.html'">
     </div>
 
-    <div class="todo-notes" ng-if="target == 'notes'" ng-controller="notesController" ng-include="'../src/html/notes.html'">
+    <div class="todo-notes" ng-if="page == 'notes'" ng-controller="notesController" ng-include="'../src/html/notes.html'">
     </div>
 
-
-
-
-    <div class="todo-edit" ng-if="target == 'edit'" ng-controller="editController" ng-include="'../src/html/edit.html'">
+    <div class="todo-edit" ng-if="page == 'edit'" ng-controller="editController" ng-include="'../src/html/edit.html'">
     </div>
-
-
 
     <div class="todo-nav" ng-controller="navController" ng-include="'../src/html/nav.html'">
-      
     </div>
   </div>
 

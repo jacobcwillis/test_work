@@ -1,9 +1,9 @@
 <button id="calendarButton" ng-click="calendarPressed()">
-    <img ng-src="img/calendarIcon{{target == add ? 'Active' : 'Inactive'}}.png">
+    <img ng-src="img/calendarIcon{{page == 'add' ? 'Active' : 'Inactive'}}.png">
   </button>
   <button id="listButton" ng-click="listPressed()">
-    <img ng-src="img/checkIcon{{target == daily ? 'Active' : 'Inactive'}}.png">
+    <img ng-src="img/checkIcon{{page == 'daily' ? 'Active' : 'Inactive'}}.png">
   </button>
   <button id="notesButton" ng-click="notesPressed()">
-    <img ng-src="img/pencilIcon{{target == notes ? 'Active' : 'Inactive'}}.png">
+    <img ng-src="img/pencilIcon{{page == 'notes' ? 'Active' : 'Inactive'}}.png">
   </button>
