@@ -83,6 +83,11 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
         $location.search('page', name);
     } 
 
+    $rootScope.$watch('items', function(newItems, oldItems) {
+        $rootScope.openSearch();
+        $rootScope.cancelSearch();
+    });
+
 
 
     $rootScope.selectedItem = undefined;
@@ -145,29 +150,25 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
         
     });
 
-    $rootScope.$watch('items', function(newItems, oldItems) {
-        $rootScope.searchFilter = undefined;
-        $rootScope.categoryFilter = undefined;
-        
-    });
+    
 
     
 }
 
 function headerController($scope, $rootScope) {
     
-    $scope.openSearch = function () {
+    $rootScope.openSearch = function () {
         $rootScope.search = true; //search bar header
 
     }
 
-    $scope.cancelSearch = function () {
+    $rootScope.cancelSearch = function () {
         $rootScope.search = false;
         $rootScope.searchFilter = undefined;
         $rootScope.categoryFilter = undefined;
     }
 
-    $scope.editItem = function () {
+    $rootScope.editItem = function () {
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3;
         $rootScope.changePage('edit');
