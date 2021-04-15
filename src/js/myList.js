@@ -43,6 +43,7 @@ function ListObject(id, label, notes, category, date, text, dateContr) {
 function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
     $rootScope.categoryLegend = CATEGORIES;
     $rootScope.view = 0; //view at 0,1,2,3 respectively displays new item, list, notes, edit
+    $rootScope.views = ['add','daily', 'notes', 'edit'];
     $rootScope.storedView = $rootScope.view; //for handling enter/leave edit view from other views
     $rootScope.viewTitles = ["New Item", "Daily Entries", "Notes", "Edit"]
     // $rootScope.items = [
@@ -84,8 +85,7 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
     } 
 
     $rootScope.$watch('items', function(newItems, oldItems) {
-        $rootScope.openSearch();
-        $rootScope.cancelSearch();
+        $rootScope.itemCount = $rootScope.items.length;
     });
 
 
@@ -98,6 +98,7 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
     $rootScope.dateFilter = undefined;
     $rootScope.dataLoaded = false;
     $rootScope.activeDays = [];
+    $rootScope.itemCount = 0;
 
     $rootScope.addDate = function (day) { //safe function to add any date to the activeDays, repeat dates are accepted but not re-added, additions are sorted.
         $rootScope.addDateHelper(day, $rootScope.activeDays.length - 1); //index of last item
@@ -181,19 +182,12 @@ function headerController($scope, $rootScope) {
 }
 
 function calendarController($scope, $rootScope) {
-    // const fp = flatpickr(document.getElementById("calendar"), { inline: true, dateFormat: "m/d" });
-
-    $scope.searchDate = function () {
-        $rootScope.view = 1;
-        $rootScope.search = true;
-    }
-
     $scope.addItem = function () {
         $rootScope.itemCount++;
         $rootScope.selectedItemID = $rootScope.itemCount;
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3; //edit view
-        $rootScope.changePage('edit');
+        $rootScope.changePage($rootScope.views[$rootScope.view]);
         var _label = "Entry #" + $rootScope.selectedItemID;
         var _notes = "Notes #" + $rootScope.selectedItemID;
         var _date = new Date();
@@ -257,6 +251,7 @@ function editController($scope, $rootScope, $http) {
                 console.log("editing item: ", $rootScope.selectedItem);
                 $rootScope.items[i] = $rootScope.selectedItem;
                 $rootScope.view = $rootScope.storedView;
+                $rootScope.changePage($rootScope.views[$rootScope.view]);
                 $rootScope.selectedItem = undefined;
                 $rootScope.selectedItemID = undefined;
                 $http.post($rootScope.api + "/writedata", $rootScope.items);  //writes ", [Object object]" * length
@@ -267,6 +262,7 @@ function editController($scope, $rootScope, $http) {
         console.log("adding new item: ", $rootScope.selectedItem);
         $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = $rootScope.storedView;
+        $rootScope.changePage($rootScope.views[$rootScope.view]);
         $rootScope.selectedItem = undefined;
         $rootScope.selectedItemID = undefined;
         $http.post($rootScope.api + "/writedata", $rootScope.items);
