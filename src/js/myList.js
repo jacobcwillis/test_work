@@ -1,9 +1,22 @@
-var myList = angular.module('myList', []);
+var myList = angular.module('myList', ['ngRoute']);
 
-myList.config(function () {
+myList.config(function ($routeProvider) {
     // The config function is fired once per page load and is used to define
     // global app behaviour, it is most often used for managing Network events
     // and global state / routing tools
+    $routeProvider
+    .when("/daily", {
+        template : '../html/daily.html'
+    })
+    .when("/notes", {
+        template : '../html/notes.html'
+    })
+    .when("/edit", {
+        template : '../html/edit.html'
+    })
+    .otherwise({
+        template : '../index.html'
+    });
 
 });
 myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.'])
@@ -68,21 +81,21 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
     // ];
     $rootScope.items = [];
 
-    $rootScope.location = $location;
-    $rootScope.$watch('location.search()', function() {
-        $rootScope.page = $location.search().page;
-        if ($rootScope.page == 'daily') {
-            $rootScope.card = $location.search().card;
-        }
-    }, true);
+    // $rootScope.location = $location;
+    // $rootScope.$watch('location.search()', function() {
+    //     $rootScope.page = $location.search().page;
+    //     if ($rootScope.page == 'daily') {
+    //         $rootScope.card = $location.search().card;
+    //     }
+    // }, true);
 
-    $rootScope.changeCard = function(day) {
-        $location.search('card', day);
-    }
+    // $rootScope.changeCard = function(day) {
+    //     $location.search('card', day);
+    // }
 
-    $rootScope.changePage = function(name) {
-        $location.search('page', name);
-    } 
+    // $rootScope.changePage = function(name) {
+    //     $location.search('page', name);
+    // } 
 
     $rootScope.$watch('items', function(newItems, oldItems) {
         $rootScope.itemCount = $rootScope.items.length;
