@@ -16,7 +16,10 @@
 </div>
 <input type="date" class="todo-edit-date" ng-model="selectedItem.date">
 <textarea class="todo-edit-notes" ng-model="selectedItem.notes"></textarea>
-<button type="submit" class="todo-edit-complete" ng-click="closeEditor()">Complete</button>
+
+<button type="submit" class="todo-edit-complete" ng-click="closeEditor()">
+    <a href="#!daily">Complete</a>
+</button>
 
 
 <script src="js/angular/angular.min.js"></script>

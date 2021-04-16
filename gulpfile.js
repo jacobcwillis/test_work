@@ -29,7 +29,7 @@ gulp.task('sass', function (done) {
 });
 
 gulp.task('html', function (done) {
-    gulp.src('./src/*.html')
+    gulp.src('./src/**/*.html')
         .pipe(htmlreplace({
             'stylesheetLink': './css/styles.css',
             'minjsLink': './js/myList-min.js',

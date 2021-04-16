@@ -6,16 +6,20 @@ myList.config(function ($routeProvider) {
     // and global state / routing tools
     $routeProvider
     .when("/daily", {
-        template : '../html/daily.html'
+        template : '../html/daily.html',
+        controller : 'listController'
     })
     .when("/notes", {
-        template : '../html/notes.html'
+        template : '../html/notes.html',
+        controller : 'notesController'
     })
     .when("/edit", {
-        template : '../html/edit.html'
+        template : '../html/edit.html',
+        controller : 'addController'
     })
     .otherwise({
-        template : '../index.html'
+        template : '../index.html',
+        controller : 'todoController'
     });
 
 });
@@ -81,17 +85,14 @@ function todoController($scope, $rootScope, $http, $location, CATEGORIES) {
     // ];
     $rootScope.items = [];
 
-    // $rootScope.location = $location;
-    // $rootScope.$watch('location.search()', function() {
-    //     $rootScope.page = $location.search().page;
-    //     if ($rootScope.page == 'daily') {
-    //         $rootScope.card = $location.search().card;
-    //     }
-    // }, true);
+    $rootScope.location = $location;
+    $rootScope.$watch('location.search()', function() {
+        $rootScope.card = $location.search().card;
+    }, true);
 
-    // $rootScope.changeCard = function(day) {
-    //     $location.search('card', day);
-    // }
+    $rootScope.changeCard = function(day) {
+        $location.search('card', day);
+    }
 
     // $rootScope.changePage = function(name) {
     //     $location.search('page', name);
@@ -185,7 +186,7 @@ function headerController($scope, $rootScope) {
     $rootScope.editItem = function () {
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3;
-        $rootScope.changePage('edit');
+        //$rootScope.changePage('edit');
         for (var i = 0; i < $rootScope.items.length; i++) {
             if ($rootScope.items[i].id == $rootScope.selectedItemID) {
                 $rootScope.selectedItem = $rootScope.items[i];
@@ -200,7 +201,7 @@ function addController($scope, $rootScope) {
         $rootScope.selectedItemID = $rootScope.itemCount;
         $rootScope.storedView = $rootScope.view;
         $rootScope.view = 3; //edit view
-        $rootScope.changePage($rootScope.views[$rootScope.view]);
+        //$rootScope.changePage($rootScope.views[$rootScope.view]);
         var _label = "Entry #" + $rootScope.selectedItemID;
         var _notes = "Notes #" + $rootScope.selectedItemID;
         var _date = new Date();
@@ -264,7 +265,7 @@ function editController($scope, $rootScope, $http) {
                 console.log("editing item: ", $rootScope.selectedItem);
                 $rootScope.items[i] = $rootScope.selectedItem;
                 $rootScope.view = $rootScope.storedView;
-                $rootScope.changePage($rootScope.views[$rootScope.view]);
+                //$rootScope.changePage($rootScope.views[$rootScope.view]);
                 $rootScope.selectedItem = undefined;
                 $rootScope.selectedItemID = undefined;
                 $http.post($rootScope.api + "/writedata", $rootScope.items);  //writes ", [Object object]" * length
@@ -275,7 +276,7 @@ function editController($scope, $rootScope, $http) {
         console.log("adding new item: ", $rootScope.selectedItem);
         $rootScope.items.push($rootScope.selectedItem);
         $rootScope.view = $rootScope.storedView;
-        $rootScope.changePage($rootScope.views[$rootScope.view]);
+        //$rootScope.changePage($rootScope.views[$rootScope.view]);
         $rootScope.selectedItem = undefined;
         $rootScope.selectedItemID = undefined;
         $http.post($rootScope.api + "/writedata", $rootScope.items);
@@ -289,16 +290,16 @@ function editController($scope, $rootScope, $http) {
 
 function navController($scope, $rootScope) {
     $scope.calendarPressed = function () {
-        $rootScope.changePage('add');
+        //$rootScope.changePage('add');
         $rootScope.view = 0;
     }
     $scope.listPressed = function () {
-        $rootScope.changePage('daily');
+        //$rootScope.changePage('daily');
         $rootScope.view = 1;
-        console.log($rootScope.activeDays);
+        //console.log($rootScope.activeDays);
     }
     $scope.notesPressed = function () {
-        $rootScope.changePage('notes');
+        //$rootScope.changePage('notes');
         $rootScope.view = 2;
     }
 }
