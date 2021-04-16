@@ -1,3 +1,10 @@
+<!-- build:stylesheetLink -->
+<link rel="stylesheet" href="./css/styles.css">
+<!-- endbuild -->
+
+<div class="todo-header" ng-controller="headerController" ng-include="'header.html'">
+</div>
+
 <div class="todo-default-layer">
     <ul class="todo-default-layer-hidden" ng-repeat="day in activeDays" ng-hide="day == dateFilter">
         <button class="todo-default-layer-hidden-card" ng-click="cycleDate(day)">
@@ -15,3 +22,12 @@
         <input class="todo-default-list-item-select" type="radio" name="selectedItem" value="{{item}}">
     </li>
 </ul>
+
+<div class="todo-nav" ng-controller="navController" ng-include="'nav.html'">
+</div>
+
+<script src="js/angular/angular.min.js"></script>
+<script src="js/angular/angular-route.min.js"></script>
+<!-- build:minjsLink -->
+<script src="js/myList.js"></script>
+<!-- endbuild -->

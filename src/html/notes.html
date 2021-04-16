@@ -1,3 +1,10 @@
+<!-- build:stylesheetLink -->
+<link rel="stylesheet" href="./css/styles.css">
+<!-- endbuild -->
+
+<div class="todo-header" ng-controller="headerController" ng-include="'header.html'">
+</div>
+
 <ul class="todo-notes-list">
     <li ng-click="selectItem(item.id)" ng-repeat="item in items  | filter:{text:$root.searchFilter, category:$root.categoryFilter}"
         ng-class="(item.id == selectedItemID)?'notes-list-item-selected':'todo-notes-list-item'">
@@ -8,3 +15,12 @@
         <input class="todo-notes-list-item-select" type="radio" name="selectedItem" value="{{item}}">
     </li>
 </ul>
+
+<div class="todo-nav" ng-controller="navController" ng-include="'nav.html'">
+</div>
+
+<script src="js/angular/angular.min.js"></script>
+<script src="js/angular/angular-route.min.js"></script>
+<!-- build:minjsLink -->
+<script src="js/myList.js"></script>
+<!-- endbuild -->

@@ -8,7 +8,6 @@
   <meta name="author" content="me">
 
   <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>
 
@@ -17,20 +16,20 @@
     <div class="todo-header" ng-controller="headerController" ng-include="'../src/html/header.html'">
     </div>
 
-    <div class="todo-calendar" ng-controller="calendarController" ng-if="page == 'add'">
+    <div class="todo-calendar" ng-controller="addController">
       <button class="todo-default-add" ng-click="addItem()">
         <img src="img/listAddButton.png">
       </button>
     </div>
 
-    <div class="todo-default" ng-if="page == 'daily'" ng-controller="listController" ng-include="'../src/html/daily.html'">
+    <!-- <div class="todo-default" ng-if="page == 'daily'" ng-controller="listController" ng-include="'../src/html/daily.html'">
     </div>
 
     <div class="todo-notes" ng-if="page == 'notes'" ng-controller="notesController" ng-include="'../src/html/notes.html'">
     </div>
 
     <div class="todo-edit" ng-if="page == 'edit'" ng-controller="editController" ng-include="'../src/html/edit.html'">
-    </div>
+    </div> -->
 
     <div class="todo-nav" ng-controller="navController" ng-include="'../src/html/nav.html'">
     </div>
@@ -38,7 +37,7 @@
 
   <script src="js/angular/angular.min.js"></script>
   <script src="js/angular/angular-route.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 
   <script src="./js/myList-min.js"></script>
 

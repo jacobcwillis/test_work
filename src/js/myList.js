@@ -26,8 +26,8 @@ listController.$inject = ['$scope', '$rootScope'];
 myList.controller('headerController', headerController);
 headerController.$inject = ['$scope', '$rootScope'];
 
-myList.controller('calendarController', calendarController);
-calendarController.$inject = ['$scope', '$rootScope'];
+myList.controller('addController', addController);
+addController.$inject = ['$scope', '$rootScope'];
 
 function ListObject(id, label, notes, category, date, text, dateContr) {
     this.id = id;
@@ -181,7 +181,7 @@ function headerController($scope, $rootScope) {
     }
 }
 
-function calendarController($scope, $rootScope) {
+function addController($scope, $rootScope) {
     $scope.addItem = function () {
         $rootScope.itemCount++;
         $rootScope.selectedItemID = $rootScope.itemCount;
