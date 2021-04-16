@@ -1,6 +1,7 @@
 var myList = angular.module('myList', ['ngRoute']);
 
-myList.config(function ($routeProvider) {
+
+var routeConfig = function ($routeProvider) {
     // The config function is fired once per page load and is used to define
     // global app behaviour, it is most often used for managing Network events
     // and global state / routing tools
@@ -22,7 +23,11 @@ myList.config(function ($routeProvider) {
         controller : 'todoController'
     });
 
-});
+}
+routeConfig.$inject = ['$routeProvider'];
+
+myList.config(routeConfig);
+
 myList.constant('CATEGORIES', ['work', 'social', 'home', 'misc.'])
 
 myList.controller('todoController', todoController);
