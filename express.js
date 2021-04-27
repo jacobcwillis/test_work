@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (request, response) => {
-	response.send('Hello World');
+	response.send('../build/index.html');
 });
 
 app.get('/readdata', (request, response) => {
