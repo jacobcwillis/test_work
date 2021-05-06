@@ -71,6 +71,21 @@ app.post('/writedata', (request, response) => {
 	}
 });
 
+app.get('/add', (request, response) => {
+
+});
+
+app.get('/list', (request, response) => {
+	
+});
+
+app.get('/notes', (request, response) => {
+	
+});
+
+app.get('/edit', (request, response) => {
+	
+});
 
 function server() {
 	app.use(express.json());
